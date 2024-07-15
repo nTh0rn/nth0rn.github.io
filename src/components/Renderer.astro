@@ -1,0 +1,60 @@
+---
+import { MarkdocRenderer } from "astro-markdoc-renderer";
+import type { Content } from "astro-markdoc-renderer";
+import YouTubeEmbed from "./YouTubeEmbed.astro";
+import TweetEmbed from "./TweetEmbed.astro";
+import OctantPic from "./OctantPic.astro";
+import CenterPic from "./CenterPic.astro";
+import FloatLeftPic from "./FloatLeftPic.astro";
+import CodePenEmbed from "./CodePenEmbed.astro";
+import GitHubGistEmbed from "./GitHubGistEmbed.astro";
+import CodeBlock from "./CodeBlock.astro";
+import Heading from "./Heading.astro";
+
+type Props = {
+  content: Content;
+};
+
+const { content } = Astro.props;
+
+const components = {
+  Heading: {
+    Component: Heading,
+    props: {},
+  },
+  CodeBlock: {
+    Component: CodeBlock,
+    props: {},
+  },
+  YouTubeEmbed: {
+    Component: YouTubeEmbed,
+    props: {},
+  },
+  CenterPic: {
+    Component: CenterPic,
+    props: {},
+  },
+  FloatLeftPic: {
+    Component: FloatLeftPic,
+    props: {},
+  },
+  OctantPic: {
+    Component: OctantPic,
+    props: {},
+  },
+  TweetEmbed: {
+    Component: TweetEmbed,
+    props: {},
+  },
+  CodePenEmbed: {
+    Component: CodePenEmbed,
+    props: {},
+  },
+  GitHubGistEmbed: {
+    Component: GitHubGistEmbed,
+    props: {},
+  },
+};
+---
+
+<MarkdocRenderer content={content} components={components} />

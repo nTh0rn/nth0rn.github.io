@@ -1,0 +1,93 @@
+---
+/* 
+  This layout is used in 
+  - pages/index.astro
+  - pages/blog.astro
+  - pages/projects.astro
+*/
+
+// Import the global.css file here so that it is included on
+import "../styles/global.css";
+
+import GoogleFont from "./GoogleFont.astro";
+import FontAwesome from "./FontAwesome.astro";
+import ThemeScript from "./ThemeScript.astro";
+import Favicon from "./Favicon.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Highlights from "../components/Highlights.astro";
+
+---
+
+<!DOCTYPE html>
+<html class="theme-newspaper" lang="en">
+  <head>
+  
+    <!-- Global Metadata -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="generator" content="Blogster" />
+    <Favicon />
+    <slot name="meta" />
+    <GoogleFont />
+    <ThemeScript />
+    <FontAwesome />
+    
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.8.0/p5.js"></script>
+	<script type="text/javascript" src="./p5js/bg_node.js"></script>
+
+  <script>
+setTimeout(() => {
+  window.onbeforeunload = function () {
+  window.scrollTo(0, 0);
+}
+}, "1000");
+    </script>
+
+  </head>
+
+  <body
+    class="max-w-4xl mx-auto min-h-screen px-6 sm:px-8 overflow-x-hidden"
+  >
+  
+
+    <Header />
+    
+    <main id="main" style="padding-top:3rem">
+      <slot name="main" />
+    </main>
+    <Footer />
+    
+    <style>
+    
+      body {
+        display: grid;
+        grid-template-areas:
+          "header"
+          "main"
+          "footer";
+        grid-template-rows: 5rem minmax(0, 1fr) 5rem;
+        grid-template-columns: minmax(0, 1fr);
+      }
+      main {
+        grid-area: main;
+      }
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+      
+    </style>
+
+  </body>
+
+
+
+
+</html>

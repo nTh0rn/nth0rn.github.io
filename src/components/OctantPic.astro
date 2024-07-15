@@ -1,0 +1,18 @@
+---
+type Props = {
+    url: string;
+};
+
+const { url, } = Astro.props;
+---
+
+<div>
+  <div style="float:left; width:45%">
+    <img src={url} class="pr-[5%] pl-[2%]">
+    <div class="text-justify pr-[15%]">
+    <a href="https://web.archive.org/web/20110304103657id_/http://people.csse.uwa.edu.au/sohel/Papers/IET/paper.pdf" class="text-[10px] md:text-sm">
+    Image Credit: Sohel, Ferdous & Karmakar, Gour & Dooley, Laurence & Bennamoun, Mohammed. (2010). Bezier curve-based generic shape encoder. Image Processing, IET. 4. 92 - 102. 10.1049/iet-ipr.2008.0128.
+    </a>
+  </div>
+  </div>
+</div>
