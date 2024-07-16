@@ -1,6 +1,28 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.astro"],
+  safelist: [
+    'delay-[25ms]',
+    'delay-[50ms]',
+    'delay-[75ms]',
+    'delay-[100ms]',
+    'delay-[125ms]',
+    'delay-[150ms]',
+    'delay-[175ms]',
+    'delay-[200ms]',
+    'delay-[225ms]',
+    'delay-[250ms]',
+    'delay-[275ms]',
+    'delay-[300ms]',
+    'delay-[325ms]',
+    'delay-[350ms]',
+    'delay-[375ms]',
+    'delay-[400ms]',
+    'delay-[425ms]',
+    'delay-[450ms]',
+    'delay-[475ms]',
+    'delay-[500ms]',
+  ],
   darkMode: "class",
   theme: {
     extend: {
