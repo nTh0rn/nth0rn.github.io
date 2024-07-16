@@ -19,7 +19,23 @@ const sortedProjects = projects
       new Date(a.frontmatter.date).valueOf()
   );
 ---
-
+<head>
+  <script>
+    var count=0;
+		document.addEventListener("DOMContentLoaded", function(){
+    var replacers = document.querySelectorAll('[data-replace]');
+    for(var i=0; i<replacers.length; i++){
+        let replaceClasses = JSON.parse(replacers[i].dataset.replace.replace(/'/g, '"'));
+        Object.keys(replaceClasses).forEach(function(key) {
+            replacers[i].classList.remove(key);
+            count+=25;
+            replacers[i].classList.add("delay-["+count+"ms]");
+            replacers[i].classList.add(replaceClasses[key]);
+        });
+    }
+});
+	</script>
+</head>
 <PageLayout>
   <PageMeta title={`Projects | ${SITE_TITLE}`} slot="meta" />
   
@@ -36,7 +52,7 @@ const sortedProjects = projects
             day: "numeric",
           });
           return (
-            <li class="grid grid-cols-[1fr] md:grid-cols-[1fr_auto] mb-3 md:gap-2 items-start">
+            <li class="grid grid-cols-[1fr] md:grid-cols-[1fr_auto] mb-3 md:gap-2 items-start duration-1000 relative transform transition-all opacity-0 ease-out" data-replace='{ "opacity-0": "opacity-100" }'>
               <div class="title">
                 <a
                   href={project.frontmatter.url}
