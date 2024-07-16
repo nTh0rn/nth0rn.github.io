@@ -18,7 +18,7 @@ function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
     if(abs(last_node_count-(width*height/density_ratio))/last_node_count > 0.25 || ratio_shrink == true) {
       if(ratio_shrink == true) {
-        density_ratio+=2000;
+        density_ratio+=5000;
         //print("New density ratio: " + density_ratio);
         ratio_shrink = false;
       }
