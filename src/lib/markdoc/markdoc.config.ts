@@ -93,6 +93,9 @@ export const config: Config = {
         url: { type: String, required: true },
       },
     },
+    goto_top: {
+      render: "GotoTop",
+    },
     octant_pic: {
       render: "OctantPic",
       attributes: {
