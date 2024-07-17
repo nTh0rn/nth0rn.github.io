@@ -79,9 +79,13 @@ const formattedDate = new Date(date).toLocaleDateString("en-us", {
             m-0 pt-1 mb-[0.375em] 
             after:mt-6 after:content-[''] after:block after:h-[1px] after:w-[100%] after:border-b-[1px] after:border-current  
         ">{title}</h1></center>
-        <time class="block mb-[2em] text-text-muted">{formattedDate}</time>
-        <slot name="content" />
+        <time class="block mb-[2em] text-text-muted" >{formattedDate}</time>
+        <span id="top"></span>
+        <slot name="content"/>
+        <div class="float-right transition duration-500 opacity-0" id="goto_top"><p align="right" class="rounded bg-[#262626] fixed bottom-2 ml-[-130px]">(<a href="#top">back to top</a>)</p></div>
       </section>
+
+      
     </main>
     <Footer />
     <style>
@@ -102,5 +106,20 @@ const formattedDate = new Date(date).toLocaleDateString("en-us", {
 }
     
     </style>
+
+    <script>
+      window.addEventListener('scroll', function() {
+		  var goto_top = document.getElementById("goto_top");
+      var distToBottom = document.documentElement.scrollTop;
+      console.log(distToBottom + " " + document.documentElement.clientHeight);
+		  if(document.documentElement.scrollTop > 300) {
+        goto_top.classList.remove("opacity-0");
+        goto_top.classList.add("opacity-100");
+		  } else {
+        goto_top.classList.remove("opacity-100");
+        goto_top.classList.add("opacity-0");
+      }
+		}, false);
+    </script>
   </body>
 </html>
