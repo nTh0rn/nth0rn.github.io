@@ -111,7 +111,6 @@ const formattedDate = new Date(date).toLocaleDateString("en-us", {
       window.addEventListener('scroll', function() {
 		  var goto_top = document.getElementById("goto_top");
       var distToBottom = document.documentElement.scrollTop;
-      console.log(distToBottom + " " + document.documentElement.clientHeight);
 		  if(document.documentElement.scrollTop > 300) {
         goto_top.classList.remove("opacity-0");
         goto_top.classList.add("opacity-100");
