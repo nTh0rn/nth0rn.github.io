@@ -5,7 +5,7 @@ description: "A chess program written in Batch and abandoned."
 tags: ["Chess", "Chess engine", "Engine", "Algorithm", "Batch"]
 date: 2021-09-06
 ---
-![](/images/chessbit/default.png)
+{% float_left_pic url="/images/chessbit/default.png" width="float:left; padding-right:2%; padding-left:2%"/%}
 
 [**Checkout the code for this over on GitHub**](https://github.com/nTh0rn/chessbit).
 
@@ -18,21 +18,29 @@ far as I got before I moved making this project into another language.
 checked only if the piece checking the king is on a lower row, or if
 its on the same row, it'll only detect the check if its to the right
 of the king. I don't plan on returning to this project and fixing this.
+
+&nbsp;
+
+
 # How to use
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To move, type the coordinates of the piece you want to move and where
 you want it to move to. For example:
 ```e2e4```
 
-![](/images/chessbit/e2e4.png)
+{% float_left_pic url="/images/chessbit/e2e4.png" width="float:left; padding-right:2%; padding-left:2%"/%}
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Upon opening, whoever's move it is is determined by who actually moves first.
 This was done to avoid additional fen-parsing.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Still a pretty cool demo though in my opinion! I might someday write up a full article about the challenges of this project and how I approached legal-move calculation. So for now, I encourage you to look at the code if you're curious!
 
-# Evaluation
+## Evaluation
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The evaluation only works by using piece-tables, obtained from [here](https://www.chessprogramming.org/Simplified_Evaluation_Function) (The Chess Programming Wiki is a goldmine, I highly recommend it.). Again, I was going to implement an actual chess-engine, and then I wised up.
-![](/images/chessbit/eval.png)
+
+{% table %}
+ * ![](/images/chessbit/eval.png) {% align="center" %}
+{% /table %}
+
 ## A statement on switch-statements and the goto function.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A lot of what I wanted to do when writing this program was use switch-statements and goto loops. Unfortunately, Batch does not have switch statements. What it does have, however, is a dynamic text system that allows you to imbed variables into variable names.
 
@@ -64,6 +72,6 @@ goto switch_%input%
     ...
     goto :eof
 ```
-The bad news, however, is that when using the goto function in Batch, it doesn't just jump straight to the line that has that function. Instead, Batch immediately jumps to the start of the file and reads downward until it finds the function. That means loops or switch statements kept near the top of your code will run faster than if they were at the bottom of your code.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The bad news, however, is that when using the goto function in Batch, it doesn't just jump straight to the line that has that function. Instead, Batch immediately jumps to the start of the file and reads downward until it finds the function. That means loops or switch statements kept near the top of your code will run faster than if they were at the bottom of your code.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I hope it is apparent now way I moved away from writing this in Batch. Be sure to check out the code for this over on [GitHub](https://github.com/nTh0rn/chessbit).
