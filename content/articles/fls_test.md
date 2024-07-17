@@ -157,13 +157,13 @@ It is noted that this new definition of $L_n$ defines every item as a multiple o
 {% table id="eq4" %}
 &nbsp;
 {% /table %}
-$$ \require{cancel} L_{n}=0.5\cdot\frac{i+1}{2i}\cdot\frac{i+2}{2(i+1)}\cdot\frac{i+3}{2(i+2)}\cdot...\cdot\frac{i+(n-1)}{2\cdot{(i+(n-2))}} \ \ \ \ \ (4) $$
+$$  L_{n}=0.5\cdot\frac{i+1}{2i}\cdot\frac{i+2}{2(i+1)}\cdot\frac{i+3}{2(i+2)}\cdot...\cdot\frac{i+(n-1)}{2\cdot{(i+(n-2))}} \ \ \ \ \ (4) $$
 where $i$ is equal to the value of $n$ taken from its earliest use in the series, which in this case is $L_2$, but it will be left as $i$ for now. From this, all instances of $(i+x)$ in every numerator can be canceled using the next term’s denominator. This means, however, that the first term retains its denominator, and the last term retains its numerator as visible in [Equation 5](#eq5) and [Equation 6](#eq6).
 
 {% table id="eq5" %}
 &nbsp;
 {% /table %}
-$$ L_{n}=0.5\cdot\frac{\require{cancel}\\cancel{i+1}}{2i}\cdot\frac{\require{cancel}\\cancel{i+2}}{2(\require{cancel}\\cancel{i+1})}\cdot\frac{\require{cancel}\\cancel{i+3}}{2\require{cancel}\\cancel{(i+2)}}\cdot...\cdot\frac{i+(n-1)}{2\cdot\require{cancel}\\cancel{{(i+(n-2))}}} \ \ \ \ \ (5) $$
+$$ L_{n}=0.5\cdot\frac{\\require{enclose}\enclose{horizontalstrike}{i+1}}{2i}\cdot\frac{\\require{enclose}\enclose{horizontalstrike}{i+2}}{2(\\require{enclose}\enclose{horizontalstrike}{i+1})}\cdot\frac{\\require{enclose}\enclose{horizontalstrike}{i+3}}{2\\require{enclose}\enclose{horizontalstrike}{(i+2)}}\cdot...\cdot\frac{i+(n-1)}{2\cdot\\require{enclose}\enclose{horizontalstrike}{{(i+(n-2))}}} \ \ \ \ \ (5) $$
 
 {% table id="eq6" %}
 &nbsp;
