@@ -8,7 +8,7 @@ var closest_dist=10000000;
 var closest_node=0;
 
 var last_resized=0;
-var density_ratio=8000;
+var density_ratio=13000;
 var ratio_shrink=false;
 
 var dropped=0;
@@ -19,7 +19,7 @@ function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
     if(abs(last_node_count-(width*height/density_ratio))/last_node_count > 0.25 || ratio_shrink == true) {
       if(ratio_shrink == true) {
-        if(density_ratio <= 23000) {
+        if(density_ratio <= 28000) {
           density_ratio+=5000;
           //print("New density ratio: " + density_ratio);
           ratio_shrink = false;
@@ -82,13 +82,13 @@ function draw() {
   for (var i = 0; i < nodes.length; i++) {
     closest_dist=1000000;
     nodes[i].checkBoundary();
-    if (i == 0 && density_ratio <= 13000) {
+    if (i == 0 && density_ratio <= 18000) {
       nodes[0].follow_mouse();
     } else {
       nodes[i].update();
     }
     nodes[i].display();
-    if(density_ratio <= 13000) {
+    if(density_ratio <= 18000) {
       for (var j = 0; j < nodes.length; j++) {
         node_dist = sqrt(pow(abs(nodes[j].x - nodes[i].x), 2) + pow(abs(nodes[j].y - nodes[i].y), 2));
         if (node_dist < 100 && i != j) {
