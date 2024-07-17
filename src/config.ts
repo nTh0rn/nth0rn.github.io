@@ -3,7 +3,7 @@
 
 export const SITE_TITLE = "Nikolas Thornton";
 export const SITE_DESCRIPTION =
-  "Computer Science undergraduate at Kennesaw State Universoty.";
+  "Computer Science undergraduate at Kennesaw State University.";
 export const TWITTER_HANDLE = "@yourtwitterhandle";
 export const MY_NAME = "Nikolas Thornton";
 
