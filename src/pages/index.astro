@@ -20,7 +20,15 @@ import { SITE_TITLE } from "../config";
 
 
 <script>
+
+
+
 document.addEventListener("DOMContentLoaded", function(){
+  window.scrollTo({
+  top: 0,
+  left: 0,
+  behavior: 'auto',
+});
     var replacers = document.querySelectorAll('[data-replace]');
     for(var i=0; i<replacers.length; i++){
         let replaceClasses = JSON.parse(replacers[i].dataset.replace.replace(/'/g, '"'));
