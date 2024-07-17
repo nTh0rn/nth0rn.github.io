@@ -59,7 +59,7 @@ function setup() {
 function draw() {
 
   // Performance protection. Decreases number of nodes if FPS is consistently low.
-  if(frameRate() < 55) {
+  if(frameRate() < 30) {
     dropped+=1;
   } else {
     dropped=0;
