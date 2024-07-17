@@ -238,6 +238,10 @@ def slider(header, y=False):
 	# Iterate through the basis from the tail to header
 	for index in range(tail, header + 1):
 		output.append(basis[index])
+  
+	# Reverse this output if its for the y-direction
+	if y == True:
+		output.reverse()
 
 	return output
 ```
