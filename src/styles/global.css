@@ -22,7 +22,7 @@
 @layer base {
 
     /* light theme */
-    .theme-newspaper {
+    .main_c {
         /* Tailwind slate-900 #0f172a */
         --color-primary-main: 15 23 42;
 
@@ -54,7 +54,7 @@
     }
 
     /* dark theme */
-    .theme-newspaper.dark {
+    .main_c.dark {
         /* white */
         --color-primary-main: 255 255 255;
 
