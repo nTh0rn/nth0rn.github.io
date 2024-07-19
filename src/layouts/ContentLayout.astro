@@ -82,7 +82,7 @@ const formattedDate = new Date(date).toLocaleDateString("en-us", {
         <time class="block mb-[2em] text-text-muted" >{formattedDate}</time>
         <span id="top"></span>
         <slot name="content"/>
-        <div class="float-right transition duration-500 opacity-0" id="goto_top"><p align="right" class="rounded dark:bg-[#111111] bg-[#EDEDED] dark:text-white text-black fixed bottom-2 ml-[-130px]">(<a href="#top">back to top</a>)</p></div>
+        <div class="float-right transition duration-500 opacity-0" id="goto_top"><p align="right" id="goto_top_text" class="transition transform duration-500 rounded dark:bg-[#111111] bg-[#EDEDED] dark:text-white text-black fixed bottom-2 ml-[-130px]">(<a href="#top">back to top</a>)</p></div>
       </section>
 
       
@@ -110,13 +110,18 @@ const formattedDate = new Date(date).toLocaleDateString("en-us", {
     <script>
       window.addEventListener('scroll', function() {
 		  var goto_top = document.getElementById("goto_top");
+      var goto_top_text = document.getElementById("goto_top_text");
       var distToBottom = document.documentElement.scrollTop;
 		  if(document.documentElement.scrollTop > 300) {
         goto_top.classList.remove("opacity-0");
         goto_top.classList.add("opacity-100");
+        goto_top_text.classList.remove("translate-y-[75px]");
+        goto_top_text.classList.add("translate-y-[0px]");
 		  } else {
         goto_top.classList.remove("opacity-100");
         goto_top.classList.add("opacity-0");
+        goto_top_text.classList.add("translate-y-[75px]");
+        goto_top_text.classList.remove("translate-y-[0px]");
       }
 		}, false);
     </script>
