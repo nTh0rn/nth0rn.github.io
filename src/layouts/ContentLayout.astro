@@ -82,7 +82,7 @@ const formattedDate = new Date(date).toLocaleDateString("en-us", {
         <time class="block mb-[2em] text-text-muted" >{formattedDate}</time>
         <span id="top"></span>
         <slot name="content"/>
-        <div class="float-right transition duration-500 opacity-0" id="goto_top"><p align="right" class="rounded bg-[#262626] fixed bottom-2 ml-[-130px]">(<a href="#top">back to top</a>)</p></div>
+        <div class="float-right transition duration-500 opacity-0" id="goto_top"><p align="right" class="rounded dark:bg-[#111111] bg-[#EDEDED] dark:text-white text-black fixed bottom-2 ml-[-130px]">(<a href="#top">back to top</a>)</p></div>
       </section>
 
       
