@@ -8,7 +8,7 @@ var closest_dist=10000000;
 var closest_node=0;
 
 var last_resized=0;
-var density_ratio=8000;
+var density_ratio=13000;
 var ratio_shrink=false;
 
 var dropped=0;
