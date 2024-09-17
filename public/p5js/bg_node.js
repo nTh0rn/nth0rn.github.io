@@ -8,7 +8,7 @@ var closest_dist=10000000;
 var closest_node=0;
 
 var last_resized=0;
-var density_ratio=13000;
+var density_ratio=17000;
 var ratio_shrink=false;
 
 var dropped=0;
@@ -88,7 +88,7 @@ function draw() {
       nodes[i].update();
     }
     nodes[i].display();
-    if(density_ratio <= 13000) {
+    if(density_ratio <= 18000) {
       for (var j = 0; j < nodes.length; j++) {
         node_dist = sqrt(pow(abs(nodes[j].x - nodes[i].x), 2) + pow(abs(nodes[j].y - nodes[i].y), 2));
         if (node_dist < 100 && i != j) {

@@ -1,0 +1,159 @@
+---
+type Props = {
+  url: string;
+  width: string;
+};
+
+import CodeBlock from "./CodeBlock.astro";
+
+import { runHighlighterWithAstro } from '@astrojs/prism';
+
+
+
+---
+<style>
+	.no-scrollbar::-webkit-scrollbar {
+	display: none;
+	}
+	/* Hide scrollbar for IE, Edge and Firefox */
+	.no-scrollbar {
+	-ms-overflow-style: none;  /* IE and Edge */
+	scrollbar-width: none;  /* Firefox */
+	}
+	.content {
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.5s cubic-bezier(.85,.35,.15,.83);
+	}
+</style>
+<div class="CanSeeCPP group cursor-pointer justify-center flex">
+  <div class="translate-y-[4px]">
+    <div class="peer origin-center absolute dark:invert transition duration-200 w-[40px] h-[40px] group-[.is-selected]:rotate-90 opacity-100 group-[.is-selected]:opacity-0">
+      <img width="40" height="40" src="/images/icons/plus.png" alt="down-squared--v2"
+        class="w-[40px] h-[40px] m-0"/>
+    </div>
+    <div class="peer origin-center absolute dark:invert transition duration-200  w-[40px] h-[40px] group-[.is-selected]:rotate-90 rotate-0">
+      <img width="42" height="42" src="/images/icons/minus.png" alt="down-squared--v2"
+        class="w-[40px] h-[40px] m-0"/>
+    </div>
+  </div>
+  <div class="ml-[50px] border-[#050505] dark:border-[#AAAAAA] rounded border-[1px] inline-block p-2 ">canSee() C++ Code</div>
+
+</div>
+<div class="content hue-rotate-180 dark:hue-rotate-0 invert dark:invert-0 cursor-auto" id="CanSeeCPPText">
+
+<pre class="code_syntax" style="color:#d1d1d1;background:#0F0F0F;">
+<span class="line_wrapper"><span style="color:#9999a9; ">/*</span></span>
+<span class="line_wrapper"><span style="color:#9999a9; ">    @brief Checks cell visibility and can fill path between cells.</span></span>
+<span class="line_wrapper"><span style="color:#9999a9; "></span></span>
+<span class="line_wrapper"><span style="color:#9999a9; ">    This function determines whether two cells on the grid have sightline of eachother.</span></span>
+<span class="line_wrapper"><span style="color:#9999a9; ">    It does this using DDA traversal.</span></span>
+<span class="line_wrapper"><span style="color:#9999a9; "></span></span>
+<span class="line_wrapper"><span style="color:#9999a9; ">    @return boolean of whether the given cells could see eachother.</span></span>
+<span class="line_wrapper"><span style="color:#9999a9; "></span></span>
+<span class="line_wrapper"><span style="color:#9999a9; ">*/</span></span>
+<span class="line_wrapper"><span style="color:#e66170; font-weight:bold; ">bool</span> canSee<span style="color:#d2cd86; ">(</span><span style="color:#e66170; font-weight:bold; ">vector</span> <span style="color:#b060b0; ">&lt;</span><span style="color:#e66170; font-weight:bold; ">int</span><span style="color:#b060b0; ">&gt;</span> prev<span style="color:#d2cd86; ">,</span> <span style="color:#e66170; font-weight:bold; ">vector</span> <span style="color:#b060b0; ">&lt;</span><span style="color:#e66170; font-weight:bold; ">int</span><span style="color:#b060b0; ">&gt;</span> next<span style="color:#d2cd86; ">)</span> <span style="color:#b060b0; ">&lcub;</span></span>
+<span class="line_wrapper">    <span style="color:#9999a9; ">//Current coords</span></span>
+<span class="line_wrapper">    <span style="color:#e66170; font-weight:bold; ">double</span> x <span style="color:#d2cd86; ">=</span> prev<span style="color:#d2cd86; ">[</span><span style="color:#008c00; ">1</span><span style="color:#d2cd86; ">]</span><span style="color:#d2cd86; ">+</span><span style="color:#009f00; ">0.5</span><span style="color:#d2cd86; ">,</span> y <span style="color:#d2cd86; ">=</span> prev<span style="color:#d2cd86; ">[</span><span style="color:#008c00; ">0</span><span style="color:#d2cd86; ">]</span><span style="color:#d2cd86; ">+</span><span style="color:#009f00; ">0.5</span><span style="color:#b060b0; ">;</span></span>
+<span class="line_wrapper"></span>
+<span class="line_wrapper">    <span style="color:#9999a9; ">//Previous coords</span></span>
+<span class="line_wrapper">    <span style="color:#e66170; font-weight:bold; ">double</span> px<span style="color:#d2cd86; ">=</span>x<span style="color:#d2cd86; ">,</span> py<span style="color:#d2cd86; ">=</span>y<span style="color:#b060b0; ">;</span></span>
+<span class="line_wrapper"></span>
+<span class="line_wrapper">    <span style="color:#9999a9; ">//The starting coords</span></span>
+<span class="line_wrapper">    <span style="color:#e66170; font-weight:bold; ">double</span> startx<span style="color:#d2cd86; ">=</span>x<span style="color:#d2cd86; ">,</span> starty<span style="color:#d2cd86; ">=</span>y<span style="color:#b060b0; ">;</span></span>
+<span class="line_wrapper"></span>
+<span class="line_wrapper">    <span style="color:#9999a9; ">//Target coords</span></span>
+<span class="line_wrapper">    <span style="color:#e66170; font-weight:bold; ">double</span> tx <span style="color:#d2cd86; ">=</span> next<span style="color:#d2cd86; ">[</span><span style="color:#008c00; ">1</span><span style="color:#d2cd86; ">]</span><span style="color:#d2cd86; ">+</span><span style="color:#009f00; ">0.5</span><span style="color:#d2cd86; ">,</span> ty <span style="color:#d2cd86; ">=</span> next<span style="color:#d2cd86; ">[</span><span style="color:#008c00; ">0</span><span style="color:#d2cd86; ">]</span><span style="color:#d2cd86; ">+</span><span style="color:#009f00; ">0.5</span><span style="color:#b060b0; ">;</span></span>
+<span class="line_wrapper"></span>
+<span class="line_wrapper">    <span style="color:#9999a9; ">//The difference between the start and target</span></span>
+<span class="line_wrapper">    <span style="color:#e66170; font-weight:bold; ">double</span> dx<span style="color:#d2cd86; ">=</span><span style="color:#008c00; ">0</span><span style="color:#d2cd86; ">,</span> dy<span style="color:#d2cd86; ">=</span><span style="color:#008c00; ">0</span><span style="color:#b060b0; ">;</span></span>
+<span class="line_wrapper"></span>
+<span class="line_wrapper">    <span style="color:#9999a9; ">//Used to hold DDA calculations</span></span>
+<span class="line_wrapper">    <span style="color:#e66170; font-weight:bold; ">double</span> fracx<span style="color:#d2cd86; ">=</span><span style="color:#008c00; ">0</span><span style="color:#d2cd86; ">,</span> fracy<span style="color:#d2cd86; ">=</span><span style="color:#008c00; ">0</span><span style="color:#b060b0; ">;</span></span>
+<span class="line_wrapper"></span>
+<span class="line_wrapper">    <span style="color:#9999a9; ">//Used for checking corner-skips.</span></span>
+<span class="line_wrapper">    <span style="color:#e66170; font-weight:bold; ">vector</span> <span style="color:#b060b0; ">&lt;</span><span style="color:#e66170; font-weight:bold; ">int</span><span style="color:#b060b0; ">&gt;</span> cc_xy <span style="color:#d2cd86; ">=</span> <span style="color:#b060b0; ">&lcub;</span><span style="color:#008c00; ">0</span><span style="color:#d2cd86; ">,</span> <span style="color:#008c00; ">0</span><span style="color:#b060b0; ">}</span><span style="color:#b060b0; ">;</span></span>
+<span class="line_wrapper"></span>
+<span class="line_wrapper">    <span style="color:#9999a9; ">//Loop until the x and y encounter a wall (0 represents walls in the map).</span></span>
+<span class="line_wrapper">    <span style="color:#e66170; font-weight:bold; ">while</span><span style="color:#d2cd86; ">(</span><span style="color:#e66170; font-weight:bold; ">map</span><span style="color:#d2cd86; ">[</span><span style="color:#e66170; font-weight:bold; ">int</span><span style="color:#d2cd86; ">(</span>y<span style="color:#d2cd86; ">)</span><span style="color:#d2cd86; ">]</span><span style="color:#d2cd86; ">[</span><span style="color:#e66170; font-weight:bold; ">int</span><span style="color:#d2cd86; ">(</span>x<span style="color:#d2cd86; ">)</span><span style="color:#d2cd86; ">]</span> <span style="color:#d2cd86; ">!</span><span style="color:#d2cd86; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#d2cd86; ">)</span> <span style="color:#b060b0; ">&lcub;</span></span>
+<span class="line_wrapper"></span>
+<span class="line_wrapper">        <span style="color:#9999a9; ">//Check whether the target has been reached.</span></span>
+<span class="line_wrapper">        <span style="color:#e66170; font-weight:bold; ">if</span><span style="color:#d2cd86; ">(</span><span style="color:#e66170; font-weight:bold; ">int</span><span style="color:#d2cd86; ">(</span>x<span style="color:#d2cd86; ">)</span> <span style="color:#d2cd86; ">=</span><span style="color:#d2cd86; ">=</span> <span style="color:#e66170; font-weight:bold; ">int</span><span style="color:#d2cd86; ">(</span>tx<span style="color:#d2cd86; ">)</span> <span style="color:#d2cd86; ">&amp;</span><span style="color:#d2cd86; ">&amp;</span> <span style="color:#e66170; font-weight:bold; ">int</span><span style="color:#d2cd86; ">(</span>y<span style="color:#d2cd86; ">)</span> <span style="color:#d2cd86; ">=</span><span style="color:#d2cd86; ">=</span> <span style="color:#e66170; font-weight:bold; ">int</span><span style="color:#d2cd86; ">(</span>ty<span style="color:#d2cd86; ">)</span><span style="color:#d2cd86; ">)</span> <span style="color:#b060b0; ">&lcub;</span></span>
+<span class="line_wrapper">            <span style="color:#e66170; font-weight:bold; ">return</span> <span style="color:#e66170; font-weight:bold; ">true</span><span style="color:#b060b0; ">;</span></span>
+<span class="line_wrapper">        <span style="color:#b060b0; ">}</span></span>
+<span class="line_wrapper"></span>
+<span class="line_wrapper">        <span style="color:#9999a9; ">//Set the difference between the start and target.</span></span>
+<span class="line_wrapper">        dx<span style="color:#d2cd86; ">=</span>tx<span style="color:#d2cd86; ">-</span>x<span style="color:#d2cd86; ">,</span> dy<span style="color:#d2cd86; ">=</span>ty<span style="color:#d2cd86; ">-</span>y<span style="color:#b060b0; ">;</span></span>
+<span class="line_wrapper"></span>
+<span class="line_wrapper">        <span style="color:#9999a9; ">//Set the distance to the left and top walls.</span></span>
+<span class="line_wrapper">        fracx<span style="color:#d2cd86; ">=</span>x<span style="color:#d2cd86; ">-</span><span style="color:#e66170; font-weight:bold; ">floor</span><span style="color:#d2cd86; ">(</span>x<span style="color:#d2cd86; ">)</span><span style="color:#d2cd86; ">,</span> fracy<span style="color:#d2cd86; ">=</span>y<span style="color:#d2cd86; ">-</span><span style="color:#e66170; font-weight:bold; ">floor</span><span style="color:#d2cd86; ">(</span>y<span style="color:#d2cd86; ">)</span><span style="color:#b060b0; ">;</span></span>
+<span class="line_wrapper"></span>
+<span class="line_wrapper">        <span style="color:#9999a9; ">//Check whether the right or bottom walls are closer.</span></span>
+<span class="line_wrapper">        <span style="color:#e66170; font-weight:bold; ">if</span><span style="color:#d2cd86; ">(</span>dx <span style="color:#d2cd86; ">&gt;</span> <span style="color:#008c00; ">0</span><span style="color:#d2cd86; ">)</span> <span style="color:#b060b0; ">&lcub;</span></span>
+<span class="line_wrapper">            fracx<span style="color:#d2cd86; ">=</span><span style="color:#008c00; ">1</span><span style="color:#d2cd86; ">-</span>fracx<span style="color:#b060b0; ">;</span></span>
+<span class="line_wrapper">        <span style="color:#b060b0; ">}</span></span>
+<span class="line_wrapper">        <span style="color:#e66170; font-weight:bold; ">if</span><span style="color:#d2cd86; ">(</span>dy <span style="color:#d2cd86; ">&gt;</span> <span style="color:#008c00; ">0</span><span style="color:#d2cd86; ">)</span> <span style="color:#b060b0; ">&lcub;</span></span>
+<span class="line_wrapper">            fracy<span style="color:#d2cd86; ">=</span><span style="color:#008c00; ">1</span><span style="color:#d2cd86; ">-</span>fracy<span style="color:#b060b0; ">;</span></span>
+<span class="line_wrapper">        <span style="color:#b060b0; ">}</span></span>
+<span class="line_wrapper"></span>
+<span class="line_wrapper">        <span style="color:#9999a9; ">//Get the ratio between the wall distance and target distance</span></span>
+<span class="line_wrapper">        fracx<span style="color:#d2cd86; ">=</span><span style="color:#e66170; font-weight:bold; ">abs</span><span style="color:#d2cd86; ">(</span>fracx<span style="color:#d2cd86; ">/</span>dx<span style="color:#d2cd86; ">)</span><span style="color:#d2cd86; ">+</span><span style="color:#009f00; ">0.0000001</span><span style="color:#d2cd86; ">,</span> fracy<span style="color:#d2cd86; ">=</span><span style="color:#e66170; font-weight:bold; ">abs</span><span style="color:#d2cd86; ">(</span>fracy<span style="color:#d2cd86; ">/</span>dy<span style="color:#d2cd86; ">)</span><span style="color:#d2cd86; ">+</span><span style="color:#009f00; ">0.0000001</span><span style="color:#b060b0; ">;</span></span>
+<span class="line_wrapper"></span>
+<span class="line_wrapper">        <span style="color:#9999a9; ">//Determine which wall is closer and move x &amp; y accordingly.</span></span>
+<span class="line_wrapper">        <span style="color:#e66170; font-weight:bold; ">if</span><span style="color:#d2cd86; ">(</span>fracx <span style="color:#d2cd86; ">&lt;</span><span style="color:#d2cd86; ">=</span> fracy<span style="color:#d2cd86; ">)</span> <span style="color:#b060b0; ">&lcub;</span></span>
+<span class="line_wrapper">            x <span style="color:#d2cd86; ">+</span><span style="color:#d2cd86; ">=</span> fracx<span style="color:#d2cd86; ">*</span>dx<span style="color:#d2cd86; ">,</span> y <span style="color:#d2cd86; ">+</span><span style="color:#d2cd86; ">=</span> fracx<span style="color:#d2cd86; ">*</span>dy<span style="color:#b060b0; ">;</span></span>
+<span class="line_wrapper">        <span style="color:#b060b0; ">}</span> <span style="color:#e66170; font-weight:bold; ">else</span> <span style="color:#b060b0; ">&lcub;</span></span>
+<span class="line_wrapper">            y <span style="color:#d2cd86; ">+</span><span style="color:#d2cd86; ">=</span> fracy<span style="color:#d2cd86; ">*</span>dy<span style="color:#d2cd86; ">,</span> x <span style="color:#d2cd86; ">+</span><span style="color:#d2cd86; ">=</span> fracy<span style="color:#d2cd86; ">*</span>dx<span style="color:#b060b0; ">;</span></span>
+<span class="line_wrapper">        <span style="color:#b060b0; ">}</span></span>
+<span class="line_wrapper"></span>
+<span class="line_wrapper">        <span style="color:#9999a9; ">//Checks that the DDA didn't squeeze through a corner.</span></span>
+<span class="line_wrapper">        <span style="color:#e66170; font-weight:bold; ">if</span><span style="color:#d2cd86; ">(</span><span style="color:#e66170; font-weight:bold; ">int</span><span style="color:#d2cd86; ">(</span>px<span style="color:#d2cd86; ">)</span> <span style="color:#d2cd86; ">!</span><span style="color:#d2cd86; ">=</span> <span style="color:#e66170; font-weight:bold; ">int</span><span style="color:#d2cd86; ">(</span>x<span style="color:#d2cd86; ">)</span> <span style="color:#d2cd86; ">&amp;</span><span style="color:#d2cd86; ">&amp;</span> <span style="color:#e66170; font-weight:bold; ">int</span><span style="color:#d2cd86; ">(</span>py<span style="color:#d2cd86; ">)</span> <span style="color:#d2cd86; ">!</span><span style="color:#d2cd86; ">=</span> <span style="color:#e66170; font-weight:bold; ">int</span><span style="color:#d2cd86; ">(</span>y<span style="color:#d2cd86; ">)</span> <span style="color:#d2cd86; ">&amp;</span><span style="color:#d2cd86; ">&amp;</span> addToPath <span style="color:#d2cd86; ">=</span><span style="color:#d2cd86; ">=</span> <span style="color:#e66170; font-weight:bold; ">false</span><span style="color:#d2cd86; ">)</span> <span style="color:#b060b0; ">&lcub;</span></span>
+<span class="line_wrapper">            cc_xy<span style="color:#d2cd86; ">[</span><span style="color:#008c00; ">0</span><span style="color:#d2cd86; ">]</span> <span style="color:#d2cd86; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#d2cd86; ">,</span> cc_xy<span style="color:#d2cd86; ">[</span><span style="color:#008c00; ">1</span><span style="color:#d2cd86; ">]</span> <span style="color:#d2cd86; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#b060b0; ">;</span></span>
+<span class="line_wrapper">            <span style="color:#e66170; font-weight:bold; ">if</span><span style="color:#d2cd86; ">(</span>dy <span style="color:#d2cd86; ">&gt;</span> <span style="color:#008c00; ">0</span><span style="color:#d2cd86; ">)</span> <span style="color:#b060b0; ">&lcub;</span></span>
+<span class="line_wrapper">                cc_xy<span style="color:#d2cd86; ">[</span><span style="color:#008c00; ">1</span><span style="color:#d2cd86; ">]</span> <span style="color:#d2cd86; ">=</span> <span style="color:#d2cd86; ">-</span><span style="color:#008c00; ">1</span><span style="color:#b060b0; ">;</span></span>
+<span class="line_wrapper">            <span style="color:#b060b0; ">}</span> <span style="color:#e66170; font-weight:bold; ">else</span> <span style="color:#b060b0; ">&lcub;</span></span>
+<span class="line_wrapper">                cc_xy<span style="color:#d2cd86; ">[</span><span style="color:#008c00; ">1</span><span style="color:#d2cd86; ">]</span> <span style="color:#d2cd86; ">=</span> <span style="color:#008c00; ">1</span><span style="color:#b060b0; ">;</span></span>
+<span class="line_wrapper">            <span style="color:#b060b0; ">}</span></span>
+<span class="line_wrapper">            <span style="color:#e66170; font-weight:bold; ">if</span><span style="color:#d2cd86; ">(</span>dx <span style="color:#d2cd86; ">&gt;</span> <span style="color:#008c00; ">0</span><span style="color:#d2cd86; ">)</span> <span style="color:#b060b0; ">&lcub;</span></span>
+<span class="line_wrapper">                cc_xy<span style="color:#d2cd86; ">[</span><span style="color:#008c00; ">0</span><span style="color:#d2cd86; ">]</span> <span style="color:#d2cd86; ">=</span> <span style="color:#d2cd86; ">-</span><span style="color:#008c00; ">1</span><span style="color:#b060b0; ">;</span></span>
+<span class="line_wrapper">            <span style="color:#b060b0; ">}</span> <span style="color:#e66170; font-weight:bold; ">else</span> <span style="color:#b060b0; ">&lcub;</span></span>
+<span class="line_wrapper">                cc_xy<span style="color:#d2cd86; ">[</span><span style="color:#008c00; ">0</span><span style="color:#d2cd86; ">]</span> <span style="color:#d2cd86; ">=</span> <span style="color:#008c00; ">1</span><span style="color:#b060b0; ">;</span></span>
+<span class="line_wrapper">            <span style="color:#b060b0; ">}</span></span>
+<span class="line_wrapper">            <span style="color:#e66170; font-weight:bold; ">if</span><span style="color:#d2cd86; ">(</span><span style="color:#e66170; font-weight:bold; ">map</span><span style="color:#d2cd86; ">[</span><span style="color:#e66170; font-weight:bold; ">int</span><span style="color:#d2cd86; ">(</span>y<span style="color:#d2cd86; ">)</span><span style="color:#d2cd86; ">+</span>cc_xy<span style="color:#d2cd86; ">[</span><span style="color:#008c00; ">1</span><span style="color:#d2cd86; ">]</span><span style="color:#d2cd86; ">]</span><span style="color:#d2cd86; ">[</span><span style="color:#e66170; font-weight:bold; ">int</span><span style="color:#d2cd86; ">(</span>x<span style="color:#d2cd86; ">)</span><span style="color:#d2cd86; ">]</span> <span style="color:#d2cd86; ">=</span><span style="color:#d2cd86; ">=</span> <span style="color:#008c00; ">0</span> <span style="color:#d2cd86; ">&amp;</span><span style="color:#d2cd86; ">&amp;</span> <span style="color:#e66170; font-weight:bold; ">map</span><span style="color:#d2cd86; ">[</span><span style="color:#e66170; font-weight:bold; ">int</span><span style="color:#d2cd86; ">(</span>y<span style="color:#d2cd86; ">)</span><span style="color:#d2cd86; ">]</span><span style="color:#d2cd86; ">[</span><span style="color:#e66170; font-weight:bold; ">int</span><span style="color:#d2cd86; ">(</span>x<span style="color:#d2cd86; ">)</span><span style="color:#d2cd86; ">+</span>cc_xy<span style="color:#d2cd86; ">[</span><span style="color:#008c00; ">0</span><span style="color:#d2cd86; ">]</span><span style="color:#d2cd86; ">]</span> <span style="color:#d2cd86; ">=</span><span style="color:#d2cd86; ">=</span> <span style="color:#008c00; ">0</span><span style="color:#d2cd86; ">)</span> <span style="color:#b060b0; ">&lcub;</span></span>
+<span class="line_wrapper">                <span style="color:#e66170; font-weight:bold; ">break</span><span style="color:#b060b0; ">;</span></span>
+<span class="line_wrapper">            <span style="color:#b060b0; ">}</span></span>
+<span class="line_wrapper">        <span style="color:#b060b0; ">}</span></span>
+<span class="line_wrapper"></span>
+<span class="line_wrapper">        <span style="color:#9999a9; ">//Set the current x &amp; y to be used later as the previous x &amp; y.</span></span>
+<span class="line_wrapper">        px<span style="color:#d2cd86; ">=</span>x<span style="color:#d2cd86; ">,</span> py<span style="color:#d2cd86; ">=</span>y<span style="color:#b060b0; ">;</span></span>
+<span class="line_wrapper"></span>
+<span class="line_wrapper">    <span style="color:#b060b0; ">}</span></span>
+<span class="line_wrapper">    </span>
+<span class="line_wrapper">    <span style="color:#e66170; font-weight:bold; ">return</span> <span style="color:#e66170; font-weight:bold; ">false</span><span style="color:#b060b0; ">;</span></span>
+<span class="line_wrapper">    </span>
+<span class="line_wrapper"><span style="color:#b060b0; ">}</span></span></pre>
+</div>
+
+<script>
+		function lookforCascade(cascClass, textClass) {
+		  var coll = document.getElementsByClassName(cascClass);
+		  var i;
+		  
+		  for (i = 0; i < coll.length; i++) {
+		    coll[i].addEventListener("mouseup", function() {
+		      this.classList.toggle("is-selected");
+		      var content = document.getElementById(textClass);
+		      if (content.style.maxHeight){
+		        content.style.maxHeight = null;
+		      } else {
+		        content.style.maxHeight = content.scrollHeight + "px";
+		      } 
+		    });
+		    
+		  }
+		}
+		
+		lookforCascade("CanSeeCPP", "CanSeeCPPText");
+		
+		
+	</script>

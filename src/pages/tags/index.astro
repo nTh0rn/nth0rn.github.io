@@ -1,0 +1,38 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+const allPosts = await Astro.glob('../../../content/projects/*.md');
+const tags = [...new Set(allPosts.map((project) => project.frontmatter.tags).flat())];
+const pageTitle = "Tag Index";
+---
+<head>
+  <script>
+    var count=0;
+		document.addEventListener("DOMContentLoaded", function(){
+    var replacers = document.querySelectorAll('[data-replace]');
+    for(var i=0; i<replacers.length; i++){
+        let replaceClasses = JSON.parse(replacers[i].dataset.replace.replace(/'/g, '"'));
+        Object.keys(replaceClasses).forEach(function(key) {
+            replacers[i].classList.remove(key);
+            count+=25;
+            replacers[i].classList.add("delay-["+count+"ms]");
+            replacers[i].classList.add(replaceClasses[key]);
+        });
+    }
+});
+	</script>
+</head>
+<PageLayout>
+<section slot="main" class="mx-[5rem]">
+  <div class="flex-wrap flex items-center justify-around">
+    {tags.map((tag) => (
+      <div class="duration-1000 relative transform transition-opacity opacity-0 ease-out" data-replace='{ "opacity-0": "opacity-100" }'>
+      <div class="group flex hover:-ml-0  rounded-lg border-[1px] hover:px-3 hover:-mr-0 m-1 p-2 border-[#000000] dark:border-[#FFFFFF] animate duration-200 ">
+      <a href={`/tags/${tag}`} class="text-center unset hover:text-text-link transition-colors duration-0">
+      {tag}
+      </a>
+      </div>
+      </div>
+    ))}
+  </div>
+  </section>
+</PageLayout>

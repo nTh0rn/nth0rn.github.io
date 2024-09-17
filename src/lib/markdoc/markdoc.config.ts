@@ -96,6 +96,15 @@ export const config: Config = {
     goto_top: {
       render: "GotoTop",
     },
+    fill_path_cpp: {
+      render: "FillPathCPP",
+    },
+    can_see_cpp: {
+      render: "CanSeeCPP",
+    },
+    optimize_path_cpp: {
+      render: "OptimizePathCPP",
+    },
     octant_pic: {
       render: "OctantPic",
       attributes: {

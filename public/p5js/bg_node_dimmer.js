@@ -8,7 +8,7 @@ var closest_dist=10000000;
 var closest_node=0;
 
 var last_resized=0;
-var density_ratio=15000;
+var density_ratio=19000;
 var ratio_shrink=false;
 
 var dropped=0;
@@ -82,7 +82,7 @@ function draw() {
   for (var i = 0; i < nodes.length; i++) {
     closest_dist=1000000;
     nodes[i].checkBoundary();
-    if (i == 0 && density_ratio <= 18000) {
+    if (i == 0 && density_ratio <= 20000) {
       nodes[0].follow_mouse();
     } else {
       nodes[i].update();

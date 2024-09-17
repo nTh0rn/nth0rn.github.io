@@ -17,11 +17,13 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Highlights from "../components/Highlights.astro";
 
+import { ViewTransitions } from 'astro:transitions';
+
 ---
 
 <!DOCTYPE html>
 <html class="main_c" lang="en">
-  <head>
+  <head transition:persist>
   
     <!-- Global Metadata -->
     <meta charset="utf-8" />
@@ -36,6 +38,7 @@ import Highlights from "../components/Highlights.astro";
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.8.0/p5.js"></script>
 	<script type="text/javascript" src="/p5js/bg_node.js"></script>
+  
 
   <script>
 setTimeout(() => {
@@ -48,9 +51,9 @@ setTimeout(() => {
   </head>
 
   <body
-    class="max-w-4xl mx-auto min-h-screen px-6 sm:px-8 overflow-x-hidden"
+    class="max-w-6xl mx-auto min-h-screen px-6 sm:px-8 overflow-x-hidden"
   >
-  
+    
 
     <Header />
     

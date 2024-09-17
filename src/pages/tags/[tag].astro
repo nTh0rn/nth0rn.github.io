@@ -1,15 +1,23 @@
 ---
-import { readAll } from "../lib/markdoc/read";
-import { project } from "../lib/markdoc/frontmatter.schema";
-import PageLayout from "../layouts/PageLayout.astro";
-import PageMeta from "../components/PageMeta.astro";
-import Highlights from "../components/Highlights.astro";
-import { SITE_TITLE } from "../config";
+import PageLayout from '../../layouts/PageLayout.astro';
+import { project } from "../../lib/markdoc/frontmatter.schema";
 
-const projects = await readAll({
-  directory: "projects",
-  frontmatterSchema: project,
-});
+export async function getStaticPaths() {
+  const allPosts = await Astro.glob('../../../content/projects/*.md');
+
+  const uniqueTags = [...new Set(allPosts.map((project) => project.frontmatter.tags).flat())];
+
+  return uniqueTags.map((tag) => {
+    const filteredPosts = allPosts.filter((project) => project.frontmatter.tags.includes(tag));
+    return {
+      params: { tag },
+      props: { projects: filteredPosts, directory: "projects", frontmatterSchema: project},
+    };
+  });
+}
+
+const { tag } = Astro.params;
+const { projects } = Astro.props;
 
 const sortedProjects = projects
   .filter((p) => p.frontmatter.draft !== true)
@@ -36,13 +44,11 @@ const sortedProjects = projects
 });
 	</script>
 </head>
-<PageLayout>
-  <PageMeta title={`Projects | ${SITE_TITLE}`} slot="meta" />
-  
-  <section slot="main" class="mx-[5rem]">
-  
-    <ul>
-      {
+<PageLayout pageTitle={tag}>
+<section slot="main">
+  <p class="text-center text-lg">Projects tagged with <strong>{tag}</strong></p>
+  <ul>
+  {
         sortedProjects.map((project) => {
           const formattedDate = new Date(
             project.frontmatter.date
@@ -50,9 +56,8 @@ const sortedProjects = projects
             year: "numeric",
             month: "short",
             day: "numeric",
-          }
+          });
           
-          );
           return (
             <li class="grid grid-cols-[1fr] md:grid-cols-[1fr_auto] mb-3 md:gap-2 items-start duration-1000 relative transform transition-all opacity-0 ease-out" data-replace='{ "opacity-0": "opacity-100" }'>
               <div class="title">
@@ -62,20 +67,14 @@ const sortedProjects = projects
                   class="unset hover:text-text-link"
                 >
                   <span>{project.frontmatter.title}</span>
-                  <span>
-                    <i class="ml-1 mr-1 text-[12px] pb-2 fa-solid fa-up-right-from-square" />
-                  </span>
                 </a>
               </div>
-              <div class="text-text-muted text-sm italic pt-1">
-                <time datetime={project.frontmatter.date.toISOString()}>
-                  {formattedDate}
-                </time>
-              </div>
+              
             </li>
           );
         })
       }
+      
     </ul>
-  </section>
+    </section>
 </PageLayout>

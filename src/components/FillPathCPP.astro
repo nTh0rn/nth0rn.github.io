@@ -1,0 +1,105 @@
+---
+type Props = {
+  url: string;
+  width: string;
+};
+
+import CodeBlock from "./CodeBlock.astro";
+
+import { runHighlighterWithAstro } from '@astrojs/prism';
+
+
+
+---
+<style>
+	.no-scrollbar::-webkit-scrollbar {
+	display: none;
+	}
+	/* Hide scrollbar for IE, Edge and Firefox */
+	.no-scrollbar {
+	-ms-overflow-style: none;  /* IE and Edge */
+	scrollbar-width: none;  /* Firefox */
+	}
+	.content {
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.5s cubic-bezier(.85,.35,.15,.83);
+	}
+</style>
+<div class="FillPathCPP group cursor-pointer justify-center flex">
+  <div class="translate-y-[4px]">
+    <div class="peer origin-center absolute dark:invert transition duration-200 w-[40px] h-[40px] group-[.is-selected]:rotate-90 opacity-100 group-[.is-selected]:opacity-0">
+      <img width="40" height="40" src="/images/icons/plus.png" alt="down-squared--v2"
+        class="w-[40px] h-[40px] m-0"/>
+    </div>
+    <div class="peer origin-center absolute dark:invert transition duration-200  w-[40px] h-[40px] group-[.is-selected]:rotate-90 rotate-0">
+      <img width="42" height="42" src="/images/icons/minus.png" alt="down-squared--v2"
+        class="w-[40px] h-[40px] m-0"/>
+    </div>
+  </div>
+  <div class="ml-[50px] border-[#050505] dark:border-[#AAAAAA] rounded border-[1px] inline-block p-2 ">fillPath() C++ Code</div>
+
+</div>
+<div class="content hue-rotate-180 dark:hue-rotate-0 invert dark:invert-0 cursor-auto" id="FillPathCPPText">
+
+<pre class="code_syntax" style="color:#d1d1d1;background:#0F0F0F;"><span class="line_wrapper"><span style="color:#9999a9; ">/*</span></span>
+<span class="line_wrapper"><span style="color:#9999a9; ">    @brief Finds a path using random movement.</span></span>
+<span class="line_wrapper"><span style="color:#9999a9; "></span></span>
+<span class="line_wrapper"><span style="color:#9999a9; ">    This function begins in the top left of the map and finds a random path to the</span></span>
+<span class="line_wrapper"><span style="color:#9999a9; ">    goal at the bottom right of the map.</span></span>
+<span class="line_wrapper"><span style="color:#9999a9; ">*/</span></span>
+<span class="line_wrapper"><span style="color:#e66170; font-weight:bold; ">void</span> findPath<span style="color:#d2cd86; ">(</span><span style="color:#d2cd86; ">)</span> <span style="color:#b060b0; ">&lcub;</span></span>
+<span class="line_wrapper"></span>
+<span class="line_wrapper">    <span style="color:#e66170; font-weight:bold; ">vector</span> <span style="color:#b060b0; ">&lt;</span><span style="color:#e66170; font-weight:bold; ">int</span><span style="color:#b060b0; ">&gt;</span> node <span style="color:#d2cd86; ">=</span> <span style="color:#b060b0; ">{</span><span style="color:#008c00; ">2</span> <span style="color:#d2cd86; ">+</span> <span style="color:#d2cd86; ">(</span><span style="color:#e66170; font-weight:bold; ">rand</span><span style="color:#d2cd86; ">(</span><span style="color:#d2cd86; ">)</span> <span style="color:#d2cd86; ">%</span> <span style="color:#d2cd86; ">(</span>mapH<span style="color:#d2cd86; ">-</span><span style="color:#008c00; ">3</span><span style="color:#d2cd86; ">)</span><span style="color:#d2cd86; ">)</span><span style="color:#d2cd86; ">,</span> <span style="color:#008c00; ">2</span> <span style="color:#d2cd86; ">+</span> <span style="color:#d2cd86; ">(</span><span style="color:#e66170; font-weight:bold; ">rand</span><span style="color:#d2cd86; ">(</span><span style="color:#d2cd86; ">)</span> <span style="color:#d2cd86; ">%</span> <span style="color:#d2cd86; ">(</span>mapW<span style="color:#d2cd86; ">-</span><span style="color:#008c00; ">3</span><span style="color:#d2cd86; ">)</span><span style="color:#d2cd86; ">)</span><span style="color:#b060b0; ">}</span><span style="color:#b060b0; ">;</span> <span style="color:#9999a9; ">//Node to be checked</span></span>
+<span class="line_wrapper">    path<span style="color:#d2cd86; ">.</span>push_back<span style="color:#d2cd86; ">(</span><span style="color:#b060b0; ">{</span><span style="color:#008c00; ">2</span><span style="color:#d2cd86; ">,</span><span style="color:#008c00; ">2</span><span style="color:#b060b0; ">}</span><span style="color:#d2cd86; ">)</span><span style="color:#b060b0; ">;</span> <span style="color:#9999a9; ">//The starting point</span></span>
+<span class="line_wrapper">    <span style="color:#e66170; font-weight:bold; ">vector</span> <span style="color:#b060b0; ">&lt;</span><span style="color:#e66170; font-weight:bold; ">int</span><span style="color:#b060b0; ">&gt;</span> goal<span style="color:#d2cd86; ">=</span><span style="color:#b060b0; ">{</span>mapH<span style="color:#d2cd86; ">-</span><span style="color:#008c00; ">3</span><span style="color:#d2cd86; ">,</span> mapW<span style="color:#d2cd86; ">-</span><span style="color:#008c00; ">3</span><span style="color:#b060b0; ">}</span><span style="color:#b060b0; ">;</span> <span style="color:#9999a9; ">//The goal</span></span>
+<span class="line_wrapper"></span>
+<span class="line_wrapper">    <span style="color:#9999a9; ">//Loops until the goal is reached</span></span>
+<span class="line_wrapper">    <span style="color:#e66170; font-weight:bold; ">while</span><span style="color:#d2cd86; ">(</span>path<span style="color:#d2cd86; ">[</span>path<span style="color:#d2cd86; ">.</span>size<span style="color:#d2cd86; ">(</span><span style="color:#d2cd86; ">)</span><span style="color:#d2cd86; ">-</span><span style="color:#008c00; ">1</span><span style="color:#d2cd86; ">]</span> <span style="color:#d2cd86; ">!</span><span style="color:#d2cd86; ">=</span> goal<span style="color:#d2cd86; ">)</span> <span style="color:#b060b0; ">{</span></span>
+<span class="line_wrapper"></span>
+<span class="line_wrapper">        node <span style="color:#d2cd86; ">=</span> <span style="color:#b060b0; ">{</span><span style="color:#008c00; ">2</span> <span style="color:#d2cd86; ">+</span> <span style="color:#d2cd86; ">(</span><span style="color:#e66170; font-weight:bold; ">rand</span><span style="color:#d2cd86; ">(</span><span style="color:#d2cd86; ">)</span> <span style="color:#d2cd86; ">%</span> <span style="color:#d2cd86; ">(</span>mapH<span style="color:#d2cd86; ">-</span><span style="color:#008c00; ">3</span><span style="color:#d2cd86; ">)</span><span style="color:#d2cd86; ">)</span><span style="color:#d2cd86; ">,</span> <span style="color:#008c00; ">2</span> <span style="color:#d2cd86; ">+</span> <span style="color:#d2cd86; ">(</span><span style="color:#e66170; font-weight:bold; ">rand</span><span style="color:#d2cd86; ">(</span><span style="color:#d2cd86; ">)</span> <span style="color:#d2cd86; ">%</span> <span style="color:#d2cd86; ">(</span>mapW<span style="color:#d2cd86; ">-</span><span style="color:#008c00; ">3</span><span style="color:#d2cd86; ">)</span><span style="color:#d2cd86; ">)</span><span style="color:#b060b0; ">}</span><span style="color:#b060b0; ">;</span> <span style="color:#9999a9; ">//Sets what node is to checked</span></span>
+<span class="line_wrapper"></span>
+<span class="line_wrapper">        <span style="color:#9999a9; ">//Checks that the node isn't a wall or the same as the previous node</span></span>
+<span class="line_wrapper">        <span style="color:#e66170; font-weight:bold; ">if</span><span style="color:#d2cd86; ">(</span><span style="color:#e66170; font-weight:bold; ">map</span><span style="color:#d2cd86; ">[</span>node<span style="color:#d2cd86; ">[</span><span style="color:#008c00; ">0</span><span style="color:#d2cd86; ">]</span><span style="color:#d2cd86; ">]</span><span style="color:#d2cd86; ">[</span>node<span style="color:#d2cd86; ">[</span><span style="color:#008c00; ">1</span><span style="color:#d2cd86; ">]</span><span style="color:#d2cd86; ">]</span> <span style="color:#d2cd86; ">!</span><span style="color:#d2cd86; ">=</span> <span style="color:#008c00; ">0</span> <span style="color:#d2cd86; ">&amp;</span><span style="color:#d2cd86; ">&amp;</span> node <span style="color:#d2cd86; ">!</span><span style="color:#d2cd86; ">=</span> path<span style="color:#d2cd86; ">[</span>path<span style="color:#d2cd86; ">.</span>size<span style="color:#d2cd86; ">(</span><span style="color:#d2cd86; ">)</span><span style="color:#d2cd86; ">-</span><span style="color:#008c00; ">1</span><span style="color:#d2cd86; ">]</span><span style="color:#d2cd86; ">)</span> <span style="color:#b060b0; ">{</span></span>
+<span class="line_wrapper">            </span>
+<span class="line_wrapper">            <span style="color:#9999a9; ">//If the goal is in sight, then exit search.</span></span>
+<span class="line_wrapper">            <span style="color:#e66170; font-weight:bold; ">if</span><span style="color:#d2cd86; ">(</span>canSee<span style="color:#d2cd86; ">(</span>path<span style="color:#d2cd86; ">[</span>path<span style="color:#d2cd86; ">.</span>size<span style="color:#d2cd86; ">(</span><span style="color:#d2cd86; ">)</span><span style="color:#d2cd86; ">-</span><span style="color:#008c00; ">1</span><span style="color:#d2cd86; ">]</span><span style="color:#d2cd86; ">,</span> goal<span style="color:#d2cd86; ">,</span> <span style="color:#e66170; font-weight:bold; ">false</span><span style="color:#d2cd86; ">)</span><span style="color:#d2cd86; ">)</span> <span style="color:#b060b0; ">{</span></span>
+<span class="line_wrapper">                <span style="color:#e66170; font-weight:bold; ">break</span><span style="color:#b060b0; ">;</span></span>
+<span class="line_wrapper">            <span style="color:#b060b0; ">}</span></span>
+<span class="line_wrapper"></span>
+<span class="line_wrapper">            <span style="color:#9999a9; ">//If the node is in sight, add it to the path, otherwise revert its color.</span></span>
+<span class="line_wrapper">            <span style="color:#e66170; font-weight:bold; ">if</span><span style="color:#d2cd86; ">(</span>canSee<span style="color:#d2cd86; ">(</span>path<span style="color:#d2cd86; ">[</span>path<span style="color:#d2cd86; ">.</span>size<span style="color:#d2cd86; ">(</span><span style="color:#d2cd86; ">)</span><span style="color:#d2cd86; ">-</span><span style="color:#008c00; ">1</span><span style="color:#d2cd86; ">]</span><span style="color:#d2cd86; ">,</span> node<span style="color:#d2cd86; ">)</span><span style="color:#d2cd86; ">)</span> <span style="color:#b060b0; ">{</span></span>
+<span class="line_wrapper">                path<span style="color:#d2cd86; ">.</span>push_back<span style="color:#d2cd86; ">(</span>node<span style="color:#d2cd86; ">)</span><span style="color:#b060b0; ">;</span></span>
+<span class="line_wrapper">            <span style="color:#b060b0; ">}</span></span>
+<span class="line_wrapper">        <span style="color:#b060b0; ">}</span></span>
+<span class="line_wrapper">    <span style="color:#b060b0; ">}</span></span>
+<span class="line_wrapper"></span>
+<span class="line_wrapper">    <span style="color:#9999a9; ">//Add goal to the very end of path.</span></span>
+<span class="line_wrapper">    path<span style="color:#d2cd86; ">.</span>push_back<span style="color:#d2cd86; ">(</span>goal<span style="color:#d2cd86; ">)</span><span style="color:#b060b0; ">;</span></span>
+<span class="line_wrapper">    </span>
+<span class="line_wrapper"><span style="color:#b060b0; ">}</span></span></pre>
+</div>
+<br>
+<script>
+		function lookforCascade(cascClass, textClass) {
+		  var coll = document.getElementsByClassName(cascClass);
+		  var i;
+		  
+		  for (i = 0; i < coll.length; i++) {
+		    coll[i].addEventListener("mouseup", function() {
+		      this.classList.toggle("is-selected");
+		      var content = document.getElementById(textClass);
+		      if (content.style.maxHeight){
+		        content.style.maxHeight = null;
+		      } else {
+		        content.style.maxHeight = content.scrollHeight + "px";
+		      } 
+		    });
+		    
+		  }
+		}
+		
+		lookforCascade("FillPathCPP", "FillPathCPPText");
+		
+		
+	</script>
