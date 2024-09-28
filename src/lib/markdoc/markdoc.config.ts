@@ -93,6 +93,12 @@ export const config: Config = {
         url: { type: String, required: true },
       },
     },
+    center_pic_invert: {
+      render: "CenterPicInvert",
+      attributes: {
+        url: { type: String, required: true },
+      },
+    },
     goto_top: {
       render: "GotoTop",
     },

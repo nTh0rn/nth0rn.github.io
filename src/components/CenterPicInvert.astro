@@ -1,0 +1,12 @@
+---
+type Props = {
+  url: string;
+};
+
+const { url, } = Astro.props;
+---
+
+<div>
+  <img src={url} style="margin-left:auto; margin-right:auto" width="75%" class="invert dark:invert-0 hue-rotate-180 dark:hue-rotate-0">
+
+</div>

@@ -5,6 +5,7 @@ import YouTubeEmbed from "./YouTubeEmbed.astro";
 import TweetEmbed from "./TweetEmbed.astro";
 import OctantPic from "./OctantPic.astro";
 import CenterPic from "./CenterPic.astro";
+import CenterPicInvert from "./CenterPicInvert.astro";
 import GotoTop from "./GotoTop.astro";
 import FloatLeftPic from "./FloatLeftPic.astro";
 import FillPathCPP from "./FillPathCPP.astro";
@@ -36,6 +37,10 @@ const components = {
   },
   CenterPic: {
     Component: CenterPic,
+    props: {},
+  },
+  CenterPicInvert: {
+    Component: CenterPicInvert,
     props: {},
   },
   GotoTop: {
