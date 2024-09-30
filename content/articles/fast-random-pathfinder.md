@@ -4,7 +4,7 @@ title: "The Development and Optimization of a Fast Random Pathfinder (C++)"
 description: "The solutions used to optimize a pathfinding algorithm with worst-case infinite runtime."
 tags: ["C++", "Pathfinding", "Maze generation", "Code optimization", "Documentation", "Algorithmic design"]
 url: /articles/chessbit
-date: 2024-08-20
+date: 2024-09-30
 draft: false
 ---
 
