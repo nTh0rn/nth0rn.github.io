@@ -82,11 +82,7 @@ function draw() {
   for (var i = 0; i < nodes.length; i++) {
     closest_dist=1000000;
     nodes[i].checkBoundary();
-    if (i == 0 && density_ratio <= 20000) {
-      nodes[0].follow_mouse();
-    } else {
-      nodes[i].update();
-    }
+    nodes[i].update();
     nodes[i].display();
     if(density_ratio <= 18000) {
       for (var j = 0; j < nodes.length; j++) {
