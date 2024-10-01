@@ -22,9 +22,9 @@ draft: false
 4. [Bonus: Maze Generation](#4.-bonus:-maze-generation)
 
 # 1. Intro
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This article explores the development of a fast random pathfinder and the attempted optimization of it from a linear approach.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This article explores the development of a fast random pathfinder which self-optimizes from a linear approach.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It should be said that there is little use for a pathfinder that relies solely on random chance when traversing. This article exists solely for curiosity's sake, and should not even be considered for actual use cases when alternatives like [A*](https://en.wikipedia.org/wiki/A*_search_algorithm) exist.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It should be said that there is little use for a pathfinder that relies solely on random chance when traversing. This project exists solely for curiosity's sake, and should not even be considered for actual use cases when alternatives like [A*](https://en.wikipedia.org/wiki/A*_search_algorithm) exist.
 
 ## 1.1 Source Code
 [Source code on GitHub](https://github.com/nTh0rn/fast-random-pathfinder)
