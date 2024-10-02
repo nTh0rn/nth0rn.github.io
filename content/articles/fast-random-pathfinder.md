@@ -4,7 +4,7 @@ title: "Fast Random Pathfinder (C++)"
 description: "The development of a fast random pathfinder which self-optimizes."
 tags: ["C++", "Pathfinding", "Maze Generation", "Code Optimization", "Documentation", "Algorithmic Design", "Raycasting"]
 url: /articles/chessbit
-date: 2024-09-30
+date: 2024-07-30
 draft: false
 ---
 
