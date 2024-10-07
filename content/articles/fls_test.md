@@ -193,4 +193,4 @@ $$ \textrm{Lines} = \frac{n+1}{(2^{n+1})n} \times \textrm{bitstream length} \ \ 
 
 
 # Conclusion
-Thank you for reading! Another possible use of the FLS Test is diagonal-line counting, as originally conceptualized by my fellow contributor, [Fernando Guadarrama](https://inspirehep.net/authors/2577036). Check out my article on a [diagonally wrapping traversal algorithm](/articles/diagonal_traversal) for a possible diagonal FLS Test implementation. Also be sure to check out the original paper I wrote this for [here](https://arxiv.org/abs/2404.09395).
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thank you for reading! Another possible use of the FLS Test is diagonal-line counting, as originally conceptualized by my fellow contributor, [Fernando Guadarrama](https://inspirehep.net/authors/2577036). Check out my article on a [diagonally wrapping traversal algorithm](/articles/diagonal_traversal) for a possible diagonal FLS Test implementation. Also be sure to check out the original paper I wrote this for [here](https://arxiv.org/abs/2404.09395).
