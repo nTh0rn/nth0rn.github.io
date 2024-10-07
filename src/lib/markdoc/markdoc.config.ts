@@ -93,6 +93,13 @@ export const config: Config = {
         url: { type: String, required: true },
       },
     },
+    center_pic_width: {
+      render: "CenterPicWidth",
+      attributes: {
+        url: { type: String, required: true },
+        wid: { type: String, required: true },
+      },
+    },
     center_pic_invert: {
       render: "CenterPicInvert",
       attributes: {
@@ -102,14 +109,29 @@ export const config: Config = {
     goto_top: {
       render: "GotoTop",
     },
-    fill_path_cpp: {
-      render: "FillPathCPP",
+    cpp_fill_path: {
+      render: "CPPFillPath",
     },
-    can_see_cpp: {
-      render: "CanSeeCPP",
+    cpp_can_see: {
+      render: "CPPCanSee",
     },
-    optimize_path_cpp: {
-      render: "OptimizePathCPP",
+    cpp_optimize_path: {
+      render: "CPPOptimizePath",
+    },
+    rust_board_init: {
+      render: "RustBoardInit",
+    },
+    rust_update_cand: {
+      render: "RustUpdateCand",
+    },
+    rust_coords_to_digits: {
+      render: "RustCoordsToDigits",
+    },
+    rust_process_of_elimination: {
+      render: "RustProcessOfElimination",
+    },
+    rust_backtracking: {
+      render: "RustBacktracking",
     },
     octant_pic: {
       render: "OctantPic",

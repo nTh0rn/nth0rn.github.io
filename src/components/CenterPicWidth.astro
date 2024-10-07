@@ -1,0 +1,13 @@
+---
+type Props = {
+  url: string;
+  wid: string;
+};
+
+const { url, wid} = Astro.props;
+---
+
+<div>
+  <img src={url} style="margin-left:auto; margin-right:auto;" width={wid}>
+
+</div>

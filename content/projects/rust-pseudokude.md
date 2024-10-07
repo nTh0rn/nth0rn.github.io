@@ -1,9 +1,9 @@
 ---
 draft: false
 title: "Dynamic Sudoku Solver (Rust)"
-description: "The development of a fast random pathfinder which self-optimizes."
+description: "A dynamic sudoku solver made in Rust."
 date: 2024-09-30
-url: https://github.com/nTh0rn/rust-pseudokude
+url: /articles/pseudokude
 tags: ["Rust", "Code Optimization", "Mathematics", "Algorithmic Design", "Problem Solving"]
-external: true
+external: false
 ---

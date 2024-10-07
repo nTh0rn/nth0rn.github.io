@@ -26,7 +26,7 @@ import { runHighlighterWithAstro } from '@astrojs/prism';
 	transition: max-height 0.5s cubic-bezier(.85,.35,.15,.83);
 	}
 </style>
-<div class="OptimizePathCPP group cursor-pointer justify-center flex">
+<div class="CPPOptimizePath group cursor-pointer justify-center flex">
   <div class="translate-y-[4px]">
     <div class="peer origin-center absolute dark:invert transition duration-200 w-[40px] h-[40px] group-[.is-selected]:rotate-90 opacity-100 group-[.is-selected]:opacity-0">
       <img width="40" height="40" src="/images/icons/plus.png" alt="down-squared--v2"
@@ -40,7 +40,7 @@ import { runHighlighterWithAstro } from '@astrojs/prism';
   <div class="ml-[50px] border-[#050505] dark:border-[#AAAAAA] rounded border-[1px] inline-block p-2 ">optimizePath() C++ Code</div>
 
 </div>
-<div class="content hue-rotate-180 dark:hue-rotate-0 invert dark:invert-0 cursor-auto" id="OptimizePathCPPText">
+<div class="content hue-rotate-180 dark:hue-rotate-0 invert dark:invert-0 cursor-auto" id="CPPOptimizePathText">
 
 <pre style="font-family:monospace;color: rgb(201, 209, 217); background-color: rgb(13, 17, 23); font-weight: 400; "><ol style="padding-left: 3em;"><li><span style="color: rgb(139, 148, 158); font-weight: 400;">/*</span></li><li>@brief Optimizing the initially found path.</li><li></li><li>This function iterates through each cell in the path. For each cell, it iterates</li><li>backwards from the very end the path and checks whether the initial cell and any</li><li>of the cells after can see eachother. If they can, then any cells between them</li><li>are erased from the path list and the search restarts until no optimizations can</li><li>be made.</li><li>*/</li><li><span style="color: rgb(201, 209, 217); font-weight: 400;"><span style="color: rgb(255, 123, 114); font-weight: 400;">void</span> <span style="color: rgb(210, 168, 255); font-weight: 400;">optimizePath</span><span style="color: rgb(201, 209, 217); font-weight: 400;">()</span> </span>&lcub;</li><li></li><li>	optimizePathRestart: ; <span style="color: rgb(139, 148, 158); font-weight: 400;">//Used if the entire search needs to restart.</span></li><li></li><li>	<span style="color: rgb(139, 148, 158); font-weight: 400;">//Iterate forward from the start of the path.</span></li><li>	<span style="color: rgb(255, 123, 114); font-weight: 400;">for</span>(<span style="color: rgb(255, 123, 114); font-weight: 400;">int</span> i = <span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>; i &lt; path.<span style="color: rgb(255, 166, 87); font-weight: 400;">size</span>(); i++) &lcub;</li><li></li><li>		<span style="color: rgb(139, 148, 158); font-weight: 400;">//Iterate backwards from the end of the path.</span></li><li>		<span style="color: rgb(255, 123, 114); font-weight: 400;">for</span>(<span style="color: rgb(255, 123, 114); font-weight: 400;">int</span> j = <span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>; j &lt; path.<span style="color: rgb(255, 166, 87); font-weight: 400;">size</span>(); j++) &lcub;</li><li></li><li>			<span style="color: rgb(139, 148, 158); font-weight: 400;">//Makes sure it doesn't check past the forward-moving-cell.</span></li><li>			<span style="color: rgb(255, 123, 114); font-weight: 400;">if</span>(path.<span style="color: rgb(255, 166, 87); font-weight: 400;">size</span>() - j &lt;= i+<span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>) &lcub;</li><li>				<span style="color: rgb(255, 123, 114); font-weight: 400;">break</span>;</li><li>			&rcub;</li><li></li><li>			<span style="color: rgb(139, 148, 158); font-weight: 400;">//Checks whether the cells can see eachother.</span></li><li>			<span style="color: rgb(255, 123, 114); font-weight: 400;">if</span>(<span style="color: rgb(255, 166, 87); font-weight: 400;">canSee</span>(path[i], path[path.<span style="color: rgb(255, 166, 87); font-weight: 400;">size</span>() - j]) || path[i] == path[path.<span style="color: rgb(255, 166, 87); font-weight: 400;">size</span>() - j]) &lcub;</li><li></li><li>				<span style="color: rgb(139, 148, 158); font-weight: 400;">//Erase the cells between 2 cells that see eachother</span></li><li>				path.<span style="color: rgb(255, 166, 87); font-weight: 400;">erase</span>(path.<span style="color: rgb(255, 166, 87); font-weight: 400;">begin</span>()+i+<span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>, path.<span style="color: rgb(255, 166, 87); font-weight: 400;">begin</span>()+(path.<span style="color: rgb(255, 166, 87); font-weight: 400;">size</span>() - j));</li><li>				<span style="color: rgb(255, 123, 114); font-weight: 400;">goto</span> optimizePathRestart;</li><li>			&rcub;</li><li>		&rcub;</li><li>	&rcub;</li><li></li><li>&rcub;</li></ol></pre>
 </div>
@@ -63,7 +63,7 @@ import { runHighlighterWithAstro } from '@astrojs/prism';
 		  }
 		}
 		
-		lookforCascade("OptimizePathCPP", "OptimizePathCPPText");
+		lookforCascade("CPPOptimizePath", "CPPOptimizePathText");
 		
 		
 	</script>

@@ -5,12 +5,18 @@ import YouTubeEmbed from "./YouTubeEmbed.astro";
 import TweetEmbed from "./TweetEmbed.astro";
 import OctantPic from "./OctantPic.astro";
 import CenterPic from "./CenterPic.astro";
+import CenterPicWidth from "./CenterPicWidth.astro";
 import CenterPicInvert from "./CenterPicInvert.astro";
 import GotoTop from "./GotoTop.astro";
 import FloatLeftPic from "./FloatLeftPic.astro";
-import FillPathCPP from "./FillPathCPP.astro";
-import OptimizePathCPP from "./OptimizePathCPP.astro";
-import CanSeeCPP from "./CanSeeCPP.astro";
+import CPPFillPath from "./CPPFillPath.astro";
+import CPPOptimizePath from "./CPPOptimizePath.astro";
+import CPPCanSee from "./CPPCanSee.astro";
+import RustBoardInit from "./RustBoardInit.astro";
+import RustUpdateCand from "./RustUpdateCand.astro";
+import RustCoordsToDigits from "./RustCoordsToDigits.astro";
+import RustProcessOfElimination from "./RustProcessOfElimination.astro";
+import RustBacktracking from "./RustBacktracking.astro";
 import CodePenEmbed from "./CodePenEmbed.astro";
 import GitHubGistEmbed from "./GitHubGistEmbed.astro";
 import CodeBlock from "./CodeBlock.astro";
@@ -39,6 +45,10 @@ const components = {
     Component: CenterPic,
     props: {},
   },
+  CenterPicWidth: {
+    Component: CenterPicWidth,
+    props: {},
+  },
   CenterPicInvert: {
     Component: CenterPicInvert,
     props: {},
@@ -47,16 +57,36 @@ const components = {
     Component: GotoTop,
     props: {},
   },
-  FillPathCPP: {
-    Component: FillPathCPP,
+  CPPFillPath: {
+    Component: CPPFillPath,
     props: {},
   },
-  CanSeeCPP: {
-    Component: CanSeeCPP,
+  RustUpdateCand: {
+    Component: RustUpdateCand,
     props: {},
   },
-  OptimizePathCPP: {
-    Component: OptimizePathCPP,
+  RustCoordsToDigits: {
+    Component: RustCoordsToDigits,
+    props: {},
+  },
+  CPPCanSee: {
+    Component: CPPCanSee,
+    props: {},
+  },
+  CPPOptimizePath: {
+    Component: CPPOptimizePath,
+    props: {},
+  },
+  RustBoardInit: {
+    Component: RustBoardInit,
+    props: {},
+  },
+  RustBacktracking: {
+    Component: RustBacktracking,
+    props: {},
+  },
+  RustProcessOfElimination: {
+    Component: RustProcessOfElimination,
     props: {},
   },
   FloatLeftPic: {

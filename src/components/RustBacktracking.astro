@@ -1,0 +1,145 @@
+---
+type Props = {
+  url: string;
+  width: string;
+};
+
+import CodeBlock from "./CodeBlock.astro";
+
+import { runHighlighterWithAstro } from '@astrojs/prism';
+
+
+
+---
+<style>
+	.no-scrollbar::-webkit-scrollbar {
+	display: none;
+	}
+	/* Hide scrollbar for IE, Edge and Firefox */
+	.no-scrollbar {
+	-ms-overflow-style: none;  /* IE and Edge */
+	scrollbar-width: none;  /* Firefox */
+	}
+	.content {
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.5s cubic-bezier(.85,.35,.15,.83);
+	}
+</style>
+<div class="RustBacktracking group cursor-pointer justify-center flex">
+  <div class="translate-y-[4px]">
+    <div class="peer origin-center absolute dark:invert transition duration-200 w-[40px] h-[40px] group-[.is-selected]:rotate-90 opacity-100 group-[.is-selected]:opacity-0">
+      <img width="40" height="40" src="/images/icons/plus.png" alt="down-squared--v2"
+        class="w-[40px] h-[40px] m-0"/>
+    </div>
+    <div class="peer origin-center absolute dark:invert transition duration-200  w-[40px] h-[40px] group-[.is-selected]:rotate-90 rotate-0">
+      <img width="42" height="42" src="/images/icons/minus.png" alt="down-squared--v2"
+        class="w-[40px] h-[40px] m-0"/>
+    </div>
+  </div>
+  <div class="ml-[50px] border-[#050505] dark:border-[#AAAAAA] rounded border-[1px] inline-block p-2 ">Backtracking Rust Code</div>
+
+</div>
+<div class="content hue-rotate-180 dark:hue-rotate-0 invert dark:invert-0 cursor-auto" id="RustBacktrackingText">
+	<pre style="font-family:monospace;color: rgb(201, 209, 217); background-color: rgb(13, 17, 23); font-weight: 400; " class="ml-[-50px]">
+		<span style="color: rgb(139, 148, 158); font-weight: 400;">//Main code containing backtracking logic.</span>
+		<span style="color: rgb(255, 123, 114); font-weight: 400;">fn</span> <span style="color: rgb(210, 168, 255); font-weight: 400;">main</span>() &lcub;
+		
+			<span style="color: rgb(139, 148, 158); font-weight: 400;">//The board to be solved.</span>
+			<span style="color: rgb(255, 123, 114); font-weight: 400;">let</span> <span style="color: rgb(121, 192, 255); font-weight: 400;">init</span> = <span style="color: rgb(255, 166, 87); font-weight: 400;">vec!</span>[
+				<span style="color: rgb(255, 166, 87); font-weight: 400;">vec!</span>[<span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">2</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">3</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>],
+				<span style="color: rgb(255, 166, 87); font-weight: 400;">vec!</span>[<span style="color: rgb(121, 192, 255); font-weight: 400;">4</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">3</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>],
+				<span style="color: rgb(255, 166, 87); font-weight: 400;">vec!</span>[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">3</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">5</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>],
+				<span style="color: rgb(255, 166, 87); font-weight: 400;">vec!</span>[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">4</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">2</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">5</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>],
+				<span style="color: rgb(255, 166, 87); font-weight: 400;">vec!</span>[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">8</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">9</span>],
+				<span style="color: rgb(255, 166, 87); font-weight: 400;">vec!</span>[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">6</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">5</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">7</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>],
+				<span style="color: rgb(255, 166, 87); font-weight: 400;">vec!</span>[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">5</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">2</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>],
+				<span style="color: rgb(255, 166, 87); font-weight: 400;">vec!</span>[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">9</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">6</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>],
+				<span style="color: rgb(255, 166, 87); font-weight: 400;">vec!</span>[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">7</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>,<span style="color: rgb(121, 192, 255); font-weight: 400;">8</span>]];
+		
+			<span style="color: rgb(255, 123, 114); font-weight: 400;">let</span> <span style="color: rgb(255, 123, 114); font-weight: 400;">mut </span><span style="color: rgb(121, 192, 255); font-weight: 400;">b</span> = Board::<span style="color: rgb(210, 168, 255); font-weight: 400;">new</span>(init.<span style="color: rgb(210, 168, 255); font-weight: 400;">len</span>()); <span style="color: rgb(139, 148, 158); font-weight: 400;">//The main board</span>
+			<span style="color: rgb(255, 123, 114); font-weight: 400;">let</span> <span style="color: rgb(255, 123, 114); font-weight: 400;">mut </span><span style="color: rgb(121, 192, 255); font-weight: 400;">b_stack</span>: <span style="color: rgb(255, 123, 114); font-weight: 400;">Vec</span>&lt;Board&gt; = <span style="color: rgb(255, 166, 87); font-weight: 400;">vec!</span>[]; <span style="color: rgb(139, 148, 158); font-weight: 400;">//The stack of boards</span>
+		
+			b.<span style="color: rgb(210, 168, 255); font-weight: 400;">init</span>(&amp;init); <span style="color: rgb(139, 148, 158); font-weight: 400;">//Initialize cells and area coordinates</span>
+			b.<span style="color: rgb(210, 168, 255); font-weight: 400;">update_all_cand</span>(); <span style="color: rgb(139, 148, 158); font-weight: 400;">//Update the candidates for all cells</span>
+			b.<span style="color: rgb(210, 168, 255); font-weight: 400;">process_of_elimination</span>(); <span style="color: rgb(139, 148, 158); font-weight: 400;">//candidates initialization</span>
+			b_stack.<span style="color: rgb(210, 168, 255); font-weight: 400;">push</span>(b.<span style="color: rgb(210, 168, 255); font-weight: 400;">clone</span>()); <span style="color: rgb(139, 148, 158); font-weight: 400;">//Push first unsolved board to stack.</span>
+		
+			<span style="color: rgb(139, 148, 158); font-weight: 400;">//Main back-tracking loop</span>
+			<span style="color: rgb(255, 123, 114); font-weight: 400;">while</span> b.solved == <span style="color: rgb(121, 192, 255); font-weight: 400;">false</span> &lcub;
+		
+				<span style="color: rgb(139, 148, 158); font-weight: 400;">//Update temporary board</span>
+				b = b_stack.<span style="color: rgb(210, 168, 255); font-weight: 400;">last_mut</span>().<span style="color: rgb(210, 168, 255); font-weight: 400;">unwrap</span>().<span style="color: rgb(210, 168, 255); font-weight: 400;">clone</span>();
+		
+				<span style="color: rgb(139, 148, 158); font-weight: 400;">//Iterate through cells</span>
+				<span style="color: rgb(255, 166, 87); font-weight: 400;">'outer</span>: <span style="color: rgb(255, 123, 114); font-weight: 400;">for</span> <span style="color: rgb(121, 192, 255); font-weight: 400;">i</span> <span style="color: rgb(255, 123, 114); font-weight: 400;">in</span> <span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>..b.bsize &lcub;
+					<span style="color: rgb(255, 123, 114); font-weight: 400;">for</span> <span style="color: rgb(121, 192, 255); font-weight: 400;">j</span> <span style="color: rgb(255, 123, 114); font-weight: 400;">in</span> <span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>..b.bsize &lcub;
+		
+						<span style="color: rgb(139, 148, 158); font-weight: 400;">//Ensure cell is a 0</span>
+						<span style="color: rgb(255, 123, 114); font-weight: 400;">if</span> b.cell[i][j].digit == <span style="color: rgb(121, 192, 255); font-weight: 400;">0</span> &lcub;
+		
+							<span style="color: rgb(139, 148, 158); font-weight: 400;">//Ensure cell has candidates</span>
+							<span style="color: rgb(255, 123, 114); font-weight: 400;">if</span> b.cell[i][j].cand.<span style="color: rgb(210, 168, 255); font-weight: 400;">len</span>() &gt; <span style="color: rgb(121, 192, 255); font-weight: 400;">0</span> &lcub;
+		
+								<span style="color: rgb(139, 148, 158); font-weight: 400;">//Set cell to first candidate and update the last-modified cell data.</span>
+								b.cell[i][j].digit = b.cell[i][j].cand[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>];
+								b.last_modified = [i, j, b.cell[i][j].cand[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>] <span style="color: rgb(255, 123, 114); font-weight: 400;">as</span> <span style="color: rgb(255, 123, 114); font-weight: 400;">usize</span>];
+		
+								<span style="color: rgb(139, 148, 158); font-weight: 400;">//Update candidates and check for area candidate eliminations.</span>
+								b.<span style="color: rgb(210, 168, 255); font-weight: 400;">update_cand</span>([i, j]);
+								b.<span style="color: rgb(210, 168, 255); font-weight: 400;">process_of_elimination</span>();
+								
+								<span style="color: rgb(139, 148, 158); font-weight: 400;">//Push board to stack</span>
+								b_stack.<span style="color: rgb(210, 168, 255); font-weight: 400;">push</span>(b.<span style="color: rgb(210, 168, 255); font-weight: 400;">clone</span>());
+		
+							<span style="color: rgb(139, 148, 158); font-weight: 400;">//No candidates mean the current board state is impossible to solve.</span>
+							&rcub; <span style="color: rgb(255, 123, 114); font-weight: 400;">else</span> &lcub;
+		
+								<span style="color: rgb(139, 148, 158); font-weight: 400;">//Pop top of stack.</span>
+								b_stack.<span style="color: rgb(210, 168, 255); font-weight: 400;">pop</span>();
+		
+								<span style="color: rgb(139, 148, 158); font-weight: 400;">//Revert the last-modified cell to a 0 and update its cand_limit list.</span>
+								b_stack.<span style="color: rgb(210, 168, 255); font-weight: 400;">last_mut</span>().<span style="color: rgb(210, 168, 255); font-weight: 400;">unwrap</span>().cell[b.last_modified[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>]][b.last_modified[<span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>]].cand_limit.<span style="color: rgb(210, 168, 255); font-weight: 400;">push</span>(b.last_modified[<span style="color: rgb(121, 192, 255); font-weight: 400;">2</span>] <span style="color: rgb(255, 123, 114); font-weight: 400;">as</span> <span style="color: rgb(255, 123, 114); font-weight: 400;">u16</span>);
+								b_stack.<span style="color: rgb(210, 168, 255); font-weight: 400;">last_mut</span>().<span style="color: rgb(210, 168, 255); font-weight: 400;">unwrap</span>().cell[b.last_modified[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>]][b.last_modified[<span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>]].digit = <span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>;
+								
+								<span style="color: rgb(139, 148, 158); font-weight: 400;">//Update candidates and check for area candidate eliminations.</span>
+								b_stack.<span style="color: rgb(210, 168, 255); font-weight: 400;">last_mut</span>().<span style="color: rgb(210, 168, 255); font-weight: 400;">unwrap</span>().<span style="color: rgb(210, 168, 255); font-weight: 400;">update_all_cand</span>();
+								b_stack.<span style="color: rgb(210, 168, 255); font-weight: 400;">last_mut</span>().<span style="color: rgb(210, 168, 255); font-weight: 400;">unwrap</span>().<span style="color: rgb(210, 168, 255); font-weight: 400;">process_of_elimination</span>();
+		
+								<span style="color: rgb(139, 148, 158); font-weight: 400;">//Restart search</span>
+								<span style="color: rgb(255, 123, 114); font-weight: 400;">break</span> <span style="color: rgb(255, 166, 87); font-weight: 400;">'outer</span>;
+							&rcub;
+						&rcub;
+					&rcub;
+				&rcub;
+			&rcub;
+			
+			<span style="color: rgb(139, 148, 158); font-weight: 400;">//Show the solved board</span>
+			b_stack.<span style="color: rgb(210, 168, 255); font-weight: 400;">last_mut</span>().<span style="color: rgb(210, 168, 255); font-weight: 400;">unwrap</span>().<span style="color: rgb(210, 168, 255); font-weight: 400;">show</span>();
+		
+		&rcub;</pre>
+</div>
+<br>
+<script>
+		function lookforCascade(cascClass, textClass) {
+		  var coll = document.getElementsByClassName(cascClass);
+		  var i;
+		  
+		  for (i = 0; i < coll.length; i++) {
+		    coll[i].addEventListener("mouseup", function() {
+		      this.classList.toggle("is-selected");
+		      var content = document.getElementById(textClass);
+		      if (content.style.maxHeight){
+		        content.style.maxHeight = null;
+		      } else {
+		        content.style.maxHeight = content.scrollHeight + "px";
+		      } 
+		    });
+		    
+		  }
+		}
+		
+		lookforCascade("RustBacktracking", "RustBacktrackingText");
+		
+		
+	</script>

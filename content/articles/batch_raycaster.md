@@ -5,7 +5,6 @@ description: "A raycaster I wrote in Batch doesn't use floating point arithemeti
 tags: ["Raycaster", "Challenge", "Engine", "Algorithm", "Batch", "Optimizing Batch Code", "Batch Script"]
 date: 2024-05-27
 draft: false
-url: /articles/chessbit
 ---
 
 # Table of Contents

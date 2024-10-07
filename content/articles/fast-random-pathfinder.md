@@ -3,7 +3,6 @@ external: false
 title: "Fast Random Pathfinder (C++)"
 description: "The development of a fast random pathfinder which self-optimizes."
 tags: ["C++", "Pathfinding", "Maze Generation", "Code Optimization", "Documentation", "Algorithmic Design", "Raycasting"]
-url: /articles/chessbit
 date: 2024-07-30
 draft: false
 ---
@@ -22,7 +21,7 @@ draft: false
 4. [Bonus: Maze Generation](#4.-bonus:-maze-generation)
 
 # 1. Intro
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This article discusses my Fast Random Pathfinder algorithm, a pathfinder that operates via random traversal followed by path optimization.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This article discusses the algorithms involved for a fast random self-optimizing pathfinder.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It should be said that there is little use for a pathfinder that relies solely on random chance when traversing. This project exists solely for curiosity's sake, and should not ever be considered for actual use cases when alternatives like [A*](https://en.wikipedia.org/wiki/A*_search_algorithm) exist.
 
@@ -55,8 +54,8 @@ APPEND goal to path[]
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View the drop-downs below to see the C++ code for `findPath()`, which selects random nodes, and `canSee()`, which determines node visible using DDA raycasting. Some functionality has been stripped from how these normally operate within [`fast-random-pathfinder.cpp`](https://github.com/nTh0rn/fast-random-pathfinder/blob/main/fast-random-pathfinder.cpp) in order to make their use in this specific case more apparent.
 
-{% fill_path_cpp /%}
-{% can_see_cpp /%}
+{% cpp_fill_path /%}
+{% cpp_can_see /%}
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The traversal of a path generated using this algorithm is visualized below. This path had a total of 8969 nodes before reaching the goal, which is exponentially faster than any path that the originally discussed random-direction-based-algorithm would've been able to consistently generate.
 
@@ -104,7 +103,7 @@ END FOR
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View the drop-down below to see the C++ code for `optimizePath()`. Note the use a `goto` rather than an outer while-loop. By using `goto`, the outer for-loop can be broken and restarted from within the inner for-loop without the need of an additional method or variable.
-{% optimize_path_cpp /%}
+{% cpp_optimize_path /%}
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The traversal of the initial optimized path with jumps in between nodes is shown below. The filled in version of the optimized path is also shown, using the same algorithm from [2.2](#2.2-filling-the-path).
 

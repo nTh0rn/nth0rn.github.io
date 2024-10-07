@@ -1,0 +1,134 @@
+---
+type Props = {
+  url: string;
+  width: string;
+};
+
+import CodeBlock from "./CodeBlock.astro";
+
+import { runHighlighterWithAstro } from '@astrojs/prism';
+
+
+
+---
+<style>
+	.no-scrollbar::-webkit-scrollbar {
+	display: none;
+	}
+	/* Hide scrollbar for IE, Edge and Firefox */
+	.no-scrollbar {
+	-ms-overflow-style: none;  /* IE and Edge */
+	scrollbar-width: none;  /* Firefox */
+	}
+	.content {
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.5s cubic-bezier(.85,.35,.15,.83);
+	}
+</style>
+<div class="RustBoardInit group cursor-pointer justify-center flex">
+  <div class="translate-y-[4px]">
+    <div class="peer origin-center absolute dark:invert transition duration-200 w-[40px] h-[40px] group-[.is-selected]:rotate-90 opacity-100 group-[.is-selected]:opacity-0">
+      <img width="40" height="40" src="/images/icons/plus.png" alt="down-squared--v2"
+        class="w-[40px] h-[40px] m-0"/>
+    </div>
+    <div class="peer origin-center absolute dark:invert transition duration-200  w-[40px] h-[40px] group-[.is-selected]:rotate-90 rotate-0">
+      <img width="42" height="42" src="/images/icons/minus.png" alt="down-squared--v2"
+        class="w-[40px] h-[40px] m-0"/>
+    </div>
+  </div>
+  <div class="ml-[50px] border-[#050505] dark:border-[#AAAAAA] rounded border-[1px] inline-block p-2 ">Board.init() Rust Code</div>
+
+</div>
+<div class="content hue-rotate-180 dark:hue-rotate-0 invert dark:invert-0 cursor-auto" id="RustBoardInitText">
+<pre style="font-family:monospace;color: rgb(201, 209, 217); background-color: rgb(13, 17, 23); font-weight: 400; "  class="ml-[-30px]">
+	<span style="color: rgb(139, 148, 158); font-weight: 400;">//Initialize values of board from given input, where init is the sudoku board.</span>
+	<span style="color: rgb(201, 209, 217); font-weight: 400;">fn <span style="color: rgb(210, 168, 255); font-weight: 400;">init</span><span style="color: rgb(201, 209, 217); font-weight: 400;">(&amp;mut self, init: &amp;Vec&lt;Vec&lt;u16&gt;&gt;)</span> </span>&lcub;
+	
+		let mut hx: usize;
+		let mut hy: usize;
+	
+		<span style="color: rgb(139, 148, 158); font-weight: 400;">//Iterate through row</span>
+		<span style="color: rgb(255, 123, 114); font-weight: 400;">for</span> i in <span style="color: rgb(121, 192, 255); font-weight: 400;">0.</span>.self.bsize &lcub;
+	
+			<span style="color: rgb(139, 148, 158); font-weight: 400;">//Initialize row</span>
+			self.cell.<span style="color: rgb(255, 166, 87); font-weight: 400;">push</span>(Vec::<span style="color: rgb(255, 166, 87); font-weight: 400;">new</span>());
+	
+			<span style="color: rgb(139, 148, 158); font-weight: 400;">//Iterate through column</span>
+			<span style="color: rgb(255, 123, 114); font-weight: 400;">for</span> j in <span style="color: rgb(121, 192, 255); font-weight: 400;">0.</span>. self.bsize &lcub;
+	
+				<span style="color: rgb(139, 148, 158); font-weight: 400;">//Initialize cell</span>
+				self.cell[i].<span style="color: rgb(255, 166, 87); font-weight: 400;">push</span>(Cell::<span style="color: rgb(255, 166, 87); font-weight: 400;">new</span>());
+	
+				<span style="color: rgb(139, 148, 158); font-weight: 400;">//Assign digit to cell</span>
+				self.cell[i][j].digit = init[i][j];
+	
+				<span style="color: rgb(139, 148, 158); font-weight: 400;">//Initialize row and column coordinates</span>
+				<span style="color: rgb(255, 123, 114); font-weight: 400;">for</span> k in <span style="color: rgb(121, 192, 255); font-weight: 400;">0.</span>.self.bsize &lcub;
+					<span style="color: rgb(255, 123, 114); font-weight: 400;">if</span> k != j &lcub;
+						self.cell[i][j].row.<span style="color: rgb(255, 166, 87); font-weight: 400;">push</span>([i,k]);
+					&rcub;
+					<span style="color: rgb(255, 123, 114); font-weight: 400;">if</span> k != i &lcub;
+						self.cell[i][j].col.<span style="color: rgb(255, 166, 87); font-weight: 400;">push</span>([k,j]);
+					&rcub;
+				&rcub;
+	
+				<span style="color: rgb(139, 148, 158); font-weight: 400;">//The top-left coordinate for the cell's house</span>
+				hy = (((i/self.hsize) as f64).<span style="color: rgb(255, 166, 87); font-weight: 400;">floor</span>() as usize)*(self.hsize);
+				hx = (((j/self.hsize) as f64).<span style="color: rgb(255, 166, 87); font-weight: 400;">floor</span>() as usize)*(self.hsize);
+	
+				<span style="color: rgb(139, 148, 158); font-weight: 400;">//Iterate from top-left of house and add to cell's house and aoe coordinates.</span>
+				<span style="color: rgb(255, 123, 114); font-weight: 400;">for</span> k in <span style="color: rgb(121, 192, 255); font-weight: 400;">0.</span>.self.hsize &lcub;
+					<span style="color: rgb(255, 123, 114); font-weight: 400;">for</span> l in <span style="color: rgb(121, 192, 255); font-weight: 400;">0.</span>.self.hsize &lcub;
+						<span style="color: rgb(255, 123, 114); font-weight: 400;">if</span> i != (k+hy) || j != (l+hx) &lcub;
+							self.cell[i][j].house.<span style="color: rgb(255, 166, 87); font-weight: 400;">push</span>([(k+hy),(l+hx)]);
+							self.cell[i][j].aoe.<span style="color: rgb(255, 166, 87); font-weight: 400;">push</span>([(k+hy),(l+hx)]);
+						&rcub;
+					&rcub;
+				&rcub;
+	
+	
+				<span style="color: rgb(139, 148, 158); font-weight: 400;">//Initialize AOE coordinates</span>
+				<span style="color: rgb(201, 209, 217); font-weight: 400;"><span style="color: rgb(255, 123, 114); font-weight: 400;">for</span> k <span style="color: rgb(210, 168, 255); font-weight: 400;">in</span> <span style="color: rgb(201, 209, 217); font-weight: 400;">(self.hsize-(j%self.hsize)+j)</span>..self.bsize </span>&lcub;
+					self.cell[i][j].aoe.<span style="color: rgb(255, 166, 87); font-weight: 400;">push</span>([i, k]); <span style="color: rgb(139, 148, 158); font-weight: 400;">//Row after house</span>
+				&rcub;
+	
+				<span style="color: rgb(255, 123, 114); font-weight: 400;">for</span> k in <span style="color: rgb(121, 192, 255); font-weight: 400;">0.</span>.(j+(self.hsize-(j%self.hsize))-self.hsize) &lcub;
+					self.cell[i][j].aoe.<span style="color: rgb(255, 166, 87); font-weight: 400;">push</span>([i, k]); <span style="color: rgb(139, 148, 158); font-weight: 400;">//Row before house</span>
+				&rcub;
+	
+				<span style="color: rgb(201, 209, 217); font-weight: 400;"><span style="color: rgb(255, 123, 114); font-weight: 400;">for</span> k <span style="color: rgb(210, 168, 255); font-weight: 400;">in</span> <span style="color: rgb(201, 209, 217); font-weight: 400;">(self.hsize-(i%self.hsize)+i)</span>..self.bsize </span>&lcub;
+					self.cell[i][j].aoe.<span style="color: rgb(255, 166, 87); font-weight: 400;">push</span>([k, j]); <span style="color: rgb(139, 148, 158); font-weight: 400;">//Column after house</span>
+				&rcub;
+	
+				<span style="color: rgb(255, 123, 114); font-weight: 400;">for</span> k in <span style="color: rgb(121, 192, 255); font-weight: 400;">0.</span>.(i+(self.hsize-(i%self.hsize))-self.hsize) &lcub;
+					self.cell[i][j].aoe.<span style="color: rgb(255, 166, 87); font-weight: 400;">push</span>([k, j]); <span style="color: rgb(139, 148, 158); font-weight: 400;">//Column before house</span>
+				&rcub;
+			&rcub;
+		&rcub;
+	&rcub;</pre>
+</div>
+<br>
+<script>
+		function lookforCascade(cascClass, textClass) {
+		  var coll = document.getElementsByClassName(cascClass);
+		  var i;
+		  
+		  for (i = 0; i < coll.length; i++) {
+		    coll[i].addEventListener("mouseup", function() {
+		      this.classList.toggle("is-selected");
+		      var content = document.getElementById(textClass);
+		      if (content.style.maxHeight){
+		        content.style.maxHeight = null;
+		      } else {
+		        content.style.maxHeight = content.scrollHeight + "px";
+		      } 
+		    });
+		    
+		  }
+		}
+		
+		lookforCascade("RustBoardInit", "RustBoardInitText");
+		
+		
+	</script>

@@ -1,0 +1,109 @@
+---
+type Props = {
+  url: string;
+  width: string;
+};
+
+import CodeBlock from "./CodeBlock.astro";
+
+import { runHighlighterWithAstro } from '@astrojs/prism';
+
+
+
+---
+<style>
+	.no-scrollbar::-webkit-scrollbar {
+	display: none;
+	}
+	/* Hide scrollbar for IE, Edge and Firefox */
+	.no-scrollbar {
+	-ms-overflow-style: none;  /* IE and Edge */
+	scrollbar-width: none;  /* Firefox */
+	}
+	.content {
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.5s cubic-bezier(.85,.35,.15,.83);
+	}
+</style>
+<div class="RustProcessOfElimination group cursor-pointer justify-center flex">
+  <div class="translate-y-[4px]">
+    <div class="peer origin-center absolute dark:invert transition duration-200 w-[40px] h-[40px] group-[.is-selected]:rotate-90 opacity-100 group-[.is-selected]:opacity-0">
+      <img width="40" height="40" src="/images/icons/plus.png" alt="down-squared--v2"
+        class="w-[40px] h-[40px] m-0"/>
+    </div>
+    <div class="peer origin-center absolute dark:invert transition duration-200  w-[40px] h-[40px] group-[.is-selected]:rotate-90 rotate-0">
+      <img width="42" height="42" src="/images/icons/minus.png" alt="down-squared--v2"
+        class="w-[40px] h-[40px] m-0"/>
+    </div>
+  </div>
+  <div class="ml-[50px] border-[#050505] dark:border-[#AAAAAA] rounded border-[1px] inline-block p-2 ">process_of_elimination() Rust Code</div>
+
+</div>
+<div class="content hue-rotate-180 dark:hue-rotate-0 invert dark:invert-0 cursor-auto" id="RustProcessOfEliminationText">
+	<pre style="font-family:monospace;color: rgb(201, 209, 217); background-color: rgb(13, 17, 23); font-weight: 400; " class="ml-[-65px]">
+		<span style="color: rgb(139, 148, 158); font-weight: 400;">//Checks for cells that have candidates that are unique to one of its areas</span>
+		<span style="color: rgb(255, 123, 114); font-weight: 400;">fn</span> <span style="color: rgb(210, 168, 255); font-weight: 400;">process_of_elimination</span>(&amp;<span style="color: rgb(255, 123, 114); font-weight: 400;">mut</span> <span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>) &lcub;
+			<span style="color: rgb(255, 123, 114); font-weight: 400;">let</span> <span style="color: rgb(255, 123, 114); font-weight: 400;">mut </span><span style="color: rgb(121, 192, 255); font-weight: 400;">c</span>: <span style="color: rgb(255, 123, 114); font-weight: 400;">u16</span>; <span style="color: rgb(139, 148, 158); font-weight: 400;">//Current cell's candidate</span>
+			<span style="color: rgb(255, 123, 114); font-weight: 400;">let</span> <span style="color: rgb(255, 123, 114); font-weight: 400;">mut </span><span style="color: rgb(121, 192, 255); font-weight: 400;">row</span>: <span style="color: rgb(255, 123, 114); font-weight: 400;">Vec</span>&lt;<span style="color: rgb(255, 123, 114); font-weight: 400;">u16</span>&gt;; <span style="color: rgb(139, 148, 158); font-weight: 400;">//Current cell's row</span>
+			<span style="color: rgb(255, 123, 114); font-weight: 400;">let</span> <span style="color: rgb(255, 123, 114); font-weight: 400;">mut </span><span style="color: rgb(121, 192, 255); font-weight: 400;">col</span>: <span style="color: rgb(255, 123, 114); font-weight: 400;">Vec</span>&lt;<span style="color: rgb(255, 123, 114); font-weight: 400;">u16</span>&gt;; <span style="color: rgb(139, 148, 158); font-weight: 400;">//Current cell's col</span>
+			<span style="color: rgb(255, 123, 114); font-weight: 400;">let</span> <span style="color: rgb(255, 123, 114); font-weight: 400;">mut </span><span style="color: rgb(121, 192, 255); font-weight: 400;">house</span>: <span style="color: rgb(255, 123, 114); font-weight: 400;">Vec</span>&lt;<span style="color: rgb(255, 123, 114); font-weight: 400;">u16</span>&gt;; <span style="color: rgb(139, 148, 158); font-weight: 400;">//Current cell's house</span>
+			<span style="color: rgb(255, 123, 114); font-weight: 400;">let</span> <span style="color: rgb(255, 123, 114); font-weight: 400;">mut </span><span style="color: rgb(121, 192, 255); font-weight: 400;">reset</span>: <span style="color: rgb(255, 123, 114); font-weight: 400;">bool</span> = <span style="color: rgb(121, 192, 255); font-weight: 400;">true</span>; <span style="color: rgb(139, 148, 158); font-weight: 400;">//Whether or not to keep searching</span>
+	
+			<span style="color: rgb(139, 148, 158); font-weight: 400;">//Start search</span>
+			<span style="color: rgb(255, 123, 114); font-weight: 400;">while</span> reset &lcub;
+				<span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>.solved = <span style="color: rgb(121, 192, 255); font-weight: 400;">true</span>;
+				reset = <span style="color: rgb(121, 192, 255); font-weight: 400;">false</span>;
+		
+				<span style="color: rgb(139, 148, 158); font-weight: 400;">//Iterate through all cells</span>
+				<span style="color: rgb(255, 123, 114); font-weight: 400;">for</span> <span style="color: rgb(121, 192, 255); font-weight: 400;">i</span> <span style="color: rgb(255, 123, 114); font-weight: 400;">in</span> <span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>..<span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>.bsize &lcub;
+					<span style="color: rgb(255, 123, 114); font-weight: 400;">for</span> <span style="color: rgb(121, 192, 255); font-weight: 400;">j</span> <span style="color: rgb(255, 123, 114); font-weight: 400;">in</span> <span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>..<span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>.bsize &lcub;
+		
+						<span style="color: rgb(139, 148, 158); font-weight: 400;">//Ensure cell is a 0</span>
+						<span style="color: rgb(255, 123, 114); font-weight: 400;">if</span> <span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>.cell[i][j].digit == <span style="color: rgb(121, 192, 255); font-weight: 400;">0</span> &lcub;
+							<span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>.solved = <span style="color: rgb(121, 192, 255); font-weight: 400;">false</span>;
+		
+							<span style="color: rgb(139, 148, 158); font-weight: 400;">//Establish candidates in each area</span>
+							row = <span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>.<span style="color: rgb(210, 168, 255); font-weight: 400;">coords_to_digits</span>(&amp;<span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>.cell[i][j].row, <span style="color: rgb(121, 192, 255); font-weight: 400;">true</span>);
+							col = <span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>.<span style="color: rgb(210, 168, 255); font-weight: 400;">coords_to_digits</span>(&amp;<span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>.cell[i][j].col, <span style="color: rgb(121, 192, 255); font-weight: 400;">true</span>);
+							house = <span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>.<span style="color: rgb(210, 168, 255); font-weight: 400;">coords_to_digits</span>(&amp;<span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>.cell[i][j].house, <span style="color: rgb(121, 192, 255); font-weight: 400;">true</span>);
+		
+							<span style="color: rgb(139, 148, 158); font-weight: 400;">//If areas do not contain candidate, then set cell to candidate.</span>
+							<span style="color: rgb(255, 123, 114); font-weight: 400;">for</span> <span style="color: rgb(121, 192, 255); font-weight: 400;">k</span> <span style="color: rgb(255, 123, 114); font-weight: 400;">in</span> <span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>..<span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>.cell[i][j].cand.<span style="color: rgb(210, 168, 255); font-weight: 400;">len</span>() &lcub;
+								c = <span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>.cell[i][j].cand[k];
+								<span style="color: rgb(255, 123, 114); font-weight: 400;">if</span> !row.<span style="color: rgb(210, 168, 255); font-weight: 400;">contains</span>(&amp;c) || !col.<span style="color: rgb(210, 168, 255); font-weight: 400;">contains</span>(&amp;c) || !house.<span style="color: rgb(210, 168, 255); font-weight: 400;">contains</span>(&amp;c) &lcub;
+									<span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>.cell[i][j].digit = c;
+									<span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>.<span style="color: rgb(210, 168, 255); font-weight: 400;">update_cand</span>([i, j]);
+									reset = <span style="color: rgb(121, 192, 255); font-weight: 400;">true</span>;
+								&rcub;
+							&rcub;
+						&rcub;
+					&rcub;
+				&rcub;
+			&rcub;
+		&rcub;</pre>
+</div>
+<br>
+<script>
+		function lookforCascade(cascClass, textClass) {
+		  var coll = document.getElementsByClassName(cascClass);
+		  var i;
+		  
+		  for (i = 0; i < coll.length; i++) {
+		    coll[i].addEventListener("mouseup", function() {
+		      this.classList.toggle("is-selected");
+		      var content = document.getElementById(textClass);
+		      if (content.style.maxHeight){
+		        content.style.maxHeight = null;
+		      } else {
+		        content.style.maxHeight = content.scrollHeight + "px";
+		      } 
+		    });
+		    
+		  }
+		}
+		
+		lookforCascade("RustProcessOfElimination", "RustProcessOfEliminationText");
+		
+		
+	</script>

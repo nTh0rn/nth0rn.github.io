@@ -1,0 +1,99 @@
+---
+type Props = {
+  url: string;
+  width: string;
+};
+
+import CodeBlock from "./CodeBlock.astro";
+
+import { runHighlighterWithAstro } from '@astrojs/prism';
+
+
+
+---
+<style>
+	.no-scrollbar::-webkit-scrollbar {
+	display: none;
+	}
+	/* Hide scrollbar for IE, Edge and Firefox */
+	.no-scrollbar {
+	-ms-overflow-style: none;  /* IE and Edge */
+	scrollbar-width: none;  /* Firefox */
+	}
+	.content {
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.5s cubic-bezier(.85,.35,.15,.83);
+	}
+</style>
+<div class="RustUpdateCand group cursor-pointer justify-center flex">
+  <div class="translate-y-[4px]">
+    <div class="peer origin-center absolute dark:invert transition duration-200 w-[40px] h-[40px] group-[.is-selected]:rotate-90 opacity-100 group-[.is-selected]:opacity-0">
+      <img width="40" height="40" src="/images/icons/plus.png" alt="down-squared--v2"
+        class="w-[40px] h-[40px] m-0"/>
+    </div>
+    <div class="peer origin-center absolute dark:invert transition duration-200  w-[40px] h-[40px] group-[.is-selected]:rotate-90 rotate-0">
+      <img width="42" height="42" src="/images/icons/minus.png" alt="down-squared--v2"
+        class="w-[40px] h-[40px] m-0"/>
+    </div>
+  </div>
+  <div class="ml-[50px] border-[#050505] dark:border-[#AAAAAA] rounded border-[1px] inline-block p-2 ">update_cand() Rust Code</div>
+
+</div>
+<div class="content hue-rotate-180 dark:hue-rotate-0 invert dark:invert-0 cursor-auto" id="RustUpdateCandText">
+	<pre style="font-family:monospace;color: rgb(201, 209, 217); background-color: rgb(13, 17, 23); font-weight: 400; " class="ml-[-70px]">
+		<span style="color: rgb(139, 148, 158); font-weight: 400;">//Updates the candidates of all cells, restricted by cand_limit.</span>
+		<span style="color: rgb(255, 123, 114); font-weight: 400;">fn</span> <span style="color: rgb(210, 168, 255); font-weight: 400;">update_cand</span>(&amp;<span style="color: rgb(255, 123, 114); font-weight: 400;">mut</span> <span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>, coord: [<span style="color: rgb(255, 123, 114); font-weight: 400;">usize</span>; <span style="color: rgb(121, 192, 255); font-weight: 400;">2</span>]) &lcub;
+			<span style="color: rgb(255, 123, 114); font-weight: 400;">let</span> <span style="color: rgb(255, 123, 114); font-weight: 400;">mut </span><span style="color: rgb(121, 192, 255); font-weight: 400;">aoe</span>: <span style="color: rgb(255, 123, 114); font-weight: 400;">Vec</span>&lt;<span style="color: rgb(255, 123, 114); font-weight: 400;">u16</span>&gt;; <span style="color: rgb(139, 148, 158); font-weight: 400;">//Current cell's house</span>
+			<span style="color: rgb(255, 123, 114); font-weight: 400;">let</span> <span style="color: rgb(255, 123, 114); font-weight: 400;">mut </span><span style="color: rgb(121, 192, 255); font-weight: 400;">cand_len</span>: <span style="color: rgb(255, 123, 114); font-weight: 400;">u16</span>;
+			
+			<span style="color: rgb(255, 123, 114); font-weight: 400;">for</span> <span style="color: rgb(121, 192, 255); font-weight: 400;">each</span> <span style="color: rgb(255, 123, 114); font-weight: 400;">in</span> &amp;<span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>.cell[coord[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>]][coord[<span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>]].aoe.<span style="color: rgb(210, 168, 255); font-weight: 400;">clone</span>() &lcub;
+				<span style="color: rgb(255, 123, 114); font-weight: 400;">if</span> <span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>.cell[each[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>]][each[<span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>]].digit == <span style="color: rgb(121, 192, 255); font-weight: 400;">0</span> &lcub;
+	
+					cand_len = <span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>;
+					<span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>.cell[each[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>]][each[<span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>]].cand.<span style="color: rgb(210, 168, 255); font-weight: 400;">clear</span>();
+	
+					<span style="color: rgb(139, 148, 158); font-weight: 400;">//Assign all candidates, restricted by limit and cand_limit.</span>
+					aoe = <span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>.<span style="color: rgb(210, 168, 255); font-weight: 400;">coords_to_digits</span>(&amp;<span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>.cell[each[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>]][each[<span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>]].aoe, <span style="color: rgb(121, 192, 255); font-weight: 400;">false</span>);
+	
+					<span style="color: rgb(255, 123, 114); font-weight: 400;">for</span> <span style="color: rgb(121, 192, 255); font-weight: 400;">k</span> <span style="color: rgb(255, 123, 114); font-weight: 400;">in</span> <span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>..(<span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>.bsize+<span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>) &lcub;
+						<span style="color: rgb(255, 123, 114); font-weight: 400;">if</span> !aoe.<span style="color: rgb(210, 168, 255); font-weight: 400;">contains</span>(&amp;(k <span style="color: rgb(255, 123, 114); font-weight: 400;">as</span> <span style="color: rgb(255, 123, 114); font-weight: 400;">u16</span>)) &amp;&amp; !<span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>.cell[each[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>]][each[<span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>]].cand_limit.<span style="color: rgb(210, 168, 255); font-weight: 400;">contains</span>(&amp;(k <span style="color: rgb(255, 123, 114); font-weight: 400;">as</span> <span style="color: rgb(255, 123, 114); font-weight: 400;">u16</span>)) &lcub;
+							<span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>.cell[each[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>]][each[<span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>]].cand.<span style="color: rgb(210, 168, 255); font-weight: 400;">push</span>(k <span style="color: rgb(255, 123, 114); font-weight: 400;">as</span> <span style="color: rgb(255, 123, 114); font-weight: 400;">u16</span>);
+							cand_len += <span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>;
+						&rcub;
+					&rcub;
+	
+					<span style="color: rgb(139, 148, 158); font-weight: 400;">//If there is only 1 candidate, set it as the digit and update further cells.</span>
+					<span style="color: rgb(255, 123, 114); font-weight: 400;">if</span> cand_len == <span style="color: rgb(121, 192, 255); font-weight: 400;">1</span> &lcub;
+						<span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>.cell[each[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>]][each[<span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>]].digit = <span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>.cell[each[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>]][each[<span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>]].cand[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>];
+						<span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>.<span style="color: rgb(210, 168, 255); font-weight: 400;">update_cand</span>([each[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>], each[<span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>]]);
+					&rcub;
+				&rcub;
+			&rcub;
+		&rcub;</pre>
+
+</div>
+<br>
+<script>
+		function lookforCascade(cascClass, textClass) {
+		  var coll = document.getElementsByClassName(cascClass);
+		  var i;
+		  
+		  for (i = 0; i < coll.length; i++) {
+		    coll[i].addEventListener("mouseup", function() {
+		      this.classList.toggle("is-selected");
+		      var content = document.getElementById(textClass);
+		      if (content.style.maxHeight){
+		        content.style.maxHeight = null;
+		      } else {
+		        content.style.maxHeight = content.scrollHeight + "px";
+		      } 
+		    });
+		    
+		  }
+		}
+		
+		lookforCascade("RustUpdateCand", "RustUpdateCandText");
+		
+		
+	</script>
