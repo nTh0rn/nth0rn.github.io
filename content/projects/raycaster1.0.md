@@ -1,8 +1,8 @@
 ---
 draft: false
-title: Ascii-Raycaster 1.0 (C++)
+title: Ascii-Raycaster (C++)
 description: "An ascii-based raycaster running in C++ in command prompt."
-date: 2024-04-22
-tags: ["C++", "Raycasting", "Multi-threading", "Pathfinding", "Maze Generation", "Algorithmic Design", "Data Structures"]
+date: 2024-01-22
+tags: ["C++", "Game Design", "Raycasting", "Multi-threading", "Pathfinding", "Maze Generation"]
 url: /articles/raycaster1.0
 ---

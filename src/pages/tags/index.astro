@@ -1,7 +1,23 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
 const allPosts = await Astro.glob('../../../content/projects/*.md');
-const tags = [...new Set(allPosts.map((project) => project.frontmatter.tags).flat())];
+
+
+const tagCount = {};
+allPosts.forEach((post) => {
+  post.frontmatter.tags.forEach((tag) => {
+    tagCount[tag] = (tagCount[tag] || 0) + 1;
+  });
+});
+
+const tags = [...new Set(allPosts.map((project) => project.frontmatter.tags).flat())]
+  .sort((a, b) => {
+    const countDifference = tagCount[b] - tagCount[a];
+    if (countDifference === 0) {
+      return a.localeCompare(b);
+    }
+    return countDifference;
+  });
 const pageTitle = "Tag Index";
 ---
 <head>

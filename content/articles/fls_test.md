@@ -3,7 +3,7 @@ external: false
 title: "The Fractional Line Symmetry Test (Research)"
 description: "An algorithm for determining poor-quality random data by symmetrically comparing the number of back-to-back bits meeting a certain criteria."
 tags: ["Random", "Random numbers", "HRNG", "Photon-based hardware random number generator", "FLS Test", "bitstream"]
-date: 2024-04-25
+date: 2023-10-25
 ---
 Written by [Nikolas Thornton](https://inspirehep.net/authors/2777386)\
 Edited by [Dmitriy Beznosko](https://inspirehep.net/authors/1048916) and [Keith Driscoll](https://inspirehep.net/authors/2777384)\
