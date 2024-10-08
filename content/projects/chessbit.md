@@ -1,8 +1,8 @@
 ---
 draft: false
-title: "Chess \"Engine\" (Batch)"
-description: "A chess program written in Batch and abandoned."
+title: "Playable CMD Chess (Batch)"
+description: "A chess program written in Batch"
 date: 2021-09-06
-url: /articles/chessbit
+url: https://github.com/nTh0rn/batch-chessbit
 tags: ["Batch", "Problem Solving", "Algorithmic Design"]
 ---
