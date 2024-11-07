@@ -46,6 +46,15 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      animation: {
+        shine: 'shine 3s linear infinite',
+      },
+      keyframes: {
+        shine: {
+          '0%': { backgroundPosition: '200% 0%' },
+          '100%': { backgroundPosition: '-200% 0%' },
+        },
+      },
       fontFamily: {
         body: ["Roboto Mono", "sans-serif"],
         heading: ["Roboto Mono", "sans-serif"],
@@ -56,7 +65,12 @@ module.exports = {
         current: "currentColor",
         primary: {
           main: "rgb(var(--color-primary-main) / <alpha-value>)",
+          100: "rgb(var(--color-tech-dark-dark) / <alpha-value>)",
+          200: "rgb(var(--color-tech-dark) / <alpha-value>)",
+          800: "rgb(var(--color-tech-light) / <alpha-value>)",
+          900: "rgb(var(--color-tech-light-light) / <alpha-value>)",
         },
+        
         text: {
           body: "rgb(var(--color-text-body) / <alpha-value>)",
           bold: "rgb(var(--color-text-bold) / <alpha-value>)",

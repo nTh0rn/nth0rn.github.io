@@ -98,16 +98,14 @@ Credit to [smartsudoku.com](https://www.smartersudoku.com/sudoku#/) for image.
 FUNCTION process_of_elimination()
     WHILE there are potentially more eliminations DO
         FOR each cell on the board
-            IF cell is empty THEN
-                FOR each of cell's candidates
-                    FOR each coordinate in cell's areas (row, column, and house)
-                        IF candidate does not exist in area THEN
-                            SET digit to candidate
-                            update_cand(coordinate)
-                        END IF
-                    END FOR
+            IF cell is empty THEN CONTINUE
+            FOR each of cell's candidates
+                FOR each coordinate in cell's areas (row, column, and house)
+                    IF candidate exists in area THEN CONTINUE
+                    SET digit to candidate
+                    update_cand(coordinate)
                 END FOR
-            END IF
+            END FOR
         END FOR
     END WHILE
 END FUNCTION
@@ -135,21 +133,20 @@ PUSH board to board_stack
 WHILE the board isn't solved DO
     SET board to the top of board_stack
     FOR each cell in board
-        IF cell is empty THEN
-            IF cell has candidates THEN
-                SET cell to the first of its candidates
-                SET board's last_modified to cell's coordinate and digit
-                board.update_cand(cell)
-                board.process_of_elimination()
-                PUSH board to board_stack
-            ELSE THEN
-                POP board_stack
-                PUSH top of stack's last_modified digit to its cell's banned candidate list
-                SET top of stack's last_modified cell to empty
-                top of board_stack.update_all_cand()
-                top of board_stack.process_of_elimination()
-                CONTINUE outer WHILE loop
-            END IF
+        IF cell isn't empty THEN CONTINUE
+        IF cell has candidates THEN
+            SET cell to the first of its candidates
+            SET board's last_modified to cell's coordinate and digit
+            board.update_cand(cell)
+            board.process_of_elimination()
+            PUSH board to board_stack
+        ELSE THEN
+            POP board_stack
+            PUSH top of stack's last_modified digit to its cell's banned candidate list
+            SET top of stack's last_modified cell to empty
+            top of board_stack.update_all_cand()
+            top of board_stack.process_of_elimination()
+            CONTINUE outer WHILE loop
         END IF
     END FOR
 END WHILE
@@ -161,6 +158,6 @@ END WHILE
 
 # 6. Conclusion
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;There are some optimizations that could be made to Pseudokude. I could've implemented solving methods such as the X-Wing Strategy, but I felt that it would have been nothing but more of the same in regard to the challenge of implementing it. Alternative optimizations include using a single-coordinate system (versus working with an x and a y) and using bitwise operations for determining candidates (this comes at the cost of not being able to solve boards wider than 64 cells).
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;There are some optimizations that could be made to Pseudokude. I could've implemented solving methods such as the [X-Wing Strategy](https://www.sudokuwiki.org/x_wing_strategy), but I felt that it would have been nothing but more of the same in regard to the challenge of implementing it. Alternative optimizations include using a single-coordinate system (versus working with an x and a y) and using bitwise operations for determining candidates (this comes at the cost of not being able to solve boards wider than 64 cells).
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Overall I consider Pseudokude a success. It has been a very fun exercise in code optimization and problem solving. Again, be sure to check out the source code over on [GitHub](#1.1-source-code).

@@ -4,6 +4,7 @@ title: "Chess \"Engine\" (Batch)"
 description: "A chess program written in Batch and abandoned."
 tags: ["Chess", "Chess engine", "Engine", "Algorithm", "Batch"]
 date: 2021-09-06
+draft: true
 ---
 {% float_left_pic url="/images/chessbit/default.png" width="float:left; padding-right:2%; padding-left:2%"/%}
 

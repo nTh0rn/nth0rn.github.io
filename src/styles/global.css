@@ -25,6 +25,11 @@
     .main_c {
         /* Tailwind slate-900 #0f172a */
         --color-primary-main: 15 23 42;
+        --color-tech-dark-dark: 168 138 48;
+        --color-tech-dark: 169 151 92;
+
+        --color-tech-light: 255 240 200;
+        --color-tech-light-light: 255 230 155;
 
         /* Tailwind slate-900 #0f172a */
         --color-text-body: 15 23 42;

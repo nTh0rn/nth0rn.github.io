@@ -38,8 +38,11 @@
 	<div class="duration-[2000ms] relative delay-[200ms] transition-opacity opacity-0 max-[768px]:opacity-100 ease-out" data-replace='{ "opacity-0": "opacity-100" }'>
 		<div class="duration-1000 relative transform delay-[100ms] transition-transform -translate-x-[200%] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[200%]": "translate-x-0" }'>
 			<center>
-				<p class="mb-6 text-sm">
-					Computer Science Undergraduate at Kennesaw State University
+				<p class="mb-6 text-sm"><!--<span class="text-[#B2921E] dark:text-[#B3A369]"> -->
+					<span class="opacity-50">Computer Science Undergraduate at Kennesaw State University</span><br>Transferring to <span class="font-bold tracking-tight
+        animate-shine !bg-clip-text text-transparent
+        [background:radial-gradient(circle_at_center,theme(colors.primary.800_/_85%),transparent)_-200%_50%_/_200%_100%_no-repeat,theme(colors.primary.100)]
+        dark:[background:radial-gradient(circle_at_center,theme(colors.primary.900_/_85%),transparent)_-200%_50%_/_200%_100%_no-repeat,theme(colors.primary.200)]">Georgia Tech</span> in Spring 2025
 				</p>
 			</center>
 		</div>
@@ -401,13 +404,34 @@
 					<div class=" relative">
 						<div class="my-0">
 							<div class="flex flex-row gap-x-2 items-center">
+								<img class="aspect-[2/2] w-10 h-10 " src="/images/icons/schools/gt.png" style="-webkit-filter: drop-shadow(5px 5px 5px #1a1a1a); filter: drop-shadow(5px 5px 5px #1a1a1a);">
+								<h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">Georgia Institute of Technology</h3>
+							</div>
+							<div class="text-sm font-medium contrast-150 dark:contrast-100 brightness-75 dark:brightness-100">
+								<span class="m-1 ml-0 inline-block text-main-c">TBA GPA</span>
+							</div>
+							<div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">Spring 2025 - Fall 2027</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="grid grid-cols-6">
+			<div class="pb-3 col-start-2 col-span-5 border-r-[1px] border-t-[1px] dark:border-white border-black"></div>
+		</div>
+		<div class="group pb-5 mb-0">
+			<div class="items-left text-left">
+				<div class="align-left">
+					<div class=" relative">
+						<div class="my-0">
+							<div class="flex flex-row gap-x-2 items-center">
 								<img class="aspect-[2/2] w-10 h-10 " src="/images/icons/schools/ksu.png" style="-webkit-filter: drop-shadow(5px 5px 5px #1a1a1a); filter: drop-shadow(5px 5px 5px #1a1a1a);">
 								<h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">Kennesaw State University</h3>
 							</div>
 							<div class="text-sm font-medium contrast-150 dark:contrast-100 brightness-75 dark:brightness-100">
 								<span class="m-1 ml-0 inline-block text-main-c">TBA GPA</span>
 							</div>
-							<div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">1 Semester</div>
+							<div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">Fall 2024</div>
 						</div>
 					</div>
 				</div>
@@ -441,7 +465,7 @@
 									<span class="m-1 ml-0 inline-block text-yellow-500">Math Club Vice-President</span>
 									<span class="m-1 ml-0 inline-block text-red-500">President's List</span>
 								</div>
-								<div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">4 Semesters</div>
+								<div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">Fall 2022 - Spring 2024</div>
 							</div>
 						</div>
 					</div>
@@ -455,28 +479,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="grid grid-cols-6">
-			<div class="pb-3 col-start-2 col-span-5 border-r-[1px] border-t-[1px] dark:border-white border-black"></div>
-		</div>
-		<div class="group pb-5">
-			<div class="items-left text-left">
-				<div class="align-left">
-					<div class=" relative">
-						<div class="my-0">
-							<div class="flex flex-row gap-x-2 items-center">
-								<img class="aspect-[2/2] w-10 h-10 " src="/images/icons/schools/sctc.png" style="-webkit-filter: drop-shadow(5px 5px 5px #1a1a1a); filter: drop-shadow(5px 5px 5px #1a1a1a);">
-								<h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">Southern Crescent Technical College</h3>
-							</div>
-							<div class="text-sm font-medium contrast-150 dark:contrast-100 brightness-75 dark:brightness-100">
-								<span class="m-1 ml-0 inline-block text-main-c font-bold animate-wiggle animate-infinite">4.0 GPA</span>
-								<span class="m-1 ml-0 inline-block text-red-500">President's List</span>
-							</div>
-							<div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">2 Semesters</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+
 	</div>
 	<div class="min-[1080px]:table-cell min-[1080px]:w-1/3 min-[1080px]:pr-2 min-[1080px]:pl-2">
 	<h1 class="text-3xl min-[350px]:text-4xl min-[425px]:text-5xl text-center">RESEARCH</h1>
@@ -493,7 +496,7 @@
 					<img width="40" height="40" src="/images/icons/plus.png" alt="down-squared--v2"
 						class=""/>
 				</div>
-				<div class="origin-center absolute dark:invert transition duration-200  w-[40px] group-hover:rotate-90 rotate-0">
+				<div class="origin-center absolute dark:invert transition duration-200 w-[40px] group-hover:rotate-90 rotate-0">
 					<img width="42" height="42" src="/images/icons/minus.png" alt="down-squared--v2"
 						class=""/>
 				</div>
