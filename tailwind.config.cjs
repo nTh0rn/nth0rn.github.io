@@ -61,6 +61,9 @@ module.exports = {
       },
       colors: {
         'main-c':'#339AF0',
+        blueLight:'#0069FF',
+        
+        blueDark:'#339AF0',
         transparent: "transparent",
         current: "currentColor",
         primary: {
@@ -69,6 +72,8 @@ module.exports = {
           200: "rgb(var(--color-tech-dark) / <alpha-value>)",
           800: "rgb(var(--color-tech-light) / <alpha-value>)",
           900: "rgb(var(--color-tech-light-light) / <alpha-value>)",
+          blueDark: "rgb(var(--color-box-blue-dark) / <alpha-value>)",
+          blueLight: "rgb(var(--color-box-blue-light) / <alpha-value>)",
         },
         
         text: {

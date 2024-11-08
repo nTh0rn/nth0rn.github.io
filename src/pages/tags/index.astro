@@ -39,11 +39,11 @@ const pageTitle = "Tag Index";
 </head>
 <PageLayout>
 <section slot="main" class="md:mx-[5rem]">
-  <div class="flex-wrap flex items-center justify-around">
+  <div class="flex-wrap flex items-center justify-around transition-colors duration-0">
     {tags.map((tag) => (
       <div class="duration-1000 relative transform transition-opacity opacity-0 ease-out" data-replace='{ "opacity-0": "opacity-100" }'>
-      <div class="group flex hover:-ml-0  rounded-lg border-[1px] hover:px-3 hover:-mr-0 m-1 p-2 border-[#000000] dark:border-[#FFFFFF] animate duration-200 ">
-      <a href={`/tags/${tag}`} class="text-center unset hover:text-text-link transition-colors duration-0">
+      <div class="group flex hover:-ml-0 rounded-lg border-[1px] hover:px-3 hover:-mr-0 m-1 p-2 bg-opacity-[4%] bg-blueLight dark:bg-opacity-[4%] dark:bg-blueDark border-[#000000] dark:border-[#FFFFFF] animate duration-200 ">
+      <a href={`/tags/${tag}`} class="text-center unset hover:text-text-link transition duration-0">
       {tag}
       </a>
       </div>

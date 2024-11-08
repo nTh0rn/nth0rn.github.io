@@ -30,6 +30,8 @@
 
         --color-tech-light: 255 240 200;
         --color-tech-light-light: 255 230 155;
+        --color-box-blue-dark: 51 154 240
+        --color-box-blue-light: 0 105 255
 
         /* Tailwind slate-900 #0f172a */
         --color-text-body: 15 23 42;
