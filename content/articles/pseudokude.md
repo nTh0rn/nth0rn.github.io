@@ -132,8 +132,7 @@ board.process_of_elimination()
 PUSH board to board_stack
 WHILE the board isn't solved DO
     SET board to the top of board_stack
-    FOR each cell in board
-        IF cell isn't empty THEN CONTINUE
+    FOR each empty cell in board
         IF cell has candidates THEN
             SET cell to the first of its candidates
             SET board's last_modified to cell's coordinate and digit
