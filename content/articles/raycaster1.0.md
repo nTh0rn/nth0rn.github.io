@@ -18,7 +18,7 @@ tags: ["Raycaster", "C++", "ascii graphics", "ascii", "terminal", "retro", "anal
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To see why, let's follow a quick timeline of this raycaster. First, let's look at the first functioning demo I got running.
 #### First running version of raycaster
 ![](/videos/raycaster1.0/wrong_depth.webp)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;As you can probably tell, I had not yet figured out exactly how to calculate the depth of walls. This version of the raycaster lacked parallax depth, which honestly gave a pretty cool effect. I also wrote to the screen line-by-line at this point using ```cout << "";```, and *dear God* was it slow. As it turns out, writing 60 lines 30-60 times a second to the screen takes a *lot* out of C++. Basically, ```cout``` is very CPU intensive, which is why I eventually moved onto printing directly to the terminal-buffer. However, its this line-by-line approach that allowed for my favorite form of visual glitching.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;As you can probably tell, I had not yet figured out exactly how to calculate the depth of walls. This version of the raycaster lacked parallax depth, which honestly gave a pretty cool effect. I also wrote to the screen line-by-line at this point using ```cout```, and *boy* was it slow. As it turns out, writing 60 lines 30-60 times a second to the screen takes a *lot* out of C++. ```cout``` is very CPU intensive, which is why I eventually moved onto printing directly to the terminal-buffer. However, its this line-by-line approach that allowed for my favorite form of visual glitching.
 #### First iteration of screen glitching
 ![](/videos/raycaster1.0/old_glitch.webp)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To understand how this glitching works, you first need to understand a bit of how my program works.
@@ -30,7 +30,7 @@ tags: ["Raycaster", "C++", "ascii graphics", "ascii", "terminal", "retro", "anal
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Eventually I figured out how to propertly calculate the wall distances. Around this time I wonder moved away from printing text line-by-line and started writing to the buffer directly. The biggest downside of this is that the size of the buffer is a ```const``` determined at runtime (meaning the resolution cannot be changed while running) and the screen is stored as one giant 1D array.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;That's right, the whole screen is just a giant array that just wraps around the screen border when it reaches the edge. That means if you want to print to the coordinate x:0 y:1 and the width if your screen is 50 characters, you need to print to the 51st characters to wrap down to the next line. This destroyed any chance of emulating the original form of glitching. This means any glitching that occurs is going to push back any later text, causing awful skewing. I tried to implement the same form of unicode-corruption glitching anyways, as shown.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This destroyed any chance of emulating the original form of glitching. This means any glitching that occurs is going to push back any later text, causing awful skewing. I tried to implement the same form of unicode-corruption glitching anyways, as shown.
 
 #### Second form of glitching
 ![](/videos/raycaster1.0/glitch2.webp)

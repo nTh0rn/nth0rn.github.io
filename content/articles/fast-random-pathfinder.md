@@ -21,7 +21,7 @@ draft: false
 4. [Bonus: Maze Generation](#4.-bonus:-maze-generation)
 
 # 1. Intro
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This article discusses the algorithms involved for a fast random self-optimizing pathfinder.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This article discusses the development of a "fast" pathfinder that operates via random traversal.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It should be said that there is little use for a pathfinder that relies solely on random chance when traversing. This project exists solely for curiosity's sake, and should not ever be considered for actual use cases when alternatives like [A*](https://en.wikipedia.org/wiki/A*_search_algorithm) exist.
 
@@ -63,7 +63,7 @@ APPEND goal to path[]
 
 ## 2.2 Filling the Path
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Now that a path has been found, we fill in the spaces between nodes that are not immediately adjacent to the previous node. This provides more options for optimization later. The reason why this is so important is visualized below.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Now that a path has been found, we fill in the spaces between nodes that are not immediately adjacent to the previous node. This provides more options for optimization later.
 
 {% center_pic url="/images/fast-random-pathfinder/unoptimized_path.png" /%}
 
@@ -87,7 +87,7 @@ END FOR
 
 {% center_pic url="/images/fast-random-pathfinder/optimized_path.png" /%}
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note that that is not the most optimal path between the first and last nodes, but it is the only one that Fast Random Pathfinder is able to find given its linear nature. This is further discussed in [3.2](#3.2-impossible-optimizations).
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note that this is not the most optimal path between the first and last nodes, but it is the only one that Fast Random Pathfinder is able to find given its linear nature. This is further discussed in [3.2](#3.2-impossible-optimizations).
 
 ```
 FOR each node at the start of path[] moving forwards, i
@@ -131,7 +131,7 @@ END FOR
 
 ## 3.3 Worst Case Runtime
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The most glaring issue with Fast Random Pathfinder is the main issue with any random pathfinders. The path to the goal is randomly generated, meaning that the Big O for Fast Random Pathfinder is, worst case, **infinity**. There is definitely some math that could be done to determine how probable it is that Fast Random Pathfinder finds a given path in a given environment after a certain number of iterations, but such efforts are not explored here.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The most glaring issue with Fast Random Pathfinder is the main reason no one would ever actually use a random pathfinder, fast or slow. The path to the goal is randomly generated, meaning that, worse-case, Fast Random Pathfinder is $ O(\infty) $. There is definitely some math that could be done to determine how probable it is that Fast Random Pathfinder finds a given path in a given environment after a certain number of iterations, but such efforts are not explored here.
 
 # 4. Bonus: Maze Generation
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Alongside developing Fast Random Pathfinder, I also implemented a maze generator to test it out. I have explored maze generation [previously](/articles/mazegen) using recursive backtracking, but I encountered memory issues (it was also just a poor implementation) that resulted in imperfections.
