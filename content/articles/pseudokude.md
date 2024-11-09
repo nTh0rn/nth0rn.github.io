@@ -59,14 +59,12 @@ draft: false
 
 ```
 FUNCTION update_cand(cell)
-    FOR each coordinate in the cell's area of effect
-        IF coordinate is empty
-            CLEAR coordinate's candidates
-            APPEND all free digits to the coordinate's candidates
-            IF coordinate has only 1 candidate THEN
-                SET coordinate's digit to that candidate
-                update_cand(coordinate)
-            END IF
+    FOR each empty coordinate in the cell's area of effect
+        CLEAR coordinate's candidates
+        APPEND all free digits to the coordinate's candidates
+        IF coordinate has only 1 candidate THEN
+            SET coordinate's digit to that candidate
+            update_cand(coordinate)
         END IF
     END FOR
 END FUNCTION
@@ -97,8 +95,7 @@ Credit to [smartsudoku.com](https://www.smartersudoku.com/sudoku#/) for image.
 ```
 FUNCTION process_of_elimination()
     WHILE there are potentially more eliminations DO
-        FOR each cell on the board
-            IF cell is empty THEN CONTINUE
+        FOR each empty cell on the board
             FOR each of cell's candidates
                 FOR each coordinate in cell's areas (row, column, and house)
                     IF candidate exists in area THEN CONTINUE
