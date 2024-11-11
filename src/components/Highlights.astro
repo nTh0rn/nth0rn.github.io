@@ -5,24 +5,25 @@ import HeaderLink from "./HeaderLink.astro";
 <link href="/fontawesome/css/brands.min.css" rel="stylesheet" />
 <link href="/fontawesome/css/fontawesome.min.css" rel="stylesheet" />
 </head>
-<section>
+<section class="scale-[0.95]">
 
   <center>
-  <div style=" margin-right:auto; margin-bottom:0px; font-size:min(3vw, calc(1 * 12px)); font-weight:thin;" class="translate-y-[-10px] md:translate-y-0">
+  <div class="translate-y-[-10px] min-[900px]:translate-y-[-0px] text-base max-[600px]:text-sm max-[650px]:mt-[10px] max-[650px]:text-sm max-[550px]:text-xs max-[400px]:mt-[5px] max-[400px]:text-[0.6rem] max-[350px]:text-[0.5rem] max-[300px]:hidden max-[300px]:m-0 max-[300px]:p-0">
     <center>
-    <p class="mb- border-current translate-y-[-10px]" style="margin-bottom:-10px; margin-top:0px">
+    <p class="mb- border-current translate-y-[-10px]" style="margin-bottom:-7px; margin-top:0px">
       <strong>
-      HIGHTLIGHTS
+      Highlights
       </strong>
     </p>
   </center>
 	<center style="margin-top:0px; margin-bottom:0px">
-  <hr class="border-t-[1px]" style="width:20%; margin-bottom:-5px"/>
+    <div class="flex items-center justify-between">
     <div
-      class=" border-current py-1 flex items-center justify-center" style="margin-top:0px"
+      class=" py-1 flex items-center justify-between m-auto border-t-[1px]" style="margin-top:0px"
     >
+    
     <a
-        class="transition duration-0 unset hover:text-text-link max-[466px]:translate-y-[-10px]"
+        class="transition duration-0 unset hover:text-text-link"
         href="/articles/pseudokude"
       >
         <i class="fa transition duration-0" aria-hidden="true" title="GitHub">&#xf121;</i>
@@ -36,13 +37,13 @@ import HeaderLink from "./HeaderLink.astro";
         <span>The FLS <span class="over-hidden whitespace-nowrap">Test (Research)</span></span>
 </a>
       <a
-        class="transition duration-0 unset ml-4 hover:text-text-link max-[466px]:translate-y-[-10px]"
+        class="transition duration-0 unset ml-4 hover:text-text-link "
         href="/articles/batch_raycaster"
       >
         <i class="fa transition duration-0" aria-hidden="true" title="GitHub">&#xf121;</i>
         <span>Integer Raycaster (Batch)</span></span>
   </a>
-      
+</div>
     </div>
     </center>
 

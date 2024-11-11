@@ -24,11 +24,11 @@ import Highlights from "../components/Highlights.astro";
  
     <section class="text-text-bold">
     
-      <ul class="unset flex gap-4 [&>li]:p-0 max-[420px]:text-sm">
+      <ul class="unset flex gap-4 [&>li]:p-0 max-[420px]:text-sm max-[385px]:text-xs">
         <li><HeaderLink href="/">Home</HeaderLink></li>
         <li><HeaderLink href="/articles">Articles</HeaderLink></li>
         <li><HeaderLink href="/projects">Projects</HeaderLink></li>
-        <li><HeaderLink href="/tags">Tags</HeaderLink></li>
+        <li class="max-[340px]:hidden"><HeaderLink href="/tags">Tags</HeaderLink></li>
       </ul>
     </section>
   </nav>
