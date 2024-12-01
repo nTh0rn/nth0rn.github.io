@@ -16,7 +16,7 @@ date: 2023-11-21
 
 {% center_pic_width url="/images/mazegen.gif" wid="40%" /%}
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The gif above shows my maze generation and pathfinding algorithm I wrote for my [Ascii-Graphics Horror Game (C++)](/articles/raycaster1.0). This project proved to be a fruitful exploration of recursive algorithms, maze generation, and pathfinding.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The gif above shows my maze generation and pathfinding algorithm I wrote for my [Ascii Raycaster Game (C++)](/articles/raycaster1.0). This project proved to be a fruitful exploration of recursive algorithms, maze generation, and pathfinding.
 
 # 2. Generation
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I explored many different forms of maze generation, but ultimately decided on a form of [recursive backtracking](https://en.wikipedia.org/wiki/Maze_generation_algorithm#Recursive_implementation).
