@@ -5,9 +5,9 @@ description: "An algorithm for determining poor-quality random data by symmetric
 tags: ["Random", "Random numbers", "HRNG", "Photon-based hardware random number generator", "FLS Test", "bitstream"]
 date: 2023-10-25
 ---
-Written by [Nikolas Thornton](https://inspirehep.net/authors/2777386)\
-Edited by [Dmitriy Beznosko](https://inspirehep.net/authors/1048916) and [Keith Driscoll](https://inspirehep.net/authors/2777384)\
-Additional contributors: [Fernando Guadarrama](https://inspirehep.net/authors/2577036), [Steven Mai](https://inspirehep.net/authors/2777385)
+Written by [Nikolas Thornton](https://www.linkedin.com/in/nikolas-thornton-546650174/)\
+Edited by [Dmitriy Beznosko](https://www.linkedin.com/in/dmitriy-beznosko-a102ba175/) and [Keith Driscoll](https://www.linkedin.com/in/keith-driscoll-1919a5/)\
+Additional contributors: [Fernando Guadarrama](https://www.linkedin.com/in/fernandoguada/), [Steven Mai](https://www.linkedin.com/in/steven-mai7/)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please read the paper I developed this test for, [Data Analysis Methods Preliminaries for a Photon-based Hardware Random Number Generator](https://arxiv.org/abs/2404.09395).
 
@@ -193,4 +193,4 @@ $$ \textrm{Lines} = \frac{n+1}{(2^{n+1})n} \times \textrm{bitstream length} \ \ 
 
 
 # Conclusion
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thank you for reading! Another possible use of the FLS Test is diagonal-line counting, as originally conceptualized by my fellow contributor, [Fernando Guadarrama](https://inspirehep.net/authors/2577036). Check out my article on a [diagonally wrapping traversal algorithm](/articles/diagonal_traversal) for a possible diagonal FLS Test implementation. Also be sure to check out the original paper I wrote this for [here](https://arxiv.org/abs/2404.09395).
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thank you for reading! Another possible use of the FLS Test is diagonal-line counting, as originally conceptualized by my fellow contributor, [Fernando Guadarrama](https://www.linkedin.com/in/fernandoguada/). Check out my article on a [diagonally wrapping traversal algorithm](/articles/diagonal_traversal) for a possible diagonal FLS Test implementation. Also be sure to check out the original paper I wrote this for [here](https://arxiv.org/abs/2404.09395).
