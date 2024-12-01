@@ -404,4 +404,4 @@ set column!screenx!=!view!
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I believe if there's any particular fix that should be made, it'd be my method of generating the x and y components of the ray's vector. The first one that comes to mind is pre-calculating vectors to be used and just accessing them when needed. 180 vectors would be needed though, which is a bit unweildy.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Again, be sure to try out the program for yourself over on [GitHub](https://github.com/nTh0rn/batch-raycaster), as well as my [raycaster made in C++](/articles/raycaster1.0).
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Again, be sure to try out the program for yourself over on [GitHub](https://github.com/nTh0rn/batch-raycaster), and check out my [raycaster made in C++](/articles/raycaster1.0).
