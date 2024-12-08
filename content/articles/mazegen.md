@@ -1,9 +1,10 @@
 ---
 external: false
-title: "Maze Generation and Pathfinding (C++)"
+title: "Maze Generation and Pathfinding"
 description: "A maze generator and flood-fill pathfinder written and visualized in C++"
 tags: ["C++", "Maze generation", "maze", "Flood-fill", "A*", "Algorithm", "Pathfinding", "Recursive", "Backtracking"]
 date: 2023-11-21
+language: "C++"
 ---
 
 # Table of Contents

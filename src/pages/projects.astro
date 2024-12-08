@@ -11,6 +11,9 @@ const projects = await readAll({
   frontmatterSchema: project,
 });
 
+const highlightedProjects = projects
+.filter((p) => p.frontmatter.highlighted == true);
+
 const sortedProjects = projects
   .filter((p) => p.frontmatter.draft !== true)
   .sort(
@@ -41,6 +44,8 @@ const sortedProjects = projects
   
   <section slot="main" class="md:mx-[5rem]">
   
+    
+  
     <ul>
       {
         sortedProjects.map((project) => {
@@ -62,6 +67,7 @@ const sortedProjects = projects
                   class="unset hover:text-text-link"
                 >
                   <span>{project.frontmatter.title}</span>
+                  <span class="opacity-50">({project.frontmatter.language})</span>
                   <span>
                     <i class="ml-1 mr-1 text-[12px] pb-2 fa-solid fa-up-right-from-square" />
                   </span>

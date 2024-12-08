@@ -1,10 +1,11 @@
 ---
 external: false
-title: "Fast Random Pathfinder (C++)"
+title: "Fast Random Pathfinder"
 description: "The development of a fast random pathfinder which self-optimizes."
 tags: ["C++", "Pathfinding", "Maze Generation", "Code Optimization", "Documentation", "Algorithmic Design", "Raycasting"]
 date: 2024-07-30
 draft: false
+language: "C++"
 ---
 
 # Table of Contents

@@ -1,10 +1,11 @@
 ---
 external: false
 draft: false
-title: "Diagonal Matrix Traversal (Python)"
+title: "Diagonal Matrix Traversal"
 description: "An algorithm to traverse across a square matrix diagonally."
 date: 2024-04-24
 tags: ["Matrix", "Linear Algebra", "Traversal", "Diagonal", "Transformation"]
+language: "Python"
 ---
 ```
 Pre-diagonal string: "123456789"

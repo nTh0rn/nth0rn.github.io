@@ -1,10 +1,11 @@
 ---
 external: false
-title: "Dynamic Sudoku Solver (Rust)"
+title: "Dynamic Sudoku Solver"
 description: "A dynamic sudoku solver made in Rust."
 tags: ["Rust", "Code Optimization", "Mathematics", "Algorithmic Design", "Problem Solving"]
 date: 2024-09-30
 draft: false
+language: "Rust"
 ---
 
 # Table of Contents

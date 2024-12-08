@@ -1,9 +1,10 @@
 ---
 external: false
-title: "Ascii Raycaster Game (C++)"
+title: "Ascii Raycaster Game"
 description: "An ascii-based raycaster running in C++"
 date: 2024-01-22
 tags: ["Raycaster", "C++", "ascii graphics", "ascii", "terminal", "retro", "analog", "horror", "analog horror", "Glitching"]
+language: "C++"
 ---
 
 # Table of Contents

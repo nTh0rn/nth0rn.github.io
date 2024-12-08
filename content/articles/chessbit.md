@@ -1,10 +1,11 @@
 ---
 external: false
-title: "Chess \"Engine\" (Batch)"
+title: "Chess \"Engine\""
 description: "A chess program written in Batch and abandoned."
 tags: ["Chess", "Chess engine", "Engine", "Algorithm", "Batch"]
 date: 2021-09-06
 draft: true
+language: "Batch"
 ---
 {% float_left_pic url="/images/chessbit/default.png" width="float:left; padding-right:2%; padding-left:2%"/%}
 

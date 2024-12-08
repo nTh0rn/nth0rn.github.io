@@ -1,19 +1,17 @@
 ---
 import { readAll } from "../lib/markdoc/read";
-import { blog } from "../lib/markdoc/frontmatter.schema";
+import { project } from "../lib/markdoc/frontmatter.schema";
 import PageLayout from "../layouts/PageLayout.astro";
 import PageMeta from "../components/PageMeta.astro";
 import Highlights from "../components/Highlights.astro";
 import { SITE_TITLE } from "../config";
 
-const posts = await readAll({
-  directory: "articles",
-  frontmatterSchema: blog,
+const projects = await readAll({
+  directory: "projects",
+  frontmatterSchema: project,
 });
 
-
-
-const sortedPosts = posts
+const sortedProjects = projects
   .filter((p) => p.frontmatter.draft !== true)
   .sort(
     (a, b) =>
@@ -39,48 +37,39 @@ const sortedPosts = posts
 	</script>
 </head>
 <PageLayout>
-  <PageMeta title={`Articles | ${SITE_TITLE}`} slot="meta" />
-
+  <PageMeta title={`Projects | ${SITE_TITLE}`} slot="meta" />
+  
   <section slot="main" class="md:mx-[5rem]">
   
-   
     <ul>
       {
-        sortedPosts.map((post) => {
+        sortedProjects.map((project) => {
           const formattedDate = new Date(
-            post.frontmatter.date
+            project.frontmatter.date
           ).toLocaleDateString("en-us", {
             year: "numeric",
             month: "short",
             day: "numeric",
-          });
+          }
+          
+          );
           return (
-            
             <li class="grid grid-cols-[1fr] md:grid-cols-[1fr_auto] mb-3 md:gap-2 items-start duration-1000 relative transform transition-all opacity-0 ease-out" data-replace='{ "opacity-0": "opacity-100" }'>
               <div class="title">
-                {post.frontmatter.external ? (
-                  <a
-                    href={post.frontmatter.url}
-                    target="_blank"
-                    class="unset hover:text-text-link"
-                  >
-                    <span>{post.frontmatter.title}</span>
-                    <span>
-                      <i class="ml-1 mr-1 text-[12px] pb-2 fa-solid fa-up-right-from-square" />
-                    </span>
-                  </a>
-                ) : (
-                  <a
-                    href={`/articles/${post.slug}`}
-                    class="unset hover:text-text-link"
-                  >
-                    {post.frontmatter.title}
-                  </a>
-                )}
-                <span class="opacity-50">({post.frontmatter.language})</span>
+                <a
+                  href={project.frontmatter.url}
+                  target="_blank"
+                  class="unset hover:text-text-link"
+                >
+                  <span>{project.frontmatter.title}</span>
+                  <span>{project.frontmatter.language}</span>
+                  <span>
+                    <i class="ml-1 mr-1 text-[12px] pb-2 fa-solid fa-up-right-from-square" />
+                  </span>
+                </a>
               </div>
               <div class="text-text-muted text-sm italic pt-1">
-                <time datetime={post.frontmatter.date.toISOString()}>
+                <time datetime={project.frontmatter.date.toISOString()}>
                   {formattedDate}
                 </time>
               </div>
