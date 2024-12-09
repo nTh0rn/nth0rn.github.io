@@ -8,4 +8,5 @@ tags: ["Batch", "Documentation"]
 language: "Batch"
 language_color: text-main-c
 image: "/images/icons/tech/batch.png"
+type: "GitHub"
 ---

@@ -8,4 +8,5 @@ url: /articles/raycaster1.0
 language: "C++"
 language_color: text-yellow-500
 image: "/videos/raycaster1.0/fixed_depth.webp"
+type: "Article"
 ---

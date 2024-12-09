@@ -8,4 +8,5 @@ tags: ["Batch"]
 language: "Batch"
 language_color: text-main-c
 image: "/images/sCMDra/sCMDra.png"
+type: "GitHub"
 ---

@@ -8,4 +8,5 @@ tags: ["C++", "Maze Generation", "Pathfinding", "Algorithmic Design", "Recursion
 language: "C++"
 language_color: text-yellow-500
 image: "/images/mazegen2.gif"
+type: "Article"
 ---

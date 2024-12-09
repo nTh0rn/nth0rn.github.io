@@ -9,4 +9,5 @@ tags: ["Batch", "Raycasting", "Code Optimization", "Algorithmic Design", "Docume
 language: "Batch"
 language_color: text-main-c
 featured: true
+type: "Article / GitHub"
 ---

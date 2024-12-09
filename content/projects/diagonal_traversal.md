@@ -8,4 +8,5 @@ tags: ["Python", "Algorithmic Design", "Documentation", "Mathematics", "Code Opt
 language: "Python"
 language_color: text-green-500
 image: "/images/thumbnails/diag_trav.png"
+type: "Article / GitHub"
 ---

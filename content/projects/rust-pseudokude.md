@@ -10,4 +10,5 @@ language: "Rust"
 language_color: text-orange-500
 image: "/images/rust-pseudokude/solving_gridonly.gif"
 featured: true
+type: "Article / GitHub"
 ---

@@ -9,4 +9,5 @@ language: "Research"
 language_color: text-red-500
 image: "/images/fls_test/just_fig6.png"
 featured: true
+type: "Article"
 ---

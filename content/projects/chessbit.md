@@ -8,4 +8,5 @@ tags: ["Batch", "Problem Solving", "Algorithmic Design"]
 language: "Batch"
 language_color: text-main-c
 image: "/images/chessbit/e2e4.png"
+type: "GitHub"
 ---

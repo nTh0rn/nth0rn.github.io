@@ -64,11 +64,14 @@ const sortedProjects = projects
           );
           return (
           
-          <a href={project.frontmatter.url} class="col-span-1 group unset content-around hover:text-text pb-5 bg-opacity-[4%] bg-blueLight dark:bg-opacity-[4%] dark:bg-blueDark rounded-xl origin-center hover:scale-[105%] animate transition-transform duration-300 ease-in-out" target="_blank">
+          <a href={project.frontmatter.url} class="col-span-1 group unset hover:text-text pb-5 bg-opacity-[4%] bg-blueLight dark:bg-opacity-[4%] dark:bg-blueDark rounded-xl origin-center hover:scale-[105%] animate transition-transform duration-300 ease-in-out" target="_blank">
+    <span class="text-xs sm:text-sm opacity-10 group-hover:opacity-50 duration-300 transition ease-in-out">&nbsp;{project.frontmatter.type}</span>
+    <div class="content-around h-full mt-[-1rem]">
+      
     <span class="duration-opacity-1000 relative transform transition-opacity opacity-0 ease-in-out" data-replace='{ "opacity-0": "opacity-100" }'>
     <div class="m-2 mb-0 content-around justify-center text-center text-xs sm:text-sm">
 
-      <h3 class="transition-all text-center duration-0 text-sm md:text-xl font-bold dark:text-gray-200 light:text-gray-900">{project.frontmatter.title}&nbsp;</h3>
+      <h3 class="transition-all text-center duration-0 text-sm md:text-xl font-bold dark:text-gray-200 light:text-gray-900">{project.frontmatter.title}</h3>
       <div class="sm:text-sm font-medium contrast-150 mb-1 dark:contrast-100 brightness-75 dark:brightness-100 text-center">
         <span class="sm:text-sm inline-block "><span class={project.frontmatter.language_color}> {project.frontmatter.language}</span></span><span class="sm:text-sm light:text-gray-800 dark:text-gray-400"> <time datetime={project.frontmatter.date.toISOString()}>
                   {formattedDate}
@@ -82,6 +85,7 @@ const sortedProjects = projects
       </div>
     </div>
   </span>
+</div>
   </a>
 
           );
@@ -102,12 +106,14 @@ const sortedProjects = projects
           
           );
           return (
-          
-          <a href={project.frontmatter.url} class="col-span-1 group unset content-around hover:text-text pb-5 bg-opacity-[4%] bg-blueLight dark:bg-opacity-[4%] dark:bg-blueDark rounded-xl origin-center hover:scale-[105%] animate transition-transform duration-300 ease-in-out" target="_blank">
+          <a href={project.frontmatter.url} class="col-span-1 group unset hover:text-text pb-5 bg-opacity-[4%] bg-blueLight dark:bg-opacity-[4%] dark:bg-blueDark rounded-xl origin-center hover:scale-[105%] animate transition-transform duration-300 ease-in-out" target="_blank">
+    <span class="text-xs sm:text-sm opacity-10 group-hover:opacity-50 duration-300 transition ease-in-out">&nbsp;{project.frontmatter.type}</span>
+    <div class="content-around h-full mt-[-1rem]">
+      
     <span class="duration-opacity-1000 relative transform transition-opacity opacity-0 ease-in-out" data-replace='{ "opacity-0": "opacity-100" }'>
     <div class="m-2 mb-0 content-around justify-center text-center text-xs sm:text-sm">
 
-      <h3 class="transition-all text-center duration-0 text-sm md:text-xl font-bold dark:text-gray-200 light:text-gray-900">{project.frontmatter.title}&nbsp;</h3>
+      <h3 class="transition-all text-center duration-0 text-sm md:text-xl font-bold dark:text-gray-200 light:text-gray-900">{project.frontmatter.title}</h3>
       <div class="sm:text-sm font-medium contrast-150 mb-1 dark:contrast-100 brightness-75 dark:brightness-100 text-center">
         <span class="sm:text-sm inline-block "><span class={project.frontmatter.language_color}> {project.frontmatter.language}</span></span><span class="sm:text-sm light:text-gray-800 dark:text-gray-400"> <time datetime={project.frontmatter.date.toISOString()}>
                   {formattedDate}
@@ -121,6 +127,7 @@ const sortedProjects = projects
       </div>
     </div>
   </span>
+</div>
   </a>
 
           );
@@ -142,7 +149,7 @@ const sortedProjects = projects
           return (
           
             <li class="group grid grid-cols-[1fr] md:grid-cols-[1fr_auto] mb-3 md:gap-2 items-start duration-opacity-1000 relative transform transition-opacity opacity-0 ease-in-out" data-replace='{ "opacity-0": "opacity-100" }'>
-              <div class="absolute animate rounded-lg translate-x-[-0.5%] transition-width z-0 delay-0 h-0 group-hover:h-full duration-500 ease-out w-0 group-hover:w-[101%] bg-opacity-[4%] bg-blueLight dark:bg-opacity-[4%] dark:bg-blueDark">&nbsp;</div>
+              <div class="absolute animate rounded-lg translate-x-[-0.5%] transition-width z-0 h-0 group-hover:h-full duration-500 ease-out w-0 group-hover:w-[101%] bg-opacity-[4%] bg-blueLight dark:bg-opacity-[4%] dark:bg-blueDark">&nbsp;</div>
               
               <div class="title z-10">
                 <a

@@ -8,4 +8,6 @@ url: https://github.com/Dyno-man/Recipe_AI
 language: "Python"
 language_color: text-green-500
 image: "/images/thumbnails/recipeai.png"
+external: true
+type: "GitHub"
 ---

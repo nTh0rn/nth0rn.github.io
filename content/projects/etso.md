@@ -8,4 +8,5 @@ url: https://gamejolt.com/games/Etso/249086
 language: "GameMaker Studio"
 language_color: text-green-500
 image: "/images/thumbnails/etso2.png"
+type: "GameJolt"
 ---

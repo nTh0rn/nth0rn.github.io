@@ -9,4 +9,5 @@ language: "C++"
 language_color: text-yellow-500
 image: "/images/fast-random-pathfinder/fast-random-pathfinder.gif"
 featured: true
+type: "Article / GitHub"
 ---

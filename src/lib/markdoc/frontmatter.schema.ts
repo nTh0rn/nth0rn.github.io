@@ -47,4 +47,6 @@ export const blog = z.discriminatedUnion("external", [
 
 export const project = baseSchema.extend({
   url: z.string(),
+  external: z.boolean().default(true),
+  type: z.string().default("external")
 });

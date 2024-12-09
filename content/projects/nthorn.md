@@ -8,4 +8,5 @@ tags: ["HTML CSS JS", "Web Design"]
 language: "HTML/CSS/Tailwind"
 language_color: text-pink-500
 image: "/images/website.webp"
+type: "GitHub"
 ---
