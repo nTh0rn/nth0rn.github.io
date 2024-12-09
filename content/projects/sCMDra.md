@@ -7,5 +7,5 @@ url: https://github.com/nTh0rn/sCMDra
 tags: ["Batch"]
 language: "Batch"
 language_color: text-main-c
-image: "images/sCMDra/sCMDra.png"
+image: "/images/sCMDra/sCMDra.png"
 ---
