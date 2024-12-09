@@ -46,7 +46,7 @@ const sortedProjects = projects
   
     <strong><h1 class=" max-w-[600px]:hidden text-3xl mb-2 text-center">Highlighted Projects</h1></strong>
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 justify-around mb-5 max-[340px]:hidden">
-      <a href="/articles/pseudokude" class="col-span-1 group unset content-around hover:text-text pb-5 border-[1px] rounded-xl origin-center hover:scale-[105%] animate transition-transform duration-300 ease-in-out">
+      <a href="/articles/pseudokude" class="col-span-1 group unset content-around hover:text-text pb-5 rounded-xl bg-opacity-[4%] bg-blueLight dark:bg-opacity-[4%] dark:bg-blueDark origin-center hover:scale-[105%] animate transition-transform duration-300 ease-in-out">
         <div class="m-2 mb-0 content-around justify-center text-center text-xs sm:text-sm">
     
           <h3 class="transition-all text-center duration-0 sm:text-md md:text-xl font-bold dark:text-gray-200 light:text-gray-900">Dynamic Sudoku Solver</h3>
@@ -61,7 +61,7 @@ const sortedProjects = projects
           </div>
         </div>
       </a>
-    <a href="/articles/fls_test" class="col-span-1 group unset content-around hover:text-text pb-5 border-[1px] rounded-xl origin-center hover:scale-[105%] animate transition-transform duration-300 ease-in-out">
+    <a href="/articles/fls_test" class="col-span-1 group unset content-around hover:text-text pb-5 rounded-xl bg-opacity-[4%] bg-blueLight dark:bg-opacity-[4%] dark:bg-blueDark origin-center hover:scale-[105%] animate transition-transform duration-300 ease-in-out">
       <div class="m-2 mb-0 content-around justify-center text-center text-xs sm:text-sm">
   
         <h3 class="transition-all text-center duration-0 md:text-xl font-bold dark:text-gray-200 light:text-gray-900">The Fractional Line Symmetry Test</h3>
@@ -76,7 +76,7 @@ const sortedProjects = projects
         </div>
       </div>
     </a>
-  <a href="/articles/fast-random-pathfinder" class="col-span-1 group unset content-around hover:text-text pb-5 border-[1px] rounded-xl origin-center hover:scale-[105%] animate transition-transform duration-300 ease-in-out">
+  <a href="/articles/fast-random-pathfinder" class="col-span-1 group unset content-around hover:text-text bg-opacity-[4%] bg-blueLight dark:bg-opacity-[4%] dark:bg-blueDark pb-5 rounded-xl origin-center hover:scale-[105%] animate transition-transform duration-300 ease-in-out">
     <div class="m-2 mb-0 content-around justify-center text-center text-xs sm:text-sm">
 
       <h3 class="transition-all text-center duration-0 text-sm md:text-xl font-bold dark:text-gray-200 light:text-gray-900">Fast Random Pathfinder</h3>
@@ -91,7 +91,7 @@ const sortedProjects = projects
       </div>
     </div>
   </a>
-  <a href="/articles/batch_raycaster" class="col-span-1 group unset content-around hover:text-text pb-5 border-[1px] rounded-xl origin-center hover:scale-[105%] animate transition-transform duration-300 ease-in-out">
+  <a href="/articles/batch_raycaster" class="col-span-1 group unset content-around hover:text-text pb-5 bg-opacity-[4%] bg-blueLight dark:bg-opacity-[4%] dark:bg-blueDark rounded-xl origin-center hover:scale-[105%] animate transition-transform duration-300 ease-in-out">
     <div class="m-2 mb-0 content-around justify-center text-center text-xs sm:text-sm">
 
       <h3 class="transition-all text-center duration-0 text-sm md:text-xl font-bold dark:text-gray-200 light:text-gray-900">Integer-only Raycaster</h3>
@@ -121,26 +121,33 @@ const sortedProjects = projects
           
           );
           return (
-            <li class="grid grid-cols-[1fr] md:grid-cols-[1fr_auto] mb-3 md:gap-2 items-start duration-1000 relative transform transition-all opacity-0 ease-out" data-replace='{ "opacity-0": "opacity-100" }'>
-              <div class="title">
+          
+            <li class="group grid grid-cols-[1fr] md:grid-cols-[1fr_auto] mb-3 md:gap-2 items-start duration-opacity-1000 relative transform transition-opacity opacity-0 ease-in-out" data-replace='{ "opacity-0": "opacity-100" }'>
+              <div class="absolute animate rounded-lg translate-x-[-0.5%] transition-width z-0 delay-0 h-0 group-hover:h-full duration-500 ease-out w-0 group-hover:w-[101%] bg-opacity-[4%] bg-blueLight dark:bg-opacity-[4%] dark:bg-blueDark">&nbsp;</div>
+              
+              <div class="title z-10">
                 <a
                   href={project.frontmatter.url}
                   target="_blank"
-                  class="unset hover:text-text-link"
+                  class="unset hover:text-text-link flex"
                 >
-                  <span>{project.frontmatter.title}</span>
+                  <span>{project.frontmatter.title}&nbsp;</span>
                   <span class="opacity-50">({project.frontmatter.language})</span>
                   <span>
                     <i class="ml-1 mr-1 text-[12px] pb-2 fa-solid fa-up-right-from-square" />
                   </span>
                 </a>
+                
               </div>
               <div class="text-text-muted text-sm italic pt-1">
                 <time datetime={project.frontmatter.date.toISOString()}>
                   {formattedDate}
                 </time>
               </div>
+            
+            
             </li>
+          
           );
         })
       }

@@ -49,6 +49,9 @@ module.exports = {
       animation: {
         shine: 'shine 3s linear infinite',
       },
+      transitionProperty: {
+        'width':'width'
+      },
       keyframes: {
         shine: {
           '0%': { backgroundPosition: '200% 0%' },

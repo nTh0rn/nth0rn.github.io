@@ -56,34 +56,27 @@ const sortedPosts = posts
           });
           return (
             
-            <li class="grid grid-cols-[1fr] md:grid-cols-[1fr_auto] mb-3 md:gap-2 items-start duration-1000 relative transform transition-all opacity-0 ease-out" data-replace='{ "opacity-0": "opacity-100" }'>
-              <div class="title">
-                {post.frontmatter.external ? (
-                  <a
-                    href={post.frontmatter.url}
-                    target="_blank"
-                    class="unset hover:text-text-link"
-                  >
-                    <span>{post.frontmatter.title}</span>
-                    <span>
-                      <i class="ml-1 mr-1 text-[12px] pb-2 fa-solid fa-up-right-from-square" />
-                    </span>
-                  </a>
-                ) : (
-                  <a
-                    href={`/articles/${post.slug}`}
-                    class="unset hover:text-text-link"
-                  >
-                    {post.frontmatter.title}
-                  </a>
-                )}
-                <span class="opacity-50">({post.frontmatter.language})</span>
+          <li class="group grid grid-cols-[1fr] md:grid-cols-[1fr_auto] mb-3 md:gap-2 items-start duration-opacity-1000 relative transform transition-opacity opacity-0 ease-in-out" data-replace='{ "opacity-0": "opacity-100" }'>
+              <div class="absolute animate rounded-lg translate-x-[-0.5%] transition-width z-0 delay-0 h-0 group-hover:h-full duration-500 ease-out w-0 group-hover:w-[101%] bg-opacity-[4%] bg-blueLight dark:bg-opacity-[4%] dark:bg-blueDark">&nbsp;</div>
+              
+              <div class="title z-10">
+                <a
+                  href={"articles/" + post.slug}
+                  target="_blank"
+                  class="unset hover:text-text-link flex"
+                >
+                  <span>{post.frontmatter.title}&nbsp;</span>
+                  <span class="opacity-50">({post.frontmatter.language})</span>
+                </a>
+                
               </div>
               <div class="text-text-muted text-sm italic pt-1">
                 <time datetime={post.frontmatter.date.toISOString()}>
                   {formattedDate}
                 </time>
               </div>
+            
+            
             </li>
           );
         })
