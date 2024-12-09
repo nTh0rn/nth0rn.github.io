@@ -11,8 +11,6 @@ const posts = await readAll({
   frontmatterSchema: blog,
 });
 
-
-
 const sortedPosts = posts
   .filter((p) => p.frontmatter.draft !== true)
   .sort(
@@ -61,8 +59,7 @@ const sortedPosts = posts
               
               <div class="title z-10">
                 <a
-                  href={"articles/" + post.slug}
-                  target="_blank"
+                  href={`/articles/${post.slug}`}
                   class="unset hover:text-text-link flex"
                 >
                   <span>{post.frontmatter.title}&nbsp;</span>

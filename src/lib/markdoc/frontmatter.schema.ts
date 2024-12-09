@@ -13,8 +13,9 @@ const baseSchema = z.object({
       "date must be written in yyyy-mm-dd format without quotes: For example, Jan 22, 2000 should be written as 2000-01-22.",
   }),
   language: z.string(),
-  highlighted: z.boolean().default(false),
-  image: z.string().default(""),
+  language_color: z.string().default("text-main-c"),
+  description: z.string().default("z.string()"),
+  image: z.string().default("")
 });
 
 /*
@@ -30,7 +31,6 @@ export const blog = z.discriminatedUnion("external", [
   // markdown
   baseSchema.extend({
     external: z.literal(false),
-    description: z.optional(z.string()),
     ogImagePath: z.optional(z.string()),
     canonicalUrl: z.optional(z.string()),
   }),
