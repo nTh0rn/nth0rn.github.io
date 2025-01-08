@@ -29,7 +29,7 @@ language: "Batch"
 5.2 &nbsp;[Minimize lines of code](#5.2-minimize-lines-of-code)\
 5.3 &nbsp;[Avoid ECHOs](#5.3-avoid-echos)\
 5.4 &nbsp;[Final Solution](#5.4-final-solution)
-5. [Conclusion](#5.-conclusion)
+5. [Conclusion](#6.-conclusion)
 
 # 1. Intro
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This article explores the solutions I used in the creation of a retro-style 3D raycaster in Batch (Windows .bat file type). Batch is, frankly, an awful and inefficient language. However, it can be incredibly fun to code in, and always yields interesting solutions to what are otherwise trivial problems in most languages.
@@ -396,11 +396,11 @@ set column!screenx!=!view!
 ## 5.4 Final Solution
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;All the steps previously mentioned have been taken to help optimize this program as fast as possible, such that it generates a frame on average every 2 seconds. This can be optimized ever so slightly further, however, by taking 5.2 Minimize lines of code to the extreme. This renders the code effectively unreadable, but it renders a frame roughly every 1.5 seconds.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;After executing as many commands on the same line as possible, the raycaster goes from ~550 lines of code to ~100 lines - which is insane! This greatly speeds up the GOTO loops and gains roughly half a second per frame.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;After executing as many commands on the same line as possible, the raycaster goes from ~550 lines of code to ~100 lines! This greatly speeds up the GOTO loops and gains roughly half a second per frame.
 ![](/images/batch_raycaster/raycaster_optimized.gif)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The optimized and completely unreadable version of the raycaster is also included over on this project's [GitHub](https://github.com/nTh0rn/batch-raycaster).
 
-# 5. Conclusion
+# 6. Conclusion
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This project has been incredibly fun. This article was actually originally supposed to be a postmortem of my mostly abandoned Batch Raycaster. That old version of the program could render frames every 10-20 seconds, and also had a number of visual artifacts. Upon beginning the article and dissecting my old code, I found dozens of things that I could optimize. In the end, I'd say this raycaster isn't half bad.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I believe if there's any particular fix that should be made, it'd be my method of generating the x and y components of the ray's vector. The first one that comes to mind is pre-calculating vectors to be used and just accessing them when needed. 180 vectors would be needed though, which is a bit unweildy.
