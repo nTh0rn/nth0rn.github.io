@@ -20,7 +20,7 @@ function windowResized() {
     if(abs(last_node_count-(width*height/density_ratio))/last_node_count > 0.25 || ratio_shrink == true) {
       if(ratio_shrink == true) {
         if(density_ratio <= 23000) {
-          density_ratio+=5000;
+          density_ratio+=10000;
           //print("New density ratio: " + density_ratio);
           ratio_shrink = false;
         } else {
@@ -84,7 +84,7 @@ function draw() {
     nodes[i].checkBoundary();
     nodes[i].update();
     nodes[i].display();
-    if(density_ratio <= 18000) {
+    if(density_ratio <= 18000 && windowWidth > 1000) {
       for (var j = 0; j < nodes.length; j++) {
         node_dist = sqrt(pow(abs(nodes[j].x - nodes[i].x), 2) + pow(abs(nodes[j].y - nodes[i].y), 2));
         if (node_dist < 100 && i != j) {
@@ -101,7 +101,8 @@ function draw() {
         
 
       }
-      nodes[i].grav_acc(nodes[closest_node]);
+        nodes[i].grav_acc(nodes[closest_node]);
+      
     }
   }
 }
