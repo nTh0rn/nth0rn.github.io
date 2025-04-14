@@ -1,44 +1,158 @@
 User-agent: AI2Bot
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: Ai2Bot-Dolma
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: Amazonbot
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: anthropic-ai
-User-agent: Applebot
-User-agent: Applebot-Extended
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: Brightbot 1.0
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: Bytespider
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: CCBot
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: ChatGPT-User
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: Claude-Web
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: ClaudeBot
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: cohere-ai
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: cohere-training-data-crawler
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: Crawlspace
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: Diffbot
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: DuckAssistBot
-User-agent: FacebookBot
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: FriendlyCrawler
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: GPTBot
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: iaskspider/2.0
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: ICC-Crawler
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: ImagesiftBot
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: img2dataset
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: ISSCyberRiskCrawler
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: Kangaroo Bot
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: Meta-ExternalAgent
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: Meta-ExternalFetcher
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: OAI-SearchBot
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: omgili
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: omgilibot
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: PanguBot
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: PerplexityBot
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: PetalBot
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: Scrapy
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: SemrushBot-OCOB
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: SemrushBot-SWA
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: Sidetrade indexer bot
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: Timpibot
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: VelenPublicWebCrawler
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: Webzio-Extended
+Disallow: /articles
+Disallow: /Quantinent
+
 User-agent: YouBot
 Disallow: /articles
 Disallow: /Quantinent
+
+User-agent: *
+Allow: /
