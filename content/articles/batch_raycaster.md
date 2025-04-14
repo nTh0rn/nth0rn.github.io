@@ -14,7 +14,7 @@ language: "Batch"
 1.2 &nbsp;[What is Raycasting?](#1.2-what-is-raycasting)
 2. [The Map](#2.-the-map)\
 2.1 &nbsp;[Scaling](#2.1-scaling)
-3. [Raycasting](#3.-raycasting) {% mark %}<--The fun part!{% /mark %} \
+3. [Raycasting](#3.-raycasting) **<- THE FUN PART!**\
 3.1 &nbsp;[Angle Calculation](#3.1-angle-calculation)\
 3.2 &nbsp;[Wall Hit Detection](#3.2-wall-hit-detection)\
 3.3 &nbsp;[Distance Calculation](#3.3-distance-calculation)\
@@ -283,9 +283,9 @@ set /a d=!dot!/!n_distance!
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The coordinates for the screen are generated using dynamic variable naming.
 ```batch
 for /l %%y in (1, 1, !height!) do (
-	for /l %%x in (1, 1, !width!) do (
-		set x%%xy%%y=·
-	)
+    for /l %%x in (1, 1, !width!) do (
+        set x%%xy%%y=·
+    )
 )
 ```
 where `height=30` and `width=45`. As mentioned previously, a filler whitespace is used as Batch cannot easily process whitespace in strings.
@@ -295,24 +295,24 @@ where `height=30` and `width=45`. As mentioned previously, a filler whitespace i
 ::Print the screen from the x and y coordinate variables
 :print_screen
 ::  Refresh the current line
-	set screen=
+    set screen=
 ::	Used to replace the filler whitespace with true whitespace
-	set "temp_whitespace=·"
-	set "real_whitespace= "
-	
+    set "temp_whitespace=·"
+    set "real_whitespace= "
+    
 ::	Iterate through screen coordinates
-	for /l %%y in (1, 1, !height!) do (
-		for /l %%x in (1, 1, !width!) do (
-			set column=!column%%x!
-			set pixel=!column%%x:~%%y,1!
-			set screen=!screen!!pixel!!pixel!
-		)
-		::Print the screen row and replace the filler whitespace.
-		echo: !screen:%temp_whitespace%=%real_whitespace%!
-		set screen=
+    for /l %%y in (1, 1, !height!) do (
+        for /l %%x in (1, 1, !width!) do (
+            set column=!column%%x!
+            set pixel=!column%%x:~%%y,1!
+            set screen=!screen!!pixel!!pixel!
+        )
+::      Print the screen row and replace the filler whitespace.
+        echo: !screen:%temp_whitespace%=%real_whitespace%!
+        set screen=
 
-	)
-	goto :eof
+    )
+    goto :eof
 ```
 where `column` is the "array" the holds the vertical columns for that particular column.
 ## 4.1 Vertical columns
