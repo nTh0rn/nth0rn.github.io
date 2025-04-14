@@ -12,19 +12,24 @@ import { runHighlighterWithAstro } from '@astrojs/prism';
 
 ---
 <style>
-	.no-scrollbar::-webkit-scrollbar {
-	display: none;
-	}
-	/* Hide scrollbar for IE, Edge and Firefox */
-	.no-scrollbar {
-	-ms-overflow-style: none;  /* IE and Edge */
-	scrollbar-width: none;  /* Firefox */
-	}
-	.content {
-	max-height: 0;
-	overflow: hidden;
-	transition: max-height 0.5s cubic-bezier(.85,.35,.15,.83);
-	}
+    .no-scrollbar::-webkit-scrollbar {
+    display: none;
+    }
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    }
+    .content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(.85,.35,.15,.83);
+    }
+    pre, ol, li {
+    margin: 0;
+    padding: 0;
+    line-height: 1.1;
+  }
 </style>
 <div class="CPPCanSee group cursor-pointer justify-center flex">
   <div class="translate-y-[4px]">
@@ -41,32 +46,112 @@ import { runHighlighterWithAstro } from '@astrojs/prism';
 
 </div>
 <div class="content hue-rotate-180 dark:hue-rotate-0 invert dark:invert-0 cursor-auto" id="CPPCanSeeText">
+<p></p>
+<pre style="font-family:monospace;color: rgb(201, 209, 217); background-color: rgb(13, 17, 23); font-weight: 400; padding: 1em"><span style="color: rgb(139, 148, 158); font-weight: 400;">/*
+@brief Checks cell visibility and can fill path between cells.
+This function determines whether two cells on the grid have sightline of each other using DDA traversal.
+@param prev: The first cell to check.
+@param next: The second cell to check.
+@return boolean of whether the given cells could see each other.
+*/</span>
+<span style="color: rgb(201, 209, 217); font-weight: 400;"><span style="color: rgb(255, 123, 114); font-weight: 400;">bool</span> <span style="color: rgb(210, 168, 255); font-weight: 400;">canSee</span><span style="color: rgb(201, 209, 217); font-weight: 400;">(vector &lt;<span style="color: rgb(255, 123, 114); font-weight: 400;">int</span>&gt; prev, vector &lt;<span style="color: rgb(255, 123, 114); font-weight: 400;">int</span>&gt; next)</span> </span>&lcub;
+    <span style="color: rgb(139, 148, 158); font-weight: 400;">//Current coords</span>
+    <span style="color: rgb(255, 123, 114); font-weight: 400;">double</span> x = prev[<span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>];
+    <span style="color: rgb(255, 123, 114); font-weight: 400;">double</span> y = prev[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>];
 
-	
-<pre style="font-family:monospace;color: rgb(201, 209, 217); background-color: rgb(13, 17, 23); font-weight: 400; "><ol style="padding-left: 3em;"><li><span style="color: rgb(139, 148, 158); font-weight: 400;">/*</span></li><li>@brief Checks cell visibility and can fill path between cells.</li><li></li><li>This function determines whether two cells on the grid have sightline of each other using DDA traversal.</li><li></li><li>@param prev: The first cell to check.</li><li>@param next: The second cell to check.</li><li></li><li>@return boolean of whether the given cells could see each other.</li><li>*/</li><li><span style="color: rgb(201, 209, 217); font-weight: 400;"><span style="color: rgb(255, 123, 114); font-weight: 400;">bool</span> <span style="color: rgb(210, 168, 255); font-weight: 400;">canSee</span><span style="color: rgb(201, 209, 217); font-weight: 400;">(vector &lt;<span style="color: rgb(255, 123, 114); font-weight: 400;">int</span>&gt; prev, vector &lt;<span style="color: rgb(255, 123, 114); font-weight: 400;">int</span>&gt; next)</span> </span>&lcub;</li><li>	<span style="color: rgb(139, 148, 158); font-weight: 400;">//Current coords</span></li><li>	<span style="color: rgb(255, 123, 114); font-weight: 400;">double</span> x = prev[<span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>];</li><li>	<span style="color: rgb(255, 123, 114); font-weight: 400;">double</span> y = prev[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>];</li><li></li><li>	<span style="color: rgb(139, 148, 158); font-weight: 400;">//Previous coords</span></li><li>	<span style="color: rgb(255, 123, 114); font-weight: 400;">double</span> px=x;</li><li>	<span style="color: rgb(255, 123, 114); font-weight: 400;">double</span> py=y;</li><li></li><li>	<span style="color: rgb(139, 148, 158); font-weight: 400;">//The starting coords</span></li><li>	<span style="color: rgb(255, 123, 114); font-weight: 400;">double</span> startx=x;</li><li>	<span style="color: rgb(255, 123, 114); font-weight: 400;">double</span> starty=y;</li><li></li><li>	<span style="color: rgb(139, 148, 158); font-weight: 400;">//Target coords</span></li><li>	<span style="color: rgb(255, 123, 114); font-weight: 400;">double</span> tx = next[<span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>];</li><li>	<span style="color: rgb(255, 123, 114); font-weight: 400;">double</span> ty = next[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>];</li><li></li><li>	<span style="color: rgb(139, 148, 158); font-weight: 400;">//The difference between the start and target</span></li><li>	<span style="color: rgb(255, 123, 114); font-weight: 400;">double</span> dx=<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>;</li><li>	<span style="color: rgb(255, 123, 114); font-weight: 400;">double</span> dy=<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>;</li><li></li><li>	<span style="color: rgb(139, 148, 158); font-weight: 400;">//Used to hold DDA calculations</span></li><li>	<span style="color: rgb(255, 123, 114); font-weight: 400;">double</span> fracx;</li><li>	<span style="color: rgb(255, 123, 114); font-weight: 400;">double</span> fracy;</li><li>	<span style="color: rgb(255, 123, 114); font-weight: 400;">double</span> frac;</li><li></li><li>	<span style="color: rgb(139, 148, 158); font-weight: 400;">//Used for checking corner-skips.</span></li><li>	vector &lt;<span style="color: rgb(255, 123, 114); font-weight: 400;">int</span>&gt; cc_xy = &lcub;<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>, <span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>&rcub;;</li><li></li><li>	<span style="color: rgb(139, 148, 158); font-weight: 400;">//Loop until the x and y encounter a wall.</span></li><li>	<span style="color: rgb(255, 123, 114); font-weight: 400;">while</span>(map[<span style="color: rgb(255, 166, 87); font-weight: 400;">int</span>(y)][<span style="color: rgb(255, 166, 87); font-weight: 400;">int</span>(x)] != <span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>) &lcub;</li><li></li><li>		<span style="color: rgb(139, 148, 158); font-weight: 400;">//Check whether the target has been reached.</span></li><li>		<span style="color: rgb(255, 123, 114); font-weight: 400;">if</span>(<span style="color: rgb(255, 166, 87); font-weight: 400;">int</span>(x) == <span style="color: rgb(255, 166, 87); font-weight: 400;">int</span>(tx) &amp;&amp; <span style="color: rgb(255, 166, 87); font-weight: 400;">int</span>(y) == <span style="color: rgb(255, 166, 87); font-weight: 400;">int</span>(ty)) &lcub;</li><li>			<span style="color: rgb(255, 123, 114); font-weight: 400;">return</span> <span style="color: rgb(121, 192, 255); font-weight: 400;">true</span>;</li><li>		&rcub;</li><li>		</li><li>		<span style="color: rgb(139, 148, 158); font-weight: 400;">//Set the difference between the start and target.</span></li><li>		dx=tx-x;</li><li>		dy=ty-y;</li><li>		</li><li>		<span style="color: rgb(139, 148, 158); font-weight: 400;">//DDA traversal</span></li><li>		<span style="color: rgb(255, 123, 114); font-weight: 400;">if</span>(<span style="color: rgb(255, 166, 87); font-weight: 400;">abs</span>(dx) &gt;= <span style="color: rgb(255, 166, 87); font-weight: 400;">abs</span>(dy)) &lcub;</li><li>			frac = <span style="color: rgb(255, 166, 87); font-weight: 400;">abs</span>(dx);</li><li>		&rcub; <span style="color: rgb(255, 123, 114); font-weight: 400;">else</span> &lcub;</li><li>			frac = <span style="color: rgb(255, 166, 87); font-weight: 400;">abs</span>(dy);</li><li>		&rcub;</li><li></li><li>		fracx = dx / frac;</li><li>		fracy = dy / frac;</li><li></li><li>		x += fracx;</li><li>		y += fracy;</li><li></li><li>		<span style="color: rgb(139, 148, 158); font-weight: 400;">//Checks that the DDA didn't squeeze through a corner.</span></li><li>		<span style="color: rgb(255, 123, 114); font-weight: 400;">if</span>(<span style="color: rgb(255, 166, 87); font-weight: 400;">int</span>(px) != <span style="color: rgb(255, 166, 87); font-weight: 400;">int</span>(x) &amp;&amp; <span style="color: rgb(255, 166, 87); font-weight: 400;">int</span>(py) != <span style="color: rgb(255, 166, 87); font-weight: 400;">int</span>(y) &amp;&amp; addToPath == <span style="color: rgb(121, 192, 255); font-weight: 400;">false</span>) &lcub;</li><li>			cc_xy[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>] = <span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>, cc_xy[<span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>] = <span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>;</li><li>			<span style="color: rgb(255, 123, 114); font-weight: 400;">if</span>(dy &gt; <span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>) &lcub;</li><li>				cc_xy[<span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>] = <span style="color: rgb(121, 192, 255); font-weight: 400;">-1</span>;</li><li>			&rcub; <span style="color: rgb(255, 123, 114); font-weight: 400;">else</span> &lcub;</li><li>				cc_xy[<span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>] = <span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>;</li><li>			&rcub;</li><li>			<span style="color: rgb(255, 123, 114); font-weight: 400;">if</span>(dx &gt; <span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>) &lcub;</li><li>				cc_xy[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>] = <span style="color: rgb(121, 192, 255); font-weight: 400;">-1</span>;</li><li>			&rcub; <span style="color: rgb(255, 123, 114); font-weight: 400;">else</span> &lcub;</li><li>				cc_xy[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>] = <span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>;</li><li>			&rcub;</li><li>			<span style="color: rgb(255, 123, 114); font-weight: 400;">if</span>(map[<span style="color: rgb(255, 166, 87); font-weight: 400;">int</span>(y)+cc_xy[<span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>]][<span style="color: rgb(255, 166, 87); font-weight: 400;">int</span>(x)] == <span style="color: rgb(121, 192, 255); font-weight: 400;">0</span> &amp;&amp; map[<span style="color: rgb(255, 166, 87); font-weight: 400;">int</span>(y)][<span style="color: rgb(255, 166, 87); font-weight: 400;">int</span>(x)+cc_xy[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>]] == <span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>) &lcub;</li><li>				<span style="color: rgb(255, 123, 114); font-weight: 400;">break</span>;</li><li>			&rcub;</li><li>		&rcub;</li><li></li><li>		<span style="color: rgb(139, 148, 158); font-weight: 400;">//Set the current x &amp; y to be used later as the previous x &amp; y.</span></li><li>		px=x;</li><li>		py=y;</li><li></li><li>	&rcub;</li><li></li><li>	<span style="color: rgb(255, 123, 114); font-weight: 400;">return</span> <span style="color: rgb(121, 192, 255); font-weight: 400;">false</span>;</li><li>	</li><li>&rcub;</li></ol></pre>
+    <span style="color: rgb(139, 148, 158); font-weight: 400;">//Previous coords</span>
+    <span style="color: rgb(255, 123, 114); font-weight: 400;">double</span> px=x;
+    <span style="color: rgb(255, 123, 114); font-weight: 400;">double</span> py=y;
 
+    <span style="color: rgb(139, 148, 158); font-weight: 400;">//The starting coords</span>
+    <span style="color: rgb(255, 123, 114); font-weight: 400;">double</span> startx=x;
+    <span style="color: rgb(255, 123, 114); font-weight: 400;">double</span> starty=y;
+
+    <span style="color: rgb(139, 148, 158); font-weight: 400;">//Target coords</span>
+    <span style="color: rgb(255, 123, 114); font-weight: 400;">double</span> tx = next[<span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>];
+    <span style="color: rgb(255, 123, 114); font-weight: 400;">double</span> ty = next[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>];
+
+    <span style="color: rgb(139, 148, 158); font-weight: 400;">//The difference between the start and target</span>
+    <span style="color: rgb(255, 123, 114); font-weight: 400;">double</span> dx=<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>;
+    <span style="color: rgb(255, 123, 114); font-weight: 400;">double</span> dy=<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>;
+
+    <span style="color: rgb(139, 148, 158); font-weight: 400;">//Used to hold DDA calculations</span>
+    <span style="color: rgb(255, 123, 114); font-weight: 400;">double</span> fracx;
+    <span style="color: rgb(255, 123, 114); font-weight: 400;">double</span> fracy;
+    <span style="color: rgb(255, 123, 114); font-weight: 400;">double</span> frac;
+
+    <span style="color: rgb(139, 148, 158); font-weight: 400;">//Used for checking corner-skips.</span>
+    vector &lt;<span style="color: rgb(255, 123, 114); font-weight: 400;">int</span>&gt; cc_xy = &lcub;<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>, <span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>&rcub;;
+
+    <span style="color: rgb(139, 148, 158); font-weight: 400;">//Loop until the x and y encounter a wall.</span>
+    <span style="color: rgb(255, 123, 114); font-weight: 400;">while</span>(map[<span style="color: rgb(255, 166, 87); font-weight: 400;">int</span>(y)][<span style="color: rgb(255, 166, 87); font-weight: 400;">int</span>(x)] != <span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>) &lcub;
+
+        <span style="color: rgb(139, 148, 158); font-weight: 400;">//Check whether the target has been reached.</span>
+        <span style="color: rgb(255, 123, 114); font-weight: 400;">if</span>(<span style="color: rgb(255, 166, 87); font-weight: 400;">int</span>(x) == <span style="color: rgb(255, 166, 87); font-weight: 400;">int</span>(tx) &amp;&amp; <span style="color: rgb(255, 166, 87); font-weight: 400;">int</span>(y) == <span style="color: rgb(255, 166, 87); font-weight: 400;">int</span>(ty)) &lcub;
+            <span style="color: rgb(255, 123, 114); font-weight: 400;">return</span> <span style="color: rgb(121, 192, 255); font-weight: 400;">true</span>;
+        &rcub;
+        
+        <span style="color: rgb(139, 148, 158); font-weight: 400;">//Set the difference between the start and target.</span>
+        dx=tx-x;
+        dy=ty-y;
+        
+        <span style="color: rgb(139, 148, 158); font-weight: 400;">//DDA traversal</span>
+        <span style="color: rgb(255, 123, 114); font-weight: 400;">if</span>(<span style="color: rgb(255, 166, 87); font-weight: 400;">abs</span>(dx) &gt;= <span style="color: rgb(255, 166, 87); font-weight: 400;">abs</span>(dy)) &lcub;
+            frac = <span style="color: rgb(255, 166, 87); font-weight: 400;">abs</span>(dx);
+        &rcub; <span style="color: rgb(255, 123, 114); font-weight: 400;">else</span> &lcub;
+            frac = <span style="color: rgb(255, 166, 87); font-weight: 400;">abs</span>(dy);
+        &rcub;
+        fracx = dx / frac;
+        fracy = dy / frac;
+        x += fracx;
+        y += fracy;
+
+        <span style="color: rgb(139, 148, 158); font-weight: 400;">//Checks that the DDA didn't squeeze through a corner.</span>
+        <span style="color: rgb(255, 123, 114); font-weight: 400;">if</span>(<span style="color: rgb(255, 166, 87); font-weight: 400;">int</span>(px) != <span style="color: rgb(255, 166, 87); font-weight: 400;">int</span>(x) &amp;&amp; <span style="color: rgb(255, 166, 87); font-weight: 400;">int</span>(py) != <span style="color: rgb(255, 166, 87); font-weight: 400;">int</span>(y) &amp;&amp; addToPath == <span style="color: rgb(121, 192, 255); font-weight: 400;">false</span>) &lcub;
+            cc_xy[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>] = <span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>, cc_xy[<span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>] = <span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>;
+            <span style="color: rgb(255, 123, 114); font-weight: 400;">if</span>(dy &gt; <span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>) &lcub;
+                cc_xy[<span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>] = <span style="color: rgb(121, 192, 255); font-weight: 400;">-1</span>;
+            &rcub; <span style="color: rgb(255, 123, 114); font-weight: 400;">else</span> &lcub;
+                cc_xy[<span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>] = <span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>;
+            &rcub;
+            <span style="color: rgb(255, 123, 114); font-weight: 400;">if</span>(dx &gt; <span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>) &lcub;
+                cc_xy[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>] = <span style="color: rgb(121, 192, 255); font-weight: 400;">-1</span>;
+            &rcub; <span style="color: rgb(255, 123, 114); font-weight: 400;">else</span> &lcub;
+                cc_xy[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>] = <span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>;
+            &rcub;
+            <span style="color: rgb(255, 123, 114); font-weight: 400;">if</span>(map[<span style="color: rgb(255, 166, 87); font-weight: 400;">int</span>(y)+cc_xy[<span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>]][<span style="color: rgb(255, 166, 87); font-weight: 400;">int</span>(x)] == <span style="color: rgb(121, 192, 255); font-weight: 400;">0</span> &amp;&amp; map[<span style="color: rgb(255, 166, 87); font-weight: 400;">int</span>(y)][<span style="color: rgb(255, 166, 87); font-weight: 400;">int</span>(x)+cc_xy[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>]] == <span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>) &lcub;
+                <span style="color: rgb(255, 123, 114); font-weight: 400;">break</span>;
+            &rcub;
+        &rcub;
+
+        <span style="color: rgb(139, 148, 158); font-weight: 400;">//Set the current x &amp; y to be used later as the previous x &amp; y.</span>
+        px=x;
+        py=y;
+    &rcub;
+    <span style="color: rgb(255, 123, 114); font-weight: 400;">return</span> <span style="color: rgb(121, 192, 255); font-weight: 400;">false</span>;
+&rcub;</pre>
 </div>
 
 <script>
-		function lookforCascade(cascClass, textClass) {
-		  var coll = document.getElementsByClassName(cascClass);
-		  var i;
-		  
-		  for (i = 0; i < coll.length; i++) {
-		    coll[i].addEventListener("mouseup", function() {
-		      this.classList.toggle("is-selected");
-		      var content = document.getElementById(textClass);
-		      if (content.style.maxHeight){
-		        content.style.maxHeight = null;
-		      } else {
-		        content.style.maxHeight = content.scrollHeight + "px";
-		      } 
-		    });
-		    
-		  }
-		}
-		
-		lookforCascade("CPPCanSee", "CPPCanSeeText");
-		
-		
-	</script>
+        function lookforCascade(cascClass, textClass) {
+          var coll = document.getElementsByClassName(cascClass);
+          var i;
+          
+          for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("mouseup", function() {
+              this.classList.toggle("is-selected");
+              var content = document.getElementById(textClass);
+              if (content.style.maxHeight){
+                content.style.maxHeight = null;
+              } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+              } 
+            });
+            
+          }
+        }
+        
+        lookforCascade("CPPCanSee", "CPPCanSeeText");
+        
+        
+    </script>

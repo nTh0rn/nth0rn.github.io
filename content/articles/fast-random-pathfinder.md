@@ -10,7 +10,7 @@ language: "C++"
 
 # Table of Contents
 1. [Intro](#1.-intro)\
-1.1 &nbsp;[Source Code](#1.1-source-code)
+1.1 &nbsp;[Demo / Source Code](#1.1-demo-source-code)
 2. [Random Pathfinding Algorithm](#2.-random-pathfinding-algorithm)\
 2.1 &nbsp;[Finding a Random Path](#2.1-finding-a-random-path)\
 2.2 &nbsp;[Filling the Path](#2.2-filling-the-path)\
@@ -26,8 +26,10 @@ language: "C++"
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It should be said that there is little use for a pathfinder that relies solely on random chance when traversing. This project exists solely for curiosity's sake, and should not ever be considered for actual use cases when alternatives like [A*](https://en.wikipedia.org/wiki/A*_search_algorithm) exist.
 
-## 1.1 Source Code
+## 1.1 Demo / Source Code
 [Source code on GitHub](https://github.com/nTh0rn/fast-random-pathfinder)
+
+{% center_pic_width url="/images/fast-random-pathfinder/fast-random-pathfinder.gif" wid="300px" /%}
 
 # 2. Random Pathfinding Algorithm
 
@@ -93,9 +95,7 @@ END FOR
 ```
 FOR each node at the start of path[] moving forwards, i
     FOR each node at the end of path[] moving backwards, j
-        IF i-j=1 THEN
-            BREAK
-        END IF
+        IF i-j=1 THEN BREAK ENDIF
         IF path[i] can see path[j] THEN
             ERASE the nodes between i and j in path[]
         END IF
@@ -116,7 +116,7 @@ END FOR
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;As the map gets larger, the odds of any particular randomly selected cell having sightline to the last node at the end of the path become increasingly slim. This is also worsened depending on the layout of the walls. This is by and large the biggest downside of this pathfinder, and of all random pathfinders.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The visualizations shown thus far demonstrate Fast Random Pathfinder in a maze where there is only 1 path to the exit (recursive maze generation with a depth of 2). This, in some ways, is actually optimal in regard to ensuring that the path that is found is (almost) the perfect and shortest path. Whether or not this is actually the most effecient path is covered in [3.2](#3.2-impossible-optimizations).
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The visualizations shown thus far demonstrate Fast Random Pathfinder in a maze where there is only 1 path to the exit (recursive maze generation with a depth of 2). This, in some ways, is actually optimal in regard to ensuring that the path that is found is (almost) the perfect and shortest path. Whether or not this is actually the most efficient path is covered in [3.2](#3.2-impossible-optimizations).
 
 ## 3.2 Impossible Optimizations
 

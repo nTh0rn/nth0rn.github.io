@@ -12,19 +12,24 @@ import { runHighlighterWithAstro } from '@astrojs/prism';
 
 ---
 <style>
-	.no-scrollbar::-webkit-scrollbar {
-	display: none;
-	}
-	/* Hide scrollbar for IE, Edge and Firefox */
-	.no-scrollbar {
-	-ms-overflow-style: none;  /* IE and Edge */
-	scrollbar-width: none;  /* Firefox */
-	}
-	.content {
-	max-height: 0;
-	overflow: hidden;
-	transition: max-height 0.5s cubic-bezier(.85,.35,.15,.83);
-	}
+    .no-scrollbar::-webkit-scrollbar {
+    display: none;
+    }
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    }
+    .content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(.85,.35,.15,.83);
+    }
+    pre, ol, li {
+    margin: 0;
+    padding: 0;
+    line-height: 1.1;
+  }
 </style>
 <div class="RustCoordsToDigits group cursor-pointer justify-center flex">
   <div class="translate-y-[4px]">
@@ -41,51 +46,52 @@ import { runHighlighterWithAstro } from '@astrojs/prism';
 
 </div>
 <div class="content hue-rotate-180 dark:hue-rotate-0 invert dark:invert-0 cursor-auto" id="RustCoordsToDigitsText">
-	<pre style="font-family:monospace;color: rgb(201, 209, 217); background-color: rgb(13, 17, 23); font-weight: 400; "  class="ml-[-70px]">
-		<span style="color: rgb(139, 148, 158); font-weight: 400;">//Returns a vector of digits OR candidates from a vector of coordinates</span>
-		<span style="color: rgb(255, 123, 114); font-weight: 400;">fn</span> <span style="color: rgb(210, 168, 255); font-weight: 400;">coords_to_digits</span>(&amp;<span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>, area: &amp;<span style="color: rgb(255, 123, 114); font-weight: 400;">Vec</span>&lt;[<span style="color: rgb(255, 123, 114); font-weight: 400;">usize</span>; <span style="color: rgb(121, 192, 255); font-weight: 400;">2</span>]&gt;, return_cand: <span style="color: rgb(255, 123, 114); font-weight: 400;">bool</span>) <span style="color: rgb(201, 209, 217); font-weight: 400;">-&gt;</span> <span style="color: rgb(255, 123, 114); font-weight: 400;">Vec</span>&lt;<span style="color: rgb(255, 123, 114); font-weight: 400;">u16</span>&gt; &lcub;
-			<span style="color: rgb(255, 123, 114); font-weight: 400;">let</span> <span style="color: rgb(255, 123, 114); font-weight: 400;">mut </span><span style="color: rgb(121, 192, 255); font-weight: 400;">output</span>: <span style="color: rgb(255, 123, 114); font-weight: 400;">Vec</span>&lt;<span style="color: rgb(255, 123, 114); font-weight: 400;">u16</span>&gt; = <span style="color: rgb(255, 166, 87); font-weight: 400;">vec!</span>[];
-	
-			<span style="color: rgb(139, 148, 158); font-weight: 400;">//Iterate through area</span>
-			<span style="color: rgb(255, 123, 114); font-weight: 400;">for</span> <span style="color: rgb(121, 192, 255); font-weight: 400;">each</span> <span style="color: rgb(255, 123, 114); font-weight: 400;">in</span> area &lcub;
-	
-				<span style="color: rgb(139, 148, 158); font-weight: 400;">//Whether to return area's digits or all of area's candidates</span>
-				<span style="color: rgb(255, 123, 114); font-weight: 400;">if</span> return_cand &lcub;
-					<span style="color: rgb(255, 123, 114); font-weight: 400;">if</span> <span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>.cell[each[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>]][each[<span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>]].digit == <span style="color: rgb(121, 192, 255); font-weight: 400;">0</span> &lcub;
-						<span style="color: rgb(255, 123, 114); font-weight: 400;">for</span> <span style="color: rgb(121, 192, 255); font-weight: 400;">each</span> <span style="color: rgb(255, 123, 114); font-weight: 400;">in</span> &amp;<span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>.cell[each[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>]][each[<span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>]].cand &lcub;
-							output.<span style="color: rgb(210, 168, 255); font-weight: 400;">push</span>(*each);
-						&rcub;
-					&rcub;
-				&rcub; <span style="color: rgb(255, 123, 114); font-weight: 400;">else</span> &lcub;
-					<span style="color: rgb(255, 123, 114); font-weight: 400;">if</span> <span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>.cell[each[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>]][each[<span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>]].digit != <span style="color: rgb(121, 192, 255); font-weight: 400;">0</span> &lcub;
-						output.<span style="color: rgb(210, 168, 255); font-weight: 400;">push</span>(<span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>.cell[each[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>]][each[<span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>]].digit);
-					&rcub;
-				&rcub;
-			&rcub;
-			<span style="color: rgb(255, 123, 114); font-weight: 400;">return</span> output;
-		&rcub;</pre>
+<p></p>
+<pre style="font-family:monospace;color: rgb(201, 209, 217); background-color: rgb(13, 17, 23); font-weight: 400; padding: 1em"  class="ml-[-70px]">
+<span style="color: rgb(139, 148, 158); font-weight: 400;">//Returns a vector of digits OR candidates from a vector of coordinates</span>
+<span style="color: rgb(255, 123, 114); font-weight: 400;">fn</span> <span style="color: rgb(210, 168, 255); font-weight: 400;">coords_to_digits</span>(&amp;<span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>, area: &amp;<span style="color: rgb(255, 123, 114); font-weight: 400;">Vec</span>&lt;[<span style="color: rgb(255, 123, 114); font-weight: 400;">usize</span>; <span style="color: rgb(121, 192, 255); font-weight: 400;">2</span>]&gt;, return_cand: <span style="color: rgb(255, 123, 114); font-weight: 400;">bool</span>) <span style="color: rgb(201, 209, 217); font-weight: 400;">-&gt;</span> <span style="color: rgb(255, 123, 114); font-weight: 400;">Vec</span>&lt;<span style="color: rgb(255, 123, 114); font-weight: 400;">u16</span>&gt; &lcub;
+    <span style="color: rgb(255, 123, 114); font-weight: 400;">let</span> <span style="color: rgb(255, 123, 114); font-weight: 400;">mut </span><span style="color: rgb(121, 192, 255); font-weight: 400;">output</span>: <span style="color: rgb(255, 123, 114); font-weight: 400;">Vec</span>&lt;<span style="color: rgb(255, 123, 114); font-weight: 400;">u16</span>&gt; = <span style="color: rgb(255, 166, 87); font-weight: 400;">vec!</span>[];
+
+    <span style="color: rgb(139, 148, 158); font-weight: 400;">//Iterate through area</span>
+    <span style="color: rgb(255, 123, 114); font-weight: 400;">for</span> <span style="color: rgb(121, 192, 255); font-weight: 400;">each</span> <span style="color: rgb(255, 123, 114); font-weight: 400;">in</span> area &lcub;
+
+        <span style="color: rgb(139, 148, 158); font-weight: 400;">//Whether to return area's digits or all of area's candidates</span>
+        <span style="color: rgb(255, 123, 114); font-weight: 400;">if</span> return_cand &lcub;
+            <span style="color: rgb(255, 123, 114); font-weight: 400;">if</span> <span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>.cell[each[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>]][each[<span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>]].digit == <span style="color: rgb(121, 192, 255); font-weight: 400;">0</span> &lcub;
+                <span style="color: rgb(255, 123, 114); font-weight: 400;">for</span> <span style="color: rgb(121, 192, 255); font-weight: 400;">each</span> <span style="color: rgb(255, 123, 114); font-weight: 400;">in</span> &amp;<span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>.cell[each[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>]][each[<span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>]].cand &lcub;
+                    output.<span style="color: rgb(210, 168, 255); font-weight: 400;">push</span>(*each);
+                &rcub;
+            &rcub;
+        &rcub; <span style="color: rgb(255, 123, 114); font-weight: 400;">else</span> &lcub;
+            <span style="color: rgb(255, 123, 114); font-weight: 400;">if</span> <span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>.cell[each[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>]][each[<span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>]].digit != <span style="color: rgb(121, 192, 255); font-weight: 400;">0</span> &lcub;
+                output.<span style="color: rgb(210, 168, 255); font-weight: 400;">push</span>(<span style="color: rgb(255, 123, 114); font-weight: 400;">self</span>.cell[each[<span style="color: rgb(121, 192, 255); font-weight: 400;">0</span>]][each[<span style="color: rgb(121, 192, 255); font-weight: 400;">1</span>]].digit);
+            &rcub;
+        &rcub;
+    &rcub;
+    <span style="color: rgb(255, 123, 114); font-weight: 400;">return</span> output;
+&rcub;</pre>
 </div>
 <br>
 <script>
-		function lookforCascade(cascClass, textClass) {
-		  var coll = document.getElementsByClassName(cascClass);
-		  var i;
-		  
-		  for (i = 0; i < coll.length; i++) {
-		    coll[i].addEventListener("mouseup", function() {
-		      this.classList.toggle("is-selected");
-		      var content = document.getElementById(textClass);
-		      if (content.style.maxHeight){
-		        content.style.maxHeight = null;
-		      } else {
-		        content.style.maxHeight = content.scrollHeight + "px";
-		      } 
-		    });
-		    
-		  }
-		}
-		
-		lookforCascade("RustCoordsToDigits", "RustCoordsToDigitsText");
-		
-		
-	</script>
+        function lookforCascade(cascClass, textClass) {
+          var coll = document.getElementsByClassName(cascClass);
+          var i;
+          
+          for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("mouseup", function() {
+              this.classList.toggle("is-selected");
+              var content = document.getElementById(textClass);
+              if (content.style.maxHeight){
+                content.style.maxHeight = null;
+              } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+              } 
+            });
+            
+          }
+        }
+        
+        lookforCascade("RustCoordsToDigits", "RustCoordsToDigitsText");
+        
+        
+    </script>
