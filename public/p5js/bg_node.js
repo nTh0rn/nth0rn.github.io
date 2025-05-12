@@ -15,6 +15,7 @@ var dropped=0;
 var halt_bg=false;
 
 function windowResized() {
+  if (typeof width === "undefined" || typeof height === "undefined") return;
   if((windowHeight != height || second() != last_resized || ratio_shrink == true) && halt_bg == false) {
     resizeCanvas(windowWidth, windowHeight);
     if(abs(last_node_count-(width*height/density_ratio))/last_node_count > 0.25 || ratio_shrink == true) {
@@ -53,59 +54,77 @@ function setup() {
   last_node_count=width*height/density_ratio;
 
   last_resized=second();
-  windowResized();
 }
 
 function draw() {
-
-  // Performance protection. Decreases number of nodes if FPS is consistently low.
-  if(frameRate() < 30) {
-    dropped+=1;
-  } else {
-    dropped=0;
-  }
-  if(dropped > 10) {
+  if (frameRate() < 30) dropped++;
+  else dropped = 0;
+  if (dropped > 10) {
     ratio_shrink = true;
     windowResized();
-    dropped=0;
+    dropped = 0;
   }
-
 
   clear();
+  if (windowWidth != width || windowHeight != height) windowResized();
 
-  // Checks for resizing outside of every second.
-  if(windowWidth != width || windowHeight != height) {
-    windowResized();
+  // Spatial hash setup
+  let cellSize = 100;
+  let grid = new Map();
+
+  // Put nodes in spatial grid
+  for (let node of nodes) {
+    node.checkBoundary();
+    node.update();
+    node.display();
+
+    let col = Math.floor(node.x / cellSize);
+    let row = Math.floor(node.y / cellSize);
+    let key = `${col},${row}`;
+    if (!grid.has(key)) grid.set(key, []);
+    grid.get(key).push(node);
   }
 
-  // Main node loop
-  for (var i = 0; i < nodes.length; i++) {
-    closest_dist=1000000;
-    nodes[i].checkBoundary();
-    nodes[i].update();
-    nodes[i].display();
-    if(density_ratio <= 18000 && windowWidth > 1000) {
-      for (var j = 0; j < nodes.length; j++) {
-        node_dist = sqrt(pow(abs(nodes[j].x - nodes[i].x), 2) + pow(abs(nodes[j].y - nodes[i].y), 2));
-        if (node_dist < 100 && i != j) {
-            stroke(51, 154, 240);
-            strokeWeight(3 - (node_dist / 100) * 3);
-            line(nodes[i].x, nodes[i].y, nodes[j].x, nodes[j].y);
-            strokeWeight(1);
-            
-          }
-        if(node_dist < closest_dist && j != i) {
-          closest_dist = node_dist;
-          closest_node=j;
-        }
-        
+  if (density_ratio <= 18000 && windowWidth > 1000) {
+    for (let node of nodes) {
+      let col = Math.floor(node.x / cellSize);
+      let row = Math.floor(node.y / cellSize);
 
+      let closest_dist = Infinity;
+      let closest_node = null;
+
+      for (let dx = -1; dx <= 1; dx++) {
+        for (let dy = -1; dy <= 1; dy++) {
+          let key = `${col + dx},${row + dy}`;
+          let neighbors = grid.get(key);
+          if (!neighbors) continue;
+
+          for (let other of neighbors) {
+            if (node === other) continue;
+            let dx = node.x - other.x;
+            let dy = node.y - other.y;
+            let dist = sqrt(dx * dx + dy * dy);
+
+            if (dist < 100) {
+              stroke(51, 154, 240);
+              strokeWeight(3 - (dist / 100) * 3);
+              line(node.x, node.y, other.x, other.y);
+              strokeWeight(1);
+            }
+
+            if (dist < closest_dist) {
+              closest_dist = dist;
+              closest_node = other;
+            }
+          }
+        }
       }
-        nodes[i].grav_acc(nodes[closest_node]);
-      
+
+      if (closest_node) node.grav_acc(closest_node);
     }
   }
 }
+
 
 function Node(x, y) {
   this.x = x;
