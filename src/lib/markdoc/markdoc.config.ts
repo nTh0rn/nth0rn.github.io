@@ -100,6 +100,12 @@ export const config: Config = {
         wid: { type: String, required: true },
       },
     },
+    center_note: {
+      render: "CenterNote",
+      attributes: {
+        text: { type: String, required: true },
+      },
+    },
     center_pic_invert: {
       render: "CenterPicInvert",
       attributes: {
