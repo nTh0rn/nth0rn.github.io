@@ -40,6 +40,7 @@ language: "Batch"
 [Source code on GitHub](https://github.com/nTh0rn/batch-raycaster)
 
 {% center_pic url="/images/batch_raycaster/batch_raycaster_walking.gif" /%}
+{% center_note text="*not real-time frame generation" /%}
 
 ## 1.2 What is Raycasting?
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Raycasting works by assigning every vertical column of the user's screen to a ray on a 2D top-down representation of the player's map, where the rays span the player's FOV. How far a ray can emanate from the player before hitting a wall corresponds to how tall of a line gets drawn in its vertical column. This means walls that are far away yield small vertical lines, and walls that are close yield large vertical lines.
