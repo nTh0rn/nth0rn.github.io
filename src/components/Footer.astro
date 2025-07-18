@@ -1,12 +1,17 @@
 ---
+const startYear = 2024;
+const currentYear = new Date().getFullYear();
+const displayYear = currentYear > startYear ? `${startYear}–${currentYear}` : `${startYear}`;
 ---
 
 <footer class="text-sm leading-[1.75] mt-4">
-<center>
-
-<div style="font-size:min(3.5vw, calc(1 * 12px)">
-© 2024-2025 Nikolas Thornton. All rights reserved.
+<center class="w-full">
+<div class="border-current py-1 flex items-center justify-center gap-1 flex-wrap" style="font-size:min(4vw, calc(1 * 17px)); font-weight:thin"> <a class="unset ml-4 hover:text-text-link" href="https://github.com/nTh0rn"> <i class="fa-brands fa-github" aria-hidden="true" title="GitHub"></i></a> <a class="unset ml-4 hover:text-text-link" href="mailto: contact@nthorn.com"> <i class="fa" aria-hidden="true" title="Email">&#xf0e0;</i></a> <a class="unset ml-4 hover:text-text-link" href="https://www.linkedin.com/in/nikolas-thornton/"> <i class="fa-brands fa-linkedin" aria-hidden="true" title="LinkedIn"></i> </a> </div>
+<div style="font-size: min(3.5vw, calc(1 * 12px));">
+  © {displayYear} Nikolas Thornton. Released under the 
+  <a href="https://github.com/nTh0rn/nth0rn.github.io/blob/main/LICENSE" target="_blank">MIT License</a>.
 </div>
+<div>&nbsp;</div>
 </center>
 </footer>
 
