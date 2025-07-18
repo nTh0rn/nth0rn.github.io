@@ -49,7 +49,10 @@ const sortedProjects = projects
   
   <section slot="main" class="md:mx-[5rem]">
   
-    <strong><h1 class=" max-w-[600px]:hidden text-3xl mb-2 text-center">Highlighted Projects</h1></strong>
+    <strong><h1 class="text-3xl mb-2 text-center max-[340px]:hidden">HIGHLIGHTED PROJECTS</h1></strong>
+    <div class="w-full max-[340px]:hidden">
+        <div class="pb-3 -mt-2 rounded-t-md border-x-[1px] mx-[-8px] mb-[-5px] border-t-[1px] dark:border-white border-black"></div>
+    </div>
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 justify-around mb-5 max-[340px]:hidden">
       {
         highlightedProjects.map((project) => {
@@ -64,8 +67,8 @@ const sortedProjects = projects
           );
           return (
           
-          <a href={project.frontmatter.url} class="col-span-1 group unset hover:text-text pb-5 bg-opacity-[4%] bg-blueLight dark:bg-opacity-[4%] dark:bg-blueDark rounded-xl origin-center hover:scale-[105%] animate transition-transform duration-300 ease-in-out" target="_blank">
-    <span class="text-xs sm:text-sm opacity-10 group-hover:opacity-50 duration-300 transition ease-in-out">&nbsp;{project.frontmatter.type}</span>
+          <a href={project.frontmatter.url} class="col-span-1 group unset pb-5 bg-[#EFEFEF] dark:bg-[#1E1E1E] rounded-xl origin-center hover:scale-[103%] animate transition-transform duration-100 ease-in-out" target="_blank">
+    <span class="text-xs sm:text-sm opacity-30 group-hover:opacity-50 duration-100 transition ease-in-out"><span class="duration-0 transition">&nbsp;{project.frontmatter.type}</span></span>
     <div class="content-around h-full mt-[-1rem]">
       
     <span class="duration-opacity-1000 relative transform transition-opacity opacity-0 ease-in-out" data-replace='{ "opacity-0": "opacity-100" }'>
@@ -92,7 +95,10 @@ const sortedProjects = projects
         })
       }
     </div>
-  <h1 class=" max-w-[600px]:hidden text-3xl mb-2 text-center">All Projects</h1>
+  <h1 class=" max-w-[600px]:hidden text-3xl mb-2 text-center">PROJECTS</h1>
+  <div class="w-full">
+        <div class="pb-3 -mt-2 rounded-t-md border-x-[1px] mx-[-8px] mb-[-5px] border-t-[1px] dark:border-white border-black"></div>
+    </div>
   <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 justify-around mb-5 max-[340px]:hidden">
       {
         sortedProjects.map((project) => {
@@ -106,8 +112,8 @@ const sortedProjects = projects
           
           );
           return (
-          <a href={project.frontmatter.url} class="col-span-1 group unset hover:text-text pb-5 bg-opacity-[4%] bg-blueLight dark:bg-opacity-[4%] dark:bg-blueDark rounded-xl origin-center hover:scale-[105%] animate transition-transform duration-300 ease-in-out" target="_blank">
-    <span class="text-xs sm:text-sm opacity-10 group-hover:opacity-50 duration-300 transition ease-in-out">&nbsp;{project.frontmatter.type}</span>
+          <a href={project.frontmatter.url} class="col-span-1 group unset hover:text-text pb-5 bg-[#EFEFEF] dark:bg-[#1E1E1E] rounded-xl origin-center hover:scale-[103%] animate transition-transform duration-100 ease-in-out" target="_blank">
+    <span class="text-xs sm:text-sm opacity-30 group-hover:opacity-50 duration-100 transition ease-in-out">&nbsp;{project.frontmatter.type}</span>
     <div class="content-around h-full mt-[-1rem]">
       
     <span class="duration-opacity-1000 relative transform transition-opacity opacity-0 ease-in-out" data-replace='{ "opacity-0": "opacity-100" }'>
@@ -143,37 +149,29 @@ const sortedProjects = projects
             year: "numeric",
             month: "short",
             day: "numeric",
-          }
-          
-          );
+          });
           return (
-          
-            <li class="group grid grid-cols-[1fr] md:grid-cols-[1fr_auto] mb-3 md:gap-2 items-start duration-opacity-1000 relative transform transition-opacity opacity-0 ease-in-out" data-replace='{ "opacity-0": "opacity-100" }'>
-              <div class="absolute animate rounded-lg translate-x-[-0.5%] transition-width z-0 h-0 group-hover:h-full duration-500 ease-out w-0 group-hover:w-[101%] bg-opacity-[4%] bg-blueLight dark:bg-opacity-[4%] dark:bg-blueDark">&nbsp;</div>
+            <ul class="hover:scale-[101%] transition-transform duration-100 ease-in-out sm:text-base text-xs ">
+          <li class="bg-[#EFEFEF] dark:bg-[#1E1E1E] px-[1rem] duration-300 scale-[100%] rounded-md group grid grid-cols-[1fr] md:grid-cols-[1fr_auto] mb-3 md:gap-2 items-start duration-opacity-1000 relative transform transition-opacity opacity-0 ease-in-out" data-replace='{ "opacity-0": "opacity-100" }'>
               
               <div class="title z-10">
                 <a
-                  href={project.frontmatter.url}
-                  target="_blank"
+                  href={`/articles/${project.slug}`}
                   class="unset hover:text-text-link flex"
                 >
                   <span>{project.frontmatter.title}&nbsp;</span>
                   <span class="opacity-50">({project.frontmatter.language})</span>
-                  <span>
-                    <i class="ml-1 mr-1 text-[12px] pb-2 fa-solid fa-up-right-from-square" />
-                  </span>
                 </a>
                 
               </div>
-              <div class="text-text-muted text-sm italic pt-1">
+              <div class="text-text-muted  text-xs sm:text-sm italic pt-1">
                 <time datetime={project.frontmatter.date.toISOString()}>
                   {formattedDate}
                 </time>
               </div>
             
             
-            </li>
-          
+            </li></ul>
           );
         })
       }

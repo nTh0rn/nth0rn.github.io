@@ -1,5 +1,7 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
+import PageMeta from "../../components/PageMeta.astro";
+import { SITE_TITLE } from "../../config";
 const allPosts = await Astro.glob('../../../content/projects/*.md');
 
 
@@ -38,16 +40,30 @@ const pageTitle = "Tag Index";
 	</script>
 </head>
 <PageLayout>
+  <PageMeta title={`Tags | ${SITE_TITLE}`} slot="meta" />
 <section slot="main" class="md:mx-[5rem]">
   <div class="flex-wrap flex items-center justify-around transition-colors duration-0">
+    <h1 class=" max-w-[600px]:hidden text-3xl mb-2 text-center">TAGS</h1>
+    <div class="w-full">
+        <div class="pb-3 -mt-2 rounded-t-md border-x-[1px] mx-[-8px] mb-[-15px] border-t-[1px]  dark:border-white border-black"></div>
+    </div>
     {tags.map((tag) => (
-      <div class="duration-1000 relative transform transition-opacity opacity-0 ease-out" data-replace='{ "opacity-0": "opacity-100" }'>
-      <div class="group flex origin-center hover:scale-[105%] rounded-lg m-1 p-2 bg-opacity-[4%] bg-blueLight dark:bg-opacity-[4%] dark:bg-blueDark border-[#000000] dark:border-[#FFFFFF] animate duration-200 ">
-      <a href={`/tags/${tag}`} class="text-center unset hover:text-text-link transition duration-0">
-      {tag}
-      </a>
-      </div>
-      </div>
+      <a
+                  href={`/tags/${tag}`}
+                  class="unset hover:text-text-link flex"
+                >
+      <div class="hover:scale-[105%] transition-transform duration-100 ease-in-out">
+          <div class="bg-[#EFEFEF] dark:bg-[#1E1E1E] px-[1rem] p-1 m-1 duration-300 scale-[100%] rounded-md group grid grid-cols-[1fr] md:grid-cols-[1fr_auto] md:gap-2 items-start duration-opacity-1000 relative transform transition-opacity opacity-0 ease-in-out" data-replace='{ "opacity-0": "opacity-100" }'>
+              
+              <div class="title z-10">
+                
+                  {tag}
+                
+                
+              </div>
+            
+            
+            </div></div></a>
     ))}
   </div>
   </section>

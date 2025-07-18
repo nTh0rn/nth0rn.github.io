@@ -1,7 +1,7 @@
 ---
 external: false
-title: "Integer-only Raycaster"
-description: "A raycaster I wrote in Batch doesn't use floating point arithemetic."
+title: "Command Prompt Raycaster"
+description: "An ASCII raycaster made without trigonometric functions or floating-point arithmetic."
 tags: ["Raycaster", "Challenge", "Engine", "Algorithm", "Batch", "Optimizing Batch Code", "Batch Script"]
 date: 2024-05-27
 draft: false

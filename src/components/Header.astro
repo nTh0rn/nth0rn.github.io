@@ -3,11 +3,12 @@ import HeaderLink from "./HeaderLink.astro";
 import DarkModeToggle from "./DarkModeToggle.astro";
 import Highlights from "../components/Highlights.astro";
 ---
+<header class="translate-y-[-1rem] flex mx-auto z-[1000]">
+ <a href="/" class="unset hover:no-underline dark:text-gray-300 text-gray-700 text-nowrap text-lg "><span class="text-main-c">n</span>ikolas <span class="text-main-c">thorn</span>ton</a>
 
-<header style="padding-top:1rem">
-<nav><Highlights/></nav>
 </header>
-<header style="padding-top:5rem; font-size:min(vw, 17px))" class="border-b-[1px] " >
+
+<header style="font-size:min(vw, 17px))" class="pt-[3rem] h-[1px] border-black dark:border-white relative " >
   
   <a 
     class="unset absolute z-10 left-[50%] -top-[100rem] translate-x-[-50%] bg-white text-black px-8 py-2 focus:top-[initial]" 
@@ -17,14 +18,13 @@ import Highlights from "../components/Highlights.astro";
     Skip to content
 
   </a>
-
   
-  
-  <nav >
+  <div class="bg-[#EFEFEF] dark:bg-[#1E1E1E] flex-row flex rounded-md px-2">
+  <nav class="relative z-[1001]">
  
     <section class="text-text-bold">
     
-      <ul class="unset flex gap-4 [&>li]:p-0 max-[420px]:text-sm max-[374px]:text-xs">
+      <ul class="unset flex gap-4 [&>li]:p-0 max-[420px]:py-[5px] max-[420px]:text-sm max-[374px]:text-xs">
         <li><HeaderLink href="/">Home</HeaderLink></li>
         <li><HeaderLink href="/projects">Projects</HeaderLink></li>
         <li><HeaderLink href="/articles">Articles</HeaderLink></li>
@@ -34,10 +34,11 @@ import Highlights from "../components/Highlights.astro";
   </nav>
   
   <div
-    class="justify-self-end flex items-center content-center text-text-bold"
+    class="flex items-center mt-[-3px] text-text-bold ml-auto scale-[50%] min-[468px]:scale-[100%]"
   >
     <DarkModeToggle/>
     
+  </div>
   </div>
 </header>
 <style>
@@ -46,7 +47,7 @@ import Highlights from "../components/Highlights.astro";
     display: grid;
     align-items: center;
     grid-template-columns: minmax(0, 1fr) minmax(0, max-content);
-    padding-top:4rem
+    padding-top:rem
   }
   
 </style>

@@ -1,805 +1,711 @@
 ---
+import { readAll } from "../lib/markdoc/read";
+import { project } from "../lib/markdoc/frontmatter.schema";
+import PageLayout from "../layouts/PageLayout.astro";
+import PageMeta from "../components/PageMeta.astro";
+import Highlights from "../components/Highlights.astro";
+import { SITE_TITLE } from "../config";
+
+const projects = await readAll({
+  directory: "projects",
+  frontmatterSchema: project,
+});
+
+const highlightedProject = projects
+.filter((p) => p.frontmatter.title == "Dynamic Sudoku Solver")
+.sort(
+    (a, b) =>
+      new Date(b.frontmatter.date).valueOf() -
+      new Date(a.frontmatter.date).valueOf()
+  )[0];
 ---
 <style>
-	.no-scrollbar::-webkit-scrollbar {
-	display: none;
-	}
-	/* Hide scrollbar for IE, Edge and Firefox */
-	.no-scrollbar {
-	-ms-overflow-style: none;  /* IE and Edge */
-	scrollbar-width: none;  /* Firefox */
-	}
-	.content {
-	max-height: 0;
-	overflow: hidden;
-	transition: max-height 0.3s cubic-bezier(.17,.67,.65,1);
-	}
+    .no-scrollbar::-webkit-scrollbar {
+    display: none;
+    }
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    }
+    .content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(.17,.67,.65,1);
+    }
+	@keyframes ping-shadow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+    opacity: 1;
+  }
+  100% {
+    box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+    opacity: 0;
+    visibility: hidden; /* hide it completely after */
+  }
+}
+
+.ping-shadow-animation {
+  animation: ping-shadow 1s cubic-bezier(0, 0, 0.2, 1) 5 forwards;
+  border-radius: 0.5rem; /* match your rounded-lg */
+}
 </style>
+
 <head>
-	<link href="/fontawesome/css/brands.min.css" rel="stylesheet" />
-	<link href="/fontawesome/css/fontawesome.min.css" rel="stylesheet" />
-	<script>
-		function resizeIframe(obj) {
-		  obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';
-		}
-	</script>
+    <link href="/fontawesome/css/brands.min.css" rel="stylesheet" />
+    <link href="/fontawesome/css/fontawesome.min.css" rel="stylesheet" />
+    <script>
+        function resizeIframe(obj) {
+          obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';
+        }
+    </script>
 </head>
-<section class="mb-2 ">
-	<div class="">
-	<div class="mb-6"></div>
-	<div class="duration-1000 relative transform transition-all translate-x-[200%] max-[768px]:translate-x-0 ease-out" data-replace='{ "translate-x-[200%]": "translate-x-0" }'>
-		<h1 class="font-bold uppercase text-center text-4xl sm:text-5xl xtracking-tighter py-1">
-			<span
-				class="bg-gradient-to-br from-[#334155] via-[#1e293b] to-[#0f172a] dark:from-primary-main dark:via-primary-main dark:to-primary-main bg-clip-text text-transparent">
-			nikolas thornton
-			</span>
-		</h1>
-	</div>
-	<div class="duration-[2000ms] relative delay-[200ms] transition-opacity opacity-0 max-[768px]:opacity-100 ease-out" data-replace='{ "opacity-0": "opacity-100" }'>
-		<div class="duration-1000 relative transform delay-[100ms] transition-transform -translate-x-[200%] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[200%]": "translate-x-0" }'>
-			<center>
-				<p class="mb-6 text-sm"><!--<span class="text-[#B2921E] dark:text-[#B3A369]"> -->
-					<span class="">Computer Science Undergraduate at <span class="font-bold tracking-tight
+<section class="mb-2">
+    <div class="">
+        <div class="mb-6"></div>
+        <div class="duration-1000 relative transform transition-all translate-x-[200%] max-[768px]:translate-x-0 ease-out" data-replace='{ "translate-x-[200%]": "translate-x-0" }'>
+            <h1 class="font-bold uppercase text-center text-4xl sm:text-5xl xtracking-tighter py-1"> <span class="bg-gradient-to-br from-[#334155] via-[#1e293b] to-[#0f172a] dark:from-primary-main dark:via-primary-main dark:to-primary-main bg-clip-text text-transparent"> nikolas thornton </span> </h1>
+        </div>
+        <div class="duration-[2000ms] relative delay-[200ms] transition-opacity opacity-0 max-[768px]:opacity-100 ease-out" data-replace='{ "opacity-0": "opacity-100" }'>
+            <div class="duration-1000 relative transform delay-[100ms] transition-transform -translate-x-[200%] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[200%]": "translate-x-0" }'>
+                <center>
+                    <p class="mb-6 text-sm">
+                        <!--<span class="text-[#B2921E] dark:text-[#B3A369]"> --> <span class="">Computer Science Undergraduate at <span class="font-bold tracking-tight
 						animate-shine !bg-clip-text text-transparent
 						[background:radial-gradient(circle_at_center,theme(colors.primary.800_/_85%),transparent)_-200%_50%_/_200%_100%_no-repeat,theme(colors.primary.100)]
-						dark:[background:radial-gradient(circle_at_center,theme(colors.primary.900_/_85%),transparent)_-200%_50%_/_200%_100%_no-repeat,theme(colors.primary.200)]">The Georgia Institute of Technology</span></span><!--<br>Transferring to <span class="font-bold tracking-tight
+						dark:[background:radial-gradient(circle_at_center,theme(colors.primary.900_/_85%),transparent)_-200%_50%_/_200%_100%_no-repeat,theme(colors.primary.200)]">The Georgia Institute of Technology</span></span>
+                        <!--<br>Transferring to <span class="font-bold tracking-tight
         animate-shine !bg-clip-text text-transparent
         [background:radial-gradient(circle_at_center,theme(colors.primary.800_/_85%),transparent)_-200%_50%_/_200%_100%_no-repeat,theme(colors.primary.100)]
         dark:[background:radial-gradient(circle_at_center,theme(colors.primary.900_/_85%),transparent)_-200%_50%_/_200%_100%_no-repeat,theme(colors.primary.200)]">Georgia Tech</span> in Spring 2025-->
-				</p>
-			</center>
-		</div>
-	</div>
-	<div class="duration-1000 relative transform delay-[200ms] transition-transform translate-y-[100vh] max-[768px]:translate-y-0 md: ease-out" data-replace='{ "translate-y-[100vh]": "translate-y-0" }'>
-		<div class="border-b-[1px] border-t-[1px] border-current py-1 flex items-center justify-center gap-1 flex-wrap"
-			style="font-size:min(4vw, calc(1 * 17px)); font-weight:thin">
-			<a class="unset ml-4 hover:text-text-link" href="https://github.com/nTh0rn">
-			<i class="fa-brands fa-github" aria-hidden="true" title="GitHub"></i>
-			<span>GitHub</span>
-			</a>
-			<a class="unset ml-4 hover:text-text-link" href="mailto: contact@nthorn.com">
-			<i class="fa" aria-hidden="true" title="Email">&#xf0e0;</i>
-			<span>contact@nthorn.com</span>
-			</a>
-			<a class="unset ml-4 hover:text-text-link" href="https://www.linkedin.com/in/nikolas-thornton/">
-			<i class="fa-brands fa-linkedin" aria-hidden="true" title="LinkedIn"></i>
-			<span>LinkedIn</span>
-			</a>
-		</div>
-	</div>
-	<div class="duration-1000 relative delay-[300ms] transition-transform translate-y-[100vh] max-[768px]:translate-y-0 ease-out" data-replace='{ "translate-y-[100vh]": "translate-y-0" }'>
-	<div class="duration-[3000ms] relative delay-[300ms] transition-opacity opacity-0 max-[768px]:opacity-100 ease-out" data-replace='{ "opacity-0": "opacity-100" }'>
-	<div class="text-lg py-3 grid grid-cols-1 md:grid-cols-9 gap-x-[5px] mb-[3rem]">
-		<div class="md:order-last col-span-9 md:col-span-4 flex h-min mb-0 mx-auto md:p-[5px] w-full justify-center">
-			<div class="" >
-				<div class=" m-0 p-0 break-inside-avoid-column max-[768px]:flex max-[768px]:flex-row max-[768px]:flex-wrap md:grid md:grid-cols-3 justify-center grid-wrap gap-[20px]">
-					<!--python -->
-					<a href="https://www.python.org/"
-						target="_blank" class="group max-[768px]:w-[50px] flex justify-center items-center unset hover:text-text-link duration-1000 relative transform delay-[100ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);">
-					<img src="./images/icons/tech/python.png" width="90" class="transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50"/>
-					</a>
-					<!--cpp -->
-					<a href="https://www.w3schools.com/cpp/cpp_intro.asp"
-						target="_blank" class="group max-[768px]:w-[50px] flex justify-center items-center unset hover:text-text-link duration-1000 relative delay-[150ms] transition-transform translate-y-[100vh] max-[768px]:translate-y-0 ease-out" data-replace='{ "translate-y-[100vh]": "translate-y-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);">
-					<img src="./images/icons/tech/cpp.png" width="90" class=" transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50"/>
-					</a>
-					<!--java -->
-					<a href="https://www.java.com/en/download/help/whatis_java.html"
-						target="_blank" class="group max-[768px]:w-[50px] flex justify-center items-center unset hover:text-text-link duration-1000 relative transform delay-[200ms] transition-transform translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);">
-					<img src="./images/icons/tech/java.png" width="90" class=" transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50"/>
-					</a>
-					<!--csharp -->
-					<a href="https://www.w3schools.com/cs/cs_intro.php"
-						target="_blank" class="group max-[768px]:w-[50px] flex justify-center items-center unset hover:text-text-link duration-1000 relative transform delay-[250ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);">
-					<img src="./images/icons/tech/csharp.png" width="90" class=" transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50"/>
-					</a>
-					<!--rust -->
-					<a href="https://www.rust-lang.org/"
-						target="_blank" class="group max-[768px]:w-[50px] flex justify-center items-center unset hover:text-text-link duration-1000 relative delay-[300ms] transition-transform translate-y-[100vh] max-[768px]:translate-y-0 ease-out" data-replace='{ "translate-y-[100vh]": "translate-y-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);">
-					<img src="./images/icons/tech/rust.png" width="90" class=" transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50"/>
-					</a>
-					<!--git -->
-					<a href="https://git-scm.com/"
-						target="_blank" class="group max-[768px]:w-[50px] flex justify-center items-center unset hover:text-text-link duration-1000 relative transform delay-[350ms] transition-transform translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);">
-					<img src="./images/icons/tech/git.png" width="80" class="transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50"/>
-					</a>
-					<!--Batch -->
-					<a href="https://en.wikipedia.org/wiki/Batch_file"
-						target="_blank" class="group max-[768px]:w-[50px] flex justify-center items-center unset hover:text-text-link duration-1000 relative transform delay-[400ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);">
-					<img src="./images/icons/tech/batch.png" width="90" class="transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50"/>
-					</a>
-					<!--GameMaker -->
-					<a href="https://gamemaker.io/en"
-						target="_blank" class="group max-[768px]:w-[50px] flex justify-center items-center unset hover:text-text-link duration-1000 relative delay-[450ms] transition-transform translate-y-[100vh] max-[768px]:translate-y-0 ease-out" data-replace='{ "translate-y-[100vh]": "translate-y-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);">
-					<img src="./images/icons/tech/gamemaker.png" width="90" class=" transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50"/>
-					</a>
-					<!--html/css -->
-					<a href="https://www.w3.org/Style/CSS/Overview.en.html"
-						target="_blank" class="group max-[768px]:w-[50px] flex justify-center items-center unset hover:text-text-link duration-1000 relative delay-[500ms] transition-transform translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);">
-					<img src="./images/icons/tech/htmlcss.png" width="83" class="transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50"/>
+                    </p>
+                </center>
+            </div>
+        </div>
+        <div class="duration-1000 relative transform delay-[250ms] transition-transform translate-x-[100vw] max-[768px]:translate-x-0 ease-out md:mx-[5rem] mx-auto" data-replace='{ "translate-x-[100vw]": "translate-x-0" }'>
+            <div class="w-full">
+                <div class="pb-3 -mt-3 rounded-t-md border-x-[1px] mx-[-8px] mb-[-5px] border-t-[1px] dark:border-white border-black"></div>
+            </div>
+            <div class="rounded-lg bg-[#EFEFEF] dark:bg-[#1E1E1E] border-current py-1 flex items-center justify-center gap-1 flex-wrap" style="font-size:min(4vw, calc(1 * 17px)); font-weight:thin"> <a class="unset ml-4 hover:text-text-link" href="https://github.com/nTh0rn"> <i class="fa-brands fa-github" aria-hidden="true" title="GitHub"></i> <span>GitHub</span> </a> <a class="unset ml-4 hover:text-text-link" href="mailto: contact@nthorn.com"> <i class="fa" aria-hidden="true" title="Email">&#xf0e0;</i> <span>contact@nthorn.com</span> </a> <a class="unset ml-4 hover:text-text-link" href="https://www.linkedin.com/in/nikolas-thornton/"> <i class="fa-brands fa-linkedin" aria-hidden="true" title="LinkedIn"></i> <span>LinkedIn</span> </a> </div>
+            
+        </div>
+        <div class="duration-1000 relative delay-[300ms] transition-transform translate-y-[100vh] max-[768px]:translate-y-0 ease-out " data-replace='{ "translate-y-[100vh]": "translate-y-0" }'>
+            <div class="duration-[1500ms] relative delay-[300ms] transition-opacity opacity-0 max-[768px]:opacity-100 ease-out " data-replace='{ "opacity-0": "opacity-100" }'>
+                <div class="sm:overflow-visible overflow-hidden text-lg py-0 grid grid-cols-1 mx-auto gap-x-[5px] mb-[1rem] ">
+					<div class="flex mb-0 pt-2 justify-center h-[75px] ">
+                        <div class="">
+                            <div class=" m-0 p-0 break-inside-avoid-column flex flex-row flex-wrap justify-center max-[768px]:gap-x-[0px] gap-x-[20px] gap-y-[1000px] ">
+                                <!--python --> <a href="https://www.python.org/" target="_blank" class="group max-[768px]:scale-[60%] flex justify-center items-center unset hover:text-text-link duration-1000 relative transform delay-[500ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);"> <img src="./images/icons/tech/python.png" width="45" class="transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50" /> </a>
+                                <!--cpp --> <a href="https://www.w3schools.com/cpp/cpp_intro.asp" target="_blank" class="group max-[768px]:scale-[60%] flex justify-center items-center unset hover:text-text-link duration-1000 relative delay-[450ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);"> <img src="./images/icons/tech/cpp.png" width="45" class=" transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50" /> </a>
+                                <!--java --> <a href="https://www.java.com/en/download/help/whatis_java.html" target="_blank" class="group max-[768px]:scale-[60%] flex justify-center items-center unset hover:text-text-link duration-1000 relative transform delay-[400ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);"> <img src="./images/icons/tech/java.png" width="45" class=" transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50" /> </a>
+                                <!--csharp --> <a href="https://www.w3schools.com/cs/cs_intro.php" target="_blank" class="group max-[768px]:scale-[60%] flex justify-center items-center unset hover:text-text-link duration-1000 relative transform delay-[350ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);"> <img src="./images/icons/tech/csharp.png" width="45" class=" transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50" /> </a>
+                                <!--rust --> <a href="https://www.rust-lang.org/" target="_blank" class="group max-[768px]:scale-[60%] flex justify-center items-center unset hover:text-text-link duration-1000 relative delay-[300ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);"> <img src="./images/icons/tech/rust.png" width="45" class=" transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50" /> </a>
+                                <!--git --> <a href="https://git-scm.com/" target="_blank" class="group max-[768px]:scale-[60%] flex justify-center items-center unset hover:text-text-link duration-1000 relative transform delay-[250ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);"> <img src="./images/icons/tech/git.png" width="40" class="transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50" /> </a>
+                                <!--Batch --> <a href="https://en.wikipedia.org/wiki/Batch_file" target="_blank" class="group max-[768px]:scale-[60%] flex justify-center items-center unset hover:text-text-link duration-1000 relative transform delay-[200ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);"> <img src="./images/icons/tech/batch.png" width="45" class="transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50" /> </a>
+                                <!--GameMaker --> <a href="https://gamemaker.io/en" target="_blank" class="group max-[768px]:scale-[60%] flex justify-center items-center unset hover:text-text-link duration-1000 relative delay-[150ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);"> <img src="./images/icons/tech/gamemaker.png" width="45" class=" transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50" /> </a>
+                                <!--html/css --> <a href="https://www.w3.org/Style/CSS/Overview.en.html" target="_blank" class="group max-[768px]:scale-[60%] flex justify-center items-center unset hover:text-text-link duration-1000 relative delay-[100ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);"> <img src="./images/icons/tech/htmlcss.png" width="41" class="transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50" /> </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="overflow-y-hidden overflow-x-visible">
+        <div class="duration-1000 relative delay-[300ms] transition-transform translate-y-[100vh] max-[768px]:translate-y-0 ease-out " data-replace='{ "translate-y-[100vh]": "translate-y-0" }'>
+            <div class="duration-[1500ms] relative delay-[300ms] transition-opacity opacity-0 max-[768px]:opacity-100 ease-out " data-replace='{ "opacity-0": "opacity-100" }'>
+                
+				<div class="text-lg px-4 md:px-10 w-full grid grid-cols-11 gap-x-[5px] mb-[3rem] ">
+                    <div class="col-span-11 md:col-span-6 md:my-auto flex justify-center md:justify-start text-center">
+                        <div class="w-full max-w-xl border-[#0F0F0F] rounded-lg dark:border-[#F0F0F0] ">
+                            <h5 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white">Hi there!</h5>
+                            <p class="mb-5 text-base text-gray-800 sm:text-lg dark:text-gray-400 px-4">Feel free to poke around and see some of the things I've made.</p>
+                            <div class="flex items-center justify-center">
+                            <div class="flex flex-wrap justify-center mx-auto gap-4 md:h-[50%]">
+                                <a href="/projects" class="group bg-[#EFEFEF] dark:bg-[#1E1E1E] text-white hover:text-text max-[468px]:w-full hover:scale-[105%] animate transition-transform duration-300 ease-in-out rounded-lg h-min inline-flex items-center justify-center px-4 py-2.5 focus:outline-none focus:ring-gray-300 dark:focus:ring-gray-700"> <img width="1" height="50" class="" src="" /> <img width="50" height="50" class="invert-0 dark:invert mr-3 px-[5px]" src="https://img.icons8.com/ios/50/source-code.png" alt="projects" />
+                                    <div class="text-left rtl:text-right text-black dark:text-white group-hover:text-text-link">
+                                        <div class="mb-1 text-xs">Browse my</div>
+                                        <div class="-mt-1 font-sans text-sm font-semibold">Projects</div>
+                                    </div>
+                                </a> <a href="/articles" class="group  bg-[#EFEFEF] dark:bg-[#1E1E1E] text-white hover:scale-[105%] animate transition-transform duration-300 ease-in-out rounded-lg inline-flex h-min max-[468px]:w-full items-center justify-center px-4 py-2.5 focus:outline-none focus:ring-gray-300 dark:focus:ring-gray-700"> <img width="1" height="50" class="" src="" /> <img width="50" height="50" class="invert-0 dark:invert mr-3 px-[5px]" src="https://img.icons8.com/ios/50/edit-text-file.png" alt="projects" />
+                                    <div class="text-left rtl:text-right text-black dark:text-white group-hover:text-text-link">
+                                        <div class="mb-1 text-xs">Read my</div>
+                                        <div class="-mt-1 font-sans text-sm font-semibold">Articles</div>
+                                    </div>
+                                </a>
+                                <div class="w-full relative">
+								<div class="relative max-[468px]:w-full h-min inline-flex hover:scale-[105%] animate transition-transform duration-300 ease-in-out">
+									<div class="absolute inset-0 bg-main-c rounded-lg z-[-1] ping-shadow-animation opacity-75"></div>
+
+									<a href="/resume/resume.pdf" target="_blank" class="group bg-[#EFEFEF] dark:bg-[#1E1E1E] text-white max-[468px]:w-full rounded-lg inline-flex items-center justify-center px-4 py-2.5 focus:outline-none focus:ring-gray-300 dark:focus:ring-gray-700">
+                                    
+									<div class="unset text-black dark:text-white flex max-[768px]:hidden absolute pointer-events-none z-[-1] ease-out transition duration-200 group-hover:opacity-100 opacity-0 group-hover:translate-y-[75px] text-sm">
+                                        
+										<div class="transform transition duration-200 translate-y-1 translate-x-5 group-hover:translate-x-0"> <img width="25" height="25" class="animate-bounce animate-infinite dark:invert" src="https://img.icons8.com/ios-filled/50/long-arrow-down.png" alt="long-arrow-down" /> </div>
+                                        
+										<div class=""> Or view it below! </div>
+                                        <div class="transform transition duration-200 translate-y-1 -translate-x-5 group-hover:translate-x-0"> <img width="25" height="25" class="animate-bounce animate-infinite dark:invert" src="https://img.icons8.com/ios-filled/50/long-arrow-down.png" alt="long-arrow-down" /> </div>
+                                    </div> <img width="1" height="50" class="" src="" /> <img width="50" height="50" class="invert-0 dark:invert mr-3 px-[5px] relative" src="https://img.icons8.com/ios/50/resume.png" alt="projects" />
+                                    <div class="text-left rtl:text-right text-black dark:text-white group-hover:text-text-link">
+                                        <div class="mb-1 text-xs">Download my</div>
+                                        <div class="-mt-1 font-sans text-sm whitespace-nowrap font-semibold">Resumé</div>
+                                    </div>
+									
+                                </a>
+								
+								</div>
+                                </div>
+							
+							</div>
+                            </div>
+                        </div>
+                    </div>
+
+					{[highlightedProject].filter(Boolean).map((project) => {
+						const formattedDate = new Date(
+							project.frontmatter.date
+						).toLocaleDateString("en-us", {
+							year: "numeric",
+							month: "short",
+							day: "numeric",
+						});
+
+						return (
+                            
+						<div class=" max-[764px]:pt-10 col-span-11 min-[468px]:col-span-7 min-[468px]:col-start-3 mx-auto  md:col-span-4 md:col-start-7 w-full max-w-xl ">
+                            
+							<div class="text-sm w-full text-center mx-auto mb-1 translate-y-[-5px] ">HIGHLIGHTED PROJECT</div>
+                            <div class="w-full">
+                                <div class="pb-3 rounded-t-md -mt-2 border-x-[1px] mx-[-8px] mb-[-5px] border-t-[1px] dark:border-white border-black"></div>
+                            </div>
+						<a href={project.frontmatter.url} class="block group hover:text-text pb-5 bg-[#EFEFEF] dark:bg-[#1E1E1E] rounded-xl origin-center hover:scale-[102%] animate transition-transform duration-300 ease-in-out" target="_blank">
+							<span class="text-xs sm:text-sm opacity-30 group-hover:opacity-70 duration-300 transition ease-in-out text-gray-800 dark:text-gray-400">&nbsp;{project.frontmatter.type}</span>
+					<div class="content-around h-full mt-[0rem]">
 					
-					
-				
-				
-				</a>
-				</div>
-			</div>
-		</div>
-		<div class=" col-span-9 md:col-span-5 flex items-center">
-			<div class="w-full p-4 m-3 md:m-3 max-[768px]:ml-0 text-center border-[#0F0F0F] rounded-lg sm:p-8 dark:border-[#F0F0F0]">
-				<h5 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white">Hi there!</h5>
-				<p class="mb-5 text-base text-gray-800 sm:text-lg dark:text-gray-400">Feel free to poke around and see some of the things I've made.</p>
-				<div class="items-center justify-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4 rtl:space-x-reverse">
-					<a href="/resume/Nikolas_Thornton_Resume.pdf" target="_blank" class="group h-[calc(auto+10px)] w-full sm:w-auto bg-[#EFEFEF] focus:outline-none focus:ring-gray-300 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5 dark:bg-[#1E1E1E] dark:focus:ring-gray-700">
-						<div class="unset text-black dark:text-white flex absolute z-[-1] ease-out transition duration-200 group-hover:opacity-100 group-hover:translate-y-[75px] group-hover:max-[640px]:translate-y-[165px] text-sm">
-							<div class="transform transition duration-200 translate-y-1 translate-x-5 group-hover:translate-x-0">
-							<img width="25" height="25" class="animate-bounce animate-infinite dark:invert" src="https://img.icons8.com/ios-filled/50/long-arrow-down.png" alt="long-arrow-down"/>
-							</div>
-							<div class="">
-							Or view it below!
-							</div>
-							<div class="transform transition duration-200 translate-y-1 -translate-x-5 group-hover:translate-x-0">
-								<img width="25" height="25" class="animate-bounce animate-infinite dark:invert" src="https://img.icons8.com/ios-filled/50/long-arrow-down.png" alt="long-arrow-down"/>
-								</div>
-						</div>
-						<img width="1" height="50" class="" src=""/>
-						<img width="50" height="50" class="invert-0 dark:invert mr-3 px-[5px]" src="https://img.icons8.com/ios/50/resume.png" alt="projects"/>
-						<div class="text-left rtl:text-right text-black dark:text-white group-hover:text-text-link">
-							<div class="mb-1 text-xs">Download my</div>
-							<div class="-mt-1 font-sans text-sm font-semibold">.pdf CV</div>
-						</div>
-					</a>
-					<a href="/projects" class="group h-[calc(auto+10px)] w-full sm:w-auto bg-[#EFEFEF] focus:outline-none focus:ring-gray-300 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5 dark:bg-[#1E1E1E] dark:focus:ring-gray-700">
-						<img width="1" height="50" class="" src=""/>
-						<img width="50" height="50" class="invert-0 dark:invert mr-3 px-[5px]" src="https://img.icons8.com/ios/50/source-code.png" alt="projects"/>
-						<div class="text-left rtl:text-right text-black dark:text-white group-hover:text-text-link">
-							<div class="mb-1 text-xs">Browse my</div>
-							<div class="-mt-1 font-sans text-sm font-semibold">Projects</div>
-						</div>
-					</a>
-				</div>
+					<span class="duration-opacity-1000 relative transform transition-opacity opacity-100 ease-in-out">
+					<div class="m-2 mb-0 content-around justify-center text-center text-xs sm:text-sm">
 
+					<h3 class="transition-all text-center duration-0 text-sm md:text-xl font-bold text-gray-800 dark:text-gray-200 light:text-gray-900">{project.frontmatter.title}</h3>
+					<div class="sm:text-sm font-medium contrast-150 mb-1 dark:contrast-100 brightness-75 dark:brightness-100 text-center">
+						<span class="sm:text-sm inline-block "><span class={project.frontmatter.language_color}> {project.frontmatter.language}</span></span><span class="sm:text-sm text-gray-800 dark:text-gray-400"> <time datetime={project.frontmatter.date.toISOString()}>
+								{formattedDate}
+								</time></span>
+					</div>
+					<div class="mx-auto rounded-lg relative w-[75%] pb-[75%] overflow-hidden">
+						<img class="absolute top-0 left-0 w-full h-full object-contain" src={project.frontmatter.image}>
+					</div>
+					<div class="sm:text-sm translate-y-[10px] duration-0 text-gray-800 dark:text-gray-200">
+						{project.frontmatter.description}
+					</div>
+					</div>
+				</span>
+				</div>
+				</a></div>
+                    );})}			
+                </div>
+                
 
+                
+                
 
-			</div>
-		</div>
-	</div>
-</div></div></div>
-	<div class="p-3 mx-auto w-full min-[800px]:w-[700px] min-[1080px]:table min-[1080px]:w-full " id="CV">
-		<div class="min-[1080px]:table-cell min-[1080px]:w-1/3 min-[1080px]:pr-1 min-[1080px]:pl-1">
-			<div class="bg-opacity-[4%] bg-blueLight dark:bg-opacity-[4%] dark:bg-blueDark rounded-xl p-1">
-			<h1 class="text-3xl min-[350px]:text-4xl min-[425px]:text-5xl text-center">EXPERIENCE</h1>
-			<div class="w-full">
-				<div class="pb-3 border-x-[2px] border-t-[2px] dark:border-white border-black"></div>
-			</div>
-
-
-			<div class="group pb-5">
-				<div class="Ansys">
-					<div class="float-right pr-[37px] md:pr-[50px]">
-						<div class="origin-center absolute  transition duration-200 w-[40px] group-hover:rotate-90 opacity-100 group-hover:opacity-0">
-							<img width="40" height="40" src="/images/icons/plus.png" alt="down-squared--v2"
-								class="transition duration-0 dark:invert"/>
-						</div>
-						<div class="origin-center absolute transition duration-200  w-[40px] group-hover:rotate-90 rotate-0">
-							<img width="42" height="42" src="/images/icons/minus.png" alt="down-squared--v2"
-								class="transition duration-0 dark:invert"/>
-						</div>
-					</div>
-					<div class="items-left text-left">
-						<div class="align-left">
-							<div class=" relative">
-								<div class="flex flex-row gap-x-2 items-center">
-									<img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/50/artificial-intelligence.png" />
-									<div class="duration-0 text-xs">
-										<p class="">Ansys</p>
-										<span class="text-xs dark:text-gray-300 light:text-gray-700">Atlanta, GA</span>
-									</div>
-								</div>
-								<div class="my-0">
-									<h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">Cloud, AI, Solutions, and Enablement Intern</h3>
-									<div class="text-sm font-medium contrast-150 dark:contrast-100 brightness-75 dark:brightness-100">
-										<span class="m-1 ml-0 inline-block text-main-c">Python</span>
-										<span class="m-1 ml-0 inline-block text-orange-500">Java</span>
-										<span class="m-1 ml-0 inline-block text-yellow-500">AWS</span>
-										<span class="m-1 ml-0 inline-block text-lime-500">API Integration</span>
-									</div>
-									<div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">Summer 2025</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="content text-sm" id="AnsysText">
-						<ul>
-							<li>Contributing to the development and maintenance of internal cloud-based tools for the purpose of supporting machine learning models.</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="grid grid-cols-6">
-				<div class="pb-3 col-start-2 col-span-5 border-r-[1px] border-t-[1px] dark:border-white border-black"></div>
-			</div>
-
-			<div class="group pb-5">
-				<div class="TutorKSU">
-					<div class="float-right pr-[37px] md:pr-[50px]">
-						<div class="origin-center absolute  transition duration-200 w-[40px] group-hover:rotate-90 opacity-100 group-hover:opacity-0">
-							<img width="40" height="40" src="/images/icons/plus.png" alt="down-squared--v2"
-								class="transition duration-0 dark:invert"/>
-						</div>
-						<div class="origin-center absolute transition duration-200  w-[40px] group-hover:rotate-90 rotate-0">
-							<img width="42" height="42" src="/images/icons/minus.png" alt="down-squared--v2"
-								class="transition duration-0 dark:invert"/>
-						</div>
-					</div>
-					<div class="items-left text-left">
-						<div class="align-left">
-							<div class=" relative">
-								<div class="flex flex-row gap-x-2 items-center">
-									<img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/100/teaching.png" />
-									<div class="duration-0 text-xs">
-										<p class="">Kennesaw State <br class="min-[365px]:hidden">University</p>
-										<span class="text-xs dark:text-gray-300 light:text-gray-700">Marietta, GA</span>
-									</div>
-								</div>
-								<div class="my-0">
-									<h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">Computer Science Tutor</h3>
-									<div class="text-sm font-medium contrast-150 dark:contrast-100 brightness-75 dark:brightness-100">
-										<span class="m-1 ml-0 inline-block text-main-c">Python</span>
-										<span class="m-1 ml-0 inline-block text-orange-500">Java</span>
-										<span class="m-1 ml-0 inline-block text-purple-500">C#</span>
-										<span class="m-1 ml-0 inline-block text-green-500">Communication</span>
-									</div>
-									<div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">Fall 2024</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="content text-sm" id="TutorKSUText">
-						<ul>
-							<li>Tutored undergraduate students in Java, Python, and C# up to Computer Science 2.</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="grid grid-cols-6">
-				<div class="pb-3 col-start-2 col-span-5 border-r-[1px] border-t-[1px] dark:border-white border-black"></div>
-			</div>
-			<div class="group pb-5">
-				<div class="Tutor">
-					<div class="float-right pr-[37px] md:pr-[50px]">
-						<div class="origin-center absolute  transition duration-200 w-[40px] group-hover:rotate-90 opacity-100 group-hover:opacity-0">
-							<img width="40" height="40" src="/images/icons/plus.png" alt="down-squared--v2"
-								class="transition duration-0 dark:invert"/>
-						</div>
-						<div class="origin-center absolute transition duration-200  w-[40px] group-hover:rotate-90 rotate-0">
-							<img width="42" height="42" src="/images/icons/minus.png" alt="down-squared--v2"
-								class="transition duration-0 dark:invert"/>
-						</div>
-					</div>
-					<div class="items-left text-left">
-						<div class="align-left">
-							<div class=" relative">
-								<div class="flex flex-row gap-x-2 items-center">
-									<img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/100/teaching.png" />
-									<div class="duration-0 text-xs">
-										<p class="">Clayton State <br class="min-[365px]:hidden">University</p>
-										<span class="text-xs dark:text-gray-300 light:text-gray-700">Morrow, GA</span>
-									</div>
-								</div>
-								<div class="my-0">
-									<h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">Peer Tutor / Front Desk Assistant</h3>
-									<div class="text-sm font-medium contrast-150 dark:contrast-100 brightness-75 dark:brightness-100">
-										<span class="m-1 ml-0 inline-block text-orange-500">Java</span>
-										<span class="m-1 ml-0 inline-block text-main-c">Python</span>
-										<span class="m-1 ml-0 inline-block text-yellow-500">Calculus 3</span>
-										<span class="m-1 ml-0 inline-block text-pink-500">Administration</span>
-										<span class="m-1 ml-0 inline-block text-green-500">Communication</span>
-									</div>
-									<div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">Fall 2022 - Spring 2024</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="content text-sm" id="TutorText">
-						<ul>
-							<li>Tutored CSU students in classes up to Computer Science 2 and Calculus 3.</li>
-							<li>Handled basic administrative office tasks and oversaw the front desk.</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="grid grid-cols-6">
-				<div class="pb-3 col-start-2 col-span-5 border-r-[1px] border-t-[1px] dark:border-white border-black"></div>
-			</div>
-			<div class="group pb-5">
-				<div class="Assist">
-					<div class="float-right pr-[37px] md:pr-[50px]">
-						<div class="origin-center absolute  transition duration-200 w-[40px] group-hover:rotate-90 opacity-100 group-hover:opacity-0">
-							<img width="40" height="40" src="/images/icons/plus.png" alt="down-squared--v2"
-								class="transition duration-0 dark:invert"/>
-						</div>
-						<div class="origin-center absolute transition duration-200  w-[40px] group-hover:rotate-90 rotate-0">
-							<img width="42" height="42" src="/images/icons/minus.png" alt="down-squared--v2"
-								class="transition duration-0 dark:invert"/>
-						</div>
-					</div>
-					<div class="items-left text-left">
-						<div class="align-left">
-							<div class=" relative">
-								<div class="flex flex-row gap-x-2 items-center">
-									<img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/100/teaching.png" />
-									<div class="duration-0 text-xs">
-										<p class="">Clayton State <br class="min-[365px]:hidden">University</p>
-										<span class="text-xs dark:text-gray-300 light:text-gray-700">Morrow, GA</span>
-									</div>
-								</div>
-								<div class="my-0">
-									<h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">Teaching Assistant</h3>
-									<div class="text-sm font-medium contrast-150 dark:contrast-100 brightness-75 dark:brightness-100">
-										<span class="m-1 ml-0 inline-block text-yellow-500">Mathematics</span>
-										<span class="m-1 ml-0 inline-block text-pink-500">Leadership</span>
-										<span class="m-1 ml-0 inline-block text-green-500">Communication</span>
-									</div>
-									<div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">Fall 2023</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="content text-sm" id="AssistText">
-						<ul>
-							<li>Assisted professors during a week-long all-day bootcamp for incoming freshmen.</li>
-							<li>Taught mathematical skills for inside the classroom and teamwork skills for outside the classroom.</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="grid grid-cols-6">
-				<div class="pb-3 col-start-2 col-span-5 border-r-[1px] border-t-[1px] dark:border-white border-black"></div>
-			</div>
-			<div class="group pb-5">
-				<div class="Legal">
-					<div class="float-right pr-[37px] md:pr-[50px]">
-						<div class="origin-center absolute  transition duration-200 w-[40px] group-hover:rotate-90 opacity-100 group-hover:opacity-0">
-							<img width="40" height="40" src="/images/icons/plus.png" alt="down-squared--v2"
-								class="transition duration-0 dark:invert"/>
-						</div>
-						<div class="origin-center absolute transition duration-200  w-[40px] group-hover:rotate-90 rotate-0">
-							<img width="42" height="42" src="/images/icons/minus.png" alt="down-squared--v2"
-								class="transition duration-0 dark:invert"/>
-						</div>
-					</div>
-					<div class="items-left text-left">
-						<div class="align-left">
-							<div class=" relative">
-								<div class="flex flex-row gap-x-2 items-center">
-									<img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/50/scales--v1.png" />
-									<div class="duration-0 text-xs">
-										<p class="">Leanne P. Cooper P.C.</p>
-										<span class="text-xs dark:text-gray-300 light:text-gray-700">McDonough, GA</span>
-									</div>
-								</div>
-								<div class="my-0">
-									<h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">Legal Assistant</h3>
-									<div class="text-sm font-medium contrast-150 dark:contrast-100 brightness-75 dark:brightness-100">
-										<span class="m-1 ml-0 inline-block text-pink-500">Administration</span>
-										<span class="m-1 ml-0 inline-block text-lime-500">Time Management</span>
-									</div>
-									<div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">Feb 2021 - Dec 2021</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="content text-sm" id="LegalText">
-						<ul>
-							<li>Drafted legal documents, straight-typed/organized discovery, and archived closed cases.</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			
-			<div class="grid grid-cols-6">
-				<div class="pb-3 col-start-2 col-span-4 border-t-[1px] dark:border-white border-black"></div>
-			</div>
-			
-			<div class="text-center">
-			<a href="https://www.linkedin.com/in/nikolas-thornton/details/experience/"><i class="fa-brands fa-linkedin" aria-hidden="true" title="LinkedIn"></i>&nbsp;View entire job history</a>
-			</div>
-		</div>
-	</div>
-	<div class="min-[1080px]:table-cell min-[1080px]:w-1/3 min-[1080px]:pr-1 min-[1080px]:pl-1 ">
-		
-		<div class="h-[0.5rem]"></div>
-		<div class="bg-opacity-[4%] bg-blueLight dark:bg-opacity-[4%] dark:bg-blueDark rounded-xl p-1">
-		<h1 class="text-3xl min-[350px]:text-4xl min-[425px]:text-5xl text-center">ACADEMICS</h1>
-		<div class="w-full">
-			<div class="pb-3 border-x-[2px] border-t-[2px] dark:border-white border-black"></div>
-		</div>
-		
-		<div class="group pb-5 mb-0">
-			<div class="items-left text-left">
-				<div class="align-left">
-					<div class=" relative">
-						<div class="my-0">
-							<div class="flex flex-row gap-x-2 items-center">
-								<img class="aspect-[2/2] w-10 h-10 " src="/images/icons/schools/gt.png" style="-webkit-filter: drop-shadow(5px 5px 5px #1a1a1a); filter: drop-shadow(1px 1px 1px #1a1a1a);">
-								<h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">Georgia Institute of Technology</h3>
-							</div>
-							<div class="text-sm font-medium contrast-150 dark:contrast-100 brightness-75 dark:brightness-100">
-								<span class="m-1 ml-0 inline-block text-main-c font-bold animate-wiggle animate-infinite">4.0 GPA</span>
-								<span class="m-1 ml-0 inline-block text-red-500">Faculty Honors</span>
-							</div>
-							<div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">Spring 2025 - Fall 2027</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="grid grid-cols-6">
-			<div class="pb-3 col-start-2 col-span-5 border-r-[1px] border-t-[1px] dark:border-white border-black"></div>
-		</div>
-		<div class="group pb-5 mb-0">
-			<div class="items-left text-left">
-				<div class="align-left">
-					<div class=" relative">
-						<div class="my-0">
-							<div class="flex flex-row gap-x-2 items-center">
-								<img class="aspect-[2/2] w-10 h-10 " src="/images/icons/schools/ksu.png" style="-webkit-filter: drop-shadow(5px 5px 5px #1a1a1a); filter: drop-shadow(1px 1px 1px #1a1a1a);">
-								<h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">Kennesaw State University</h3>
-							</div>
-							<div class="text-sm font-medium contrast-150 dark:contrast-100 brightness-75 dark:brightness-100">
-								<span class="m-1 ml-0 inline-block text-main-c font-bold animate-wiggle animate-infinite">4.0 GPA</span>
-							</div>
-							<div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">Fall 2024</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="grid grid-cols-6">
-			<div class="pb-3 col-start-2 col-span-5 border-r-[1px] border-t-[1px] dark:border-white border-black"></div>
-		</div>
-		<div class="group pb-5">
-			<div class="CSU">
-				<div class="float-right pr-[37px] md:pr-[50px] translate-y-1">
-					<div class="origin-center absolute  transition duration-200 w-[40px] group-hover:rotate-90 opacity-100 group-hover:opacity-0">
-						<img width="40" height="40" src="/images/icons/plus.png" alt="down-squared--v2"
-							class="transition duration-0 dark:invert"/>
-					</div>
-					<div class="origin-center absolute transition duration-200  w-[40px] group-hover:rotate-90 rotate-0">
-						<img width="42" height="42" src="/images/icons/minus.png" alt="down-squared--v2"
-							class="transition duration-0 dark:invert"/>
-					</div>
-				</div>
-				<div class="items-left text-left">
-					<div class="align-left">
-						<div class=" relative">
-							<div class="my-0">
-								<div class="flex flex-row gap-x-2 items-center">
-									<img class="aspect-[2/2] w-10 h-10" src="/images/icons/schools/csu.png" style="-webkit-filter: drop-shadow(5px 5px 5px #1a1a1a); filter: drop-shadow(1px 1px 1px #1a1a1a);">
-									<h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">Clayton State <br>University</h3>
-								</div>
-								<div class="text-sm font-medium contrast-150 dark:contrast-100 brightness-75 dark:brightness-100">
-									<span class="m-1 ml-0 inline-block text-main-c font-bold animate-wiggle animate-infinite">4.0 GPA</span>
-									<span class="m-1 ml-0 inline-block text-yellow-500">Math Club Vice-President</span>
-									<span class="m-1 ml-0 inline-block text-red-500">President's List</span>
-								</div>
-								<div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">Fall 2022 - Spring 2024</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="content text-sm" id="CSUText">
-					<ul>
-						<li>Formerly the Treasurer, I was elected the Vice-President of The Math Club in Fall 2023.</li>
-						<li>I helped organize the club and gave multiple math-talks to students on topics including fractals, chess, and 3D raycasting.</li>
-						<li>I created, organized, and lead our monthly chess-days for the campus, which quickly became the club's most popular event.</li>
-					</ul>
-				</div>
-			
-			</div>
-		</div>
-		
-	</div>
-	<div class="h-[0.5rem]"></div>
-	<div class="bg-opacity-[4%] bg-blueLight dark:bg-opacity-[4%] dark:bg-blueDark rounded-xl p-1">
-			<h1 class="text-3xl min-[350px]:text-4xl min-[425px]:text-5xl text-center">RESEARCH</h1>
-			<div class="w-full">
-				<div class="pb-3 border-x-[2px] border-t-[2px] dark:border-white border-black"></div>
-			</div>
-			<div class="group pb-5">
-				<div class="Research">
-					<div class="float-right pr-[37px] md:pr-[50px]">
-						<div class="origin-center absolute  transition duration-200 w-[40px] group-hover:rotate-90 opacity-100 group-hover:opacity-0">
-							<img width="40" height="40" src="/images/icons/plus.png" alt="down-squared--v2"
-								class="transition duration-0 dark:invert"/>
-						</div>
-						<div class="origin-center absolute transition duration-200  w-[40px] group-hover:rotate-90 rotate-0">
-							<img width="42" height="42" src="/images/icons/minus.png" alt="down-squared--v2"
-								class="transition duration-0 dark:invert"/>
-						</div>
-					</div>
-					<div class="items-left text-left">
-						<div class="align-left">
-							<div class=" relative">
-								<div class="flex flex-row gap-x-2 items-center">
-									<img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/50/laboratory.png" />
-									<div class="duration-0 text-xs w-[125%]">
-										<p class="">Clayton State <br class="min-[365px]:hidden">University</p>
-										<span class="text-xs dark:text-gray-300 light:text-gray-700">Morrow, GA</span>
-									</div>
-								</div>
-								<div class="my-0">
-									<h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">Computational Physics Research</h3>
-									<div class="text-sm font-medium contrast-150 dark:contrast-100 brightness-75 dark:brightness-100">
-										<span class="m-1 ml-0 inline-block text-main-c">Python</span>
-										<span class="m-1 ml-0 inline-block text-purple-500">Arduino</span>
-										<span class="m-1 ml-0 inline-block text-green-500">Documentation</span>
-										<span class="m-1 ml-0 inline-block text-yellow-500">Statistics</span>
-									</div>
-									<div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">Fall 2023 - Fall 2024</div>
-								</div>
-							
-								<div class="content text-sm align-left" id="ResearchText">
-									<div class="my-0">
-										<div class="flex flex-row gap-x-2 items-center ">
-											<img class="aspect-[2/2] animate-wiggle animate-infinite pt-2 w-10 h-12 duration-200 opacity-0 group-hover:opacity-100" src="https://img.icons8.com/color/48/trophy.png" style="-webkit-filter: drop-shadow(5px 5px 5px #1a1a1a); filter: drop-shadow(5px 5px 5px #1a1a1a);">
-											<h3 class="transition-all duration-0 text-base font-bold">Won 1st place at <a target="_blank" href="https://www.clayton.edu/cims/symposium/index">CSU's 2024 CIM's Symposium</a> Research Poster Competition</h3>
-										</div>
-										<div class="my-0">
-											<div class="flex flex-row gap-x-2 items-center ">
-												<img class="aspect-[2/2] animate-wiggle animate-infinite pt-2 w-10 h-12 duration-200 opacity-0 group-hover:opacity-100" src="https://img.icons8.com/color/48/moleskine.png" style="-webkit-filter: drop-shadow(5px 5px 5px #1a1a1a); filter: drop-shadow(5px 5px 5px #1a1a1a);">
-												<h3 class="transition-all duration-0 text-base font-bold"><a target="_blank" href="https://arxiv.org/abs/2404.09395">Read the paper!</a></h3>
-											</div>
-											<ul>
-												<li>Built a Photon-based Hardware Random Number Generator using an Arduino, <a target="_blank" href="https://www.hamamatsu.com/jp/en/product/optical-sensors/mppc.html">MPPC</a>, and <a target="_blank" href="https://www.hamamatsu.com/jp/en/product/optical-sensors/mppc/power-supply_driver-circuit/C11204-01.html">serially-programmed power supply.</a></li>
-												<li>Wrote custom analysis software in Python for massive amounts of random data.</li>
-												<li>Developed a unique test for random numbers titled <a target="_blank" href="/articles/fls_test">The Fractional Line Symmetry Test</a>.</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-	</div>
-	<div class="h-[0.5rem]"></div>
-	<div class="min-[1080px]:table-cell min-[1080px]:w-1/3 min-[1080px]:pr-1 min-[1080px]:pl-1">
-		<div class="bg-opacity-[4%] bg-blueLight dark:bg-opacity-[4%] dark:bg-blueDark rounded-xl p-1">
-			<h1 class="text-3xl min-[350px]:text-4xl min-[425px]:text-5xl text-center ">AWARDS</h1>
-			<div class="w-full">
-				<div class="pb-3 border-x-[2px] border-t-[2px] dark:border-white border-black"></div>
-			</div>
-			
-			<div class="group pb-5">
-				<div class="Awards">
-					<div class="items-left text-left">
-						<div class="align-left">
-							<div class=" relative">
-								<div class="flex flex-row gap-x-2 items-center">
-									<img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/50/student-female.png" />
-									<div class="duration-0 text-xs w-[125%]">
-										<p class="">Georgia Institute of <br class="min-[365px]:hidden">Technology</p>
-										<span class="text-xs dark:text-gray-300 light:text-gray-700">Atlanta, GA</span>
-									</div>
-								</div>
-								<div class="my-0">
-									<h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">Faculty Honors</h3>
-									<div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">Spring 2025</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="grid grid-cols-6">
-				<div class="pb-3 col-start-2 col-span-5 border-r-[1px] border-t-[1px] dark:border-white border-black"></div>
-			</div>
-			<div class="group pb-5">
-				<div class="Awards">
-					<div class="float-right pr-[37px] md:pr-[50px] translate-x-[50px]">
-						<div class="origin-center absolute transition duration-200 w-[100px] h-[100px] opacity-100 -translate-x-[50px] -translate-y-[5px] max-[768px]:-translate-x-[65px]">
-							<img class="aspect-[2/2] w-12 animate-wiggle animate-infinite " src="https://img.icons8.com/color/48/trophy.png" style="-webkit-filter: drop-shadow(5px 5px 5px #1a1a1a); filter: drop-shadow(5px 5px 5px #1a1a1a);">
-						</div>
-					</div>
-					<div class="items-left text-left">
-						<div class="align-left">
-							<div class=" relative">
-								<div class="flex flex-row gap-x-2 items-center">
-									<img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/50/laboratory.png" />
-									<div class="duration-0 text-xs w-[125%]">
-										<p class="">Clayton State University</p>
-										<span class="text-xs dark:text-gray-300 light:text-gray-700">Morrow, GA</span>
-									</div>
-								</div>
-								<div class="my-0">
-									<h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">1st Place Research Poster</h3>
-									<div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">CSU's 2024 CIM's Symposium</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="grid grid-cols-6">
-				<div class="pb-3 col-start-2 col-span-5 border-r-[1px] border-t-[1px] dark:border-white border-black"></div>
-			</div>
-			<div class="group pb-5">
-				<div class="Awards">
-					<div class="items-left text-left">
-						<div class="align-left">
-							<div class=" relative">
-								<div class="flex flex-row gap-x-2 items-center">
-									<img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/50/artificial-intelligence.png" />
-									<div class="duration-0 text-xs w-[125%]">
-										<p class="">Kennesaw State <br class="min-[365px]:hidden">University</p>
-										<span class="text-xs dark:text-gray-300 light:text-gray-700">Marietta, GA</span>
-									</div>
-								</div>
-								<div class="my-0">
-									<h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">2nd Place AI Project</h3>
-									<div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">KSU AI Club's 2024 Hackathon</div>
-								</div>
-							
-								
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="grid grid-cols-6">
-				<div class="pb-3 col-start-2 col-span-5 border-r-[1px] border-t-[1px] dark:border-white border-black"></div>
-			</div>
-			<div class="group pb-5">
-				<div class="Awards">
-					<div class="items-left text-left">
-						<div class="align-left">
-							<div class=" relative">
-								<div class="flex flex-row gap-x-2 items-center">
-									<img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/50/collaborator-male.png" />
-									<div class="duration-0 text-xs w-[125%]">
-										<p class="">KSU's CCSE <br class="min-[365px]:hidden">Tutoring Center</p>
-										<span class="text-xs dark:text-gray-300 light:text-gray-700">Marietta, GA</span>
-									</div>
-								</div>
-								<div class="my-0">
-									<h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">Employee of the Month</h3>
-									<div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">August 2024</div>
-								</div>
-							
-								
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="grid grid-cols-6">
-				<div class="pb-3 col-start-2 col-span-5 border-r-[1px] border-t-[1px] dark:border-white border-black"></div>
-			</div>
-			<div class="group pb-5">
-				<div class="Awards">
-					<div class="items-left text-left">
-						<div class="align-left">
-							<div class=" relative">
-								<div class="flex flex-row gap-x-2 items-center">
-									<img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/50/student-female.png" />
-									<div class="duration-0 text-xs w-[125%]">
-										<p class="">Clayton State <br class="min-[365px]:hidden">University</p>
-										<span class="text-xs dark:text-gray-300 light:text-gray-700">Morrow, GA</span>
-									</div>
-								</div>
-								<div class="my-0">
-									<h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">President's List</h3>
-									<div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">Fall 2022 - Spring 2024</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<div class="grid grid-cols-6">
-				<div class="pb-3 col-start-2 col-span-5 border-r-[1px] border-t-[1px] dark:border-white border-black"></div>
-			</div>
-			<div class="group pb-5">
-				<div class="Awards">
-					<div class="items-left text-left">
-						<div class="align-left">
-							<div class=" relative">
-								<div class="flex flex-row gap-x-2 items-center">
-									<img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/50/student-female.png" />
-									<div class="duration-0 text-xs w-[125%]">
-										<p class="">Clayton State <br class="min-[365px]:hidden">University</p>
-										<span class="text-xs dark:text-gray-300 light:text-gray-700">Morrow, GA</span>
-									</div>
-								</div>
-								<div class="my-0">
-									<h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">Launchpad Leadership Scholarship</h3>
-									<div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">Spring 2023 - Spring 2024</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="grid grid-cols-6">
-				<div class="pb-3 col-start-2 col-span-5 border-r-[1px] border-t-[1px] dark:border-white border-black"></div>
-			</div>
-			<div class="group pb-5">
-				<div class="Awards">
-					<div class="items-left text-left">
-						<div class="align-left">
-							<div class=" relative">
-								<div class="flex flex-row gap-x-2 items-center">
-									<img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/50/politician.png" />
-									<div class="duration-0 text-xs w-[125%]">
-										<p class="">Stoa Debate</p>
-										<span class="text-xs dark:text-gray-300 light:text-gray-700">Club Interritus</span>
-									</div>
-								</div>
-								<div class="my-0">
-									<h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">Outstanding Speech Award (4)</h3>
-									<div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">2019 April Showers, 2019 Fast & Furious, 2020 January Jubilee (2) </div>
-								</div>
-							
-								
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			
-		</div>
-	</div>
-</div>
-		
-		
-	</div>
-	<div class="pb-[800px]"><br></div>
-	<script>
-		function lookforCascade(cascClass, textClass) {
-		  var coll = document.getElementsByClassName(cascClass);
-		  var i;
-		  
-		  for (i = 0; i < coll.length; i++) {
-		    coll[i].addEventListener("mouseover", function() {
-		      this.classList.toggle("active");
-		      var content = document.getElementById(textClass);
-		      if (content.style.maxHeight){
-		        content.style.maxHeight = null;
-		      } else {
-		        content.style.maxHeight = content.scrollHeight + "px";
-		      } 
-		    });
-		    coll[i].addEventListener("mouseout", function() {
-		      this.classList.toggle("active");
-		      var content = document.getElementById(textClass);
-		      if (content.style.maxHeight){
-		        content.style.maxHeight = null;
-		      } else {
-		        content.style.maxHeight = content.scrollHeight + "px";
-		      } 
-		    });
-		  }
-		}
-		
-		lookforCascade("Ansys", "AnsysText");
-		lookforCascade("Tutor", "TutorText");
-		lookforCascade("TutorKSU", "TutorKSUText");
-		lookforCascade("Assist", "AssistText");
-		lookforCascade("Research", "ResearchText");
-		lookforCascade("Legal", "LegalText");
-		lookforCascade("Dojo", "DojoText");
-		lookforCascade("CSU", "CSUText");
-		
-		
-		
-
-		
-	</script>
+    <div class="overflow-hidden pt-[4rem]">
+     <div class="duration-[1000ms] ease-in relative transform delay-[700ms] transition-opacity opacity-0 max-[768px]:opacity-100" data-replace='{ "opacity-0": "opacity-100" }'>
+    <div class="p-3 mt-[-5rem] mx-auto w-full min-[800px]:w-[700px] min-[1080px]:table min-[1080px]:w-full " id="CV">
+        <div class="min-[1080px]:table-cell min-[1080px]:w-1/3 min-[1080px]:pr-1 min-[1080px]:pl-1">
+            <div class=" bg-[#EFEFEF] dark:bg-[#1E1E1E] rounded-xl p-1">
+                <h1 class="text-3xl min-[350px]:text-4xl min-[425px]:text-5xl text-center">EXPERIENCE</h1>
+                <div class="w-full">
+                    <div class="pb-3 border-x-[2px] rounded-t-md border-t-[2px] dark:border-white border-black"></div>
+                </div>
+                <div class="group pb-5">
+                    <div class="Ansys">
+                        <div class="float-right pr-[37px] md:pr-[50px]">
+                            <div class="origin-center absolute  transition duration-200 w-[40px] group-hover:rotate-90 opacity-100 group-hover:opacity-0"> <img width="40" height="40" src="/images/icons/plus.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
+                            <div class="origin-center absolute transition duration-200  w-[40px] group-hover:rotate-90 rotate-0"> <img width="42" height="42" src="/images/icons/minus.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
+                        </div>
+                        <div class="items-left text-left">
+                            <div class="align-left">
+                                <div class=" relative">
+                                    <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/50/artificial-intelligence.png" />
+                                        <div class="duration-0 text-xs">
+                                            <p class="">Ansys/Synopsys</p> <span class="text-xs dark:text-gray-300 light:text-gray-700">Atlanta, GA</span>
+                                        </div>
+                                    </div>
+                                    <div class="my-0">
+                                        <h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">Cloud, AI, Solutions, and Enablement Intern</h3>
+                                        <div class="text-sm font-medium contrast-150 dark:contrast-100 brightness-75 dark:brightness-100"> <span class="m-1 ml-0 inline-block text-main-c">Python</span> <span class="m-1 ml-0 inline-block text-orange-500">Java</span> <span class="m-1 ml-0 inline-block text-yellow-500">AWS</span> <span class="m-1 ml-0 inline-block text-lime-500">API Integration</span> </div>
+                                        <div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">Summer 2025</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content text-sm" id="AnsysText">
+                            <ul>
+                                <li>Developing internal cloud-based tools for the purpose of supporting machine learning models.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-6">
+                    <div class="pb-3 col-start-2 col-span-5 rounded-tr-md border-r-[1px] border-t-[1px] dark:border-white border-black"></div>
+                </div>
+                <div class="group pb-5">
+                    <div class="TutorKSU">
+                        <div class="float-right pr-[37px] md:pr-[50px]">
+                            <div class="origin-center absolute  transition duration-200 w-[40px] group-hover:rotate-90 opacity-100 group-hover:opacity-0"> <img width="40" height="40" src="/images/icons/plus.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
+                            <div class="origin-center absolute transition duration-200  w-[40px] group-hover:rotate-90 rotate-0"> <img width="42" height="42" src="/images/icons/minus.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
+                        </div>
+                        <div class="items-left text-left">
+                            <div class="align-left">
+                                <div class=" relative">
+                                    <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/100/teaching.png" />
+                                        <div class="duration-0 text-xs">
+                                            <p class="">Kennesaw State <br class="min-[365px]:hidden">University</p> <span class="text-xs dark:text-gray-300 light:text-gray-700">Marietta, GA</span>
+                                        </div>
+                                    </div>
+                                    <div class="my-0">
+                                        <h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">Computer Science Tutor</h3>
+                                        <div class="text-sm font-medium contrast-150 dark:contrast-100 brightness-75 dark:brightness-100"> <span class="m-1 ml-0 inline-block text-main-c">Python</span> <span class="m-1 ml-0 inline-block text-orange-500">Java</span> <span class="m-1 ml-0 inline-block text-purple-500">C#</span> <span class="m-1 ml-0 inline-block text-green-500">Communication</span> </div>
+                                        <div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">Fall 2024</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content text-sm" id="TutorKSUText">
+                            <ul>
+                                <li>Tutored undergraduate students in Java, Python, and C# up to Computer Science 2.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-6">
+                    <div class="pb-3 col-start-2 col-span-5 rounded-tr-md border-r-[1px] border-t-[1px] dark:border-white border-black"></div>
+                </div>
+                <div class="group pb-5">
+                    <div class="Tutor">
+                        <div class="float-right pr-[37px] md:pr-[50px]">
+                            <div class="origin-center absolute  transition duration-200 w-[40px] group-hover:rotate-90 opacity-100 group-hover:opacity-0"> <img width="40" height="40" src="/images/icons/plus.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
+                            <div class="origin-center absolute transition duration-200  w-[40px] group-hover:rotate-90 rotate-0"> <img width="42" height="42" src="/images/icons/minus.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
+                        </div>
+                        <div class="items-left text-left">
+                            <div class="align-left">
+                                <div class=" relative">
+                                    <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/100/teaching.png" />
+                                        <div class="duration-0 text-xs">
+                                            <p class="">Clayton State <br class="min-[365px]:hidden">University</p> <span class="text-xs dark:text-gray-300 light:text-gray-700">Morrow, GA</span>
+                                        </div>
+                                    </div>
+                                    <div class="my-0">
+                                        <h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">Peer Tutor / Front Desk Assistant</h3>
+                                        <div class="text-sm font-medium contrast-150 dark:contrast-100 brightness-75 dark:brightness-100"> <span class="m-1 ml-0 inline-block text-orange-500">Java</span> <span class="m-1 ml-0 inline-block text-main-c">Python</span> <span class="m-1 ml-0 inline-block text-yellow-500">Calculus 3</span> <span class="m-1 ml-0 inline-block text-pink-500">Administration</span> <span class="m-1 ml-0 inline-block text-green-500">Communication</span> </div>
+                                        <div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">Fall 2022 - Spring 2024</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content text-sm" id="TutorText">
+                            <ul>
+                                <li>Tutored CSU students in classes up to Computer Science 2 and Calculus 3.</li>
+                                <li>Handled basic administrative office tasks and oversaw the front desk.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-6">
+                    <div class="pb-3 col-start-2 col-span-5 rounded-tr-md border-r-[1px] border-t-[1px] dark:border-white border-black"></div>
+                </div>
+                <div class="group pb-5">
+                    <div class="Assist">
+                        <div class="float-right pr-[37px] md:pr-[50px]">
+                            <div class="origin-center absolute  transition duration-200 w-[40px] group-hover:rotate-90 opacity-100 group-hover:opacity-0"> <img width="40" height="40" src="/images/icons/plus.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
+                            <div class="origin-center absolute transition duration-200  w-[40px] group-hover:rotate-90 rotate-0"> <img width="42" height="42" src="/images/icons/minus.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
+                        </div>
+                        <div class="items-left text-left">
+                            <div class="align-left">
+                                <div class=" relative">
+                                    <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/100/teaching.png" />
+                                        <div class="duration-0 text-xs">
+                                            <p class="">Clayton State <br class="min-[365px]:hidden">University</p> <span class="text-xs dark:text-gray-300 light:text-gray-700">Morrow, GA</span>
+                                        </div>
+                                    </div>
+                                    <div class="my-0">
+                                        <h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">Teaching Assistant</h3>
+                                        <div class="text-sm font-medium contrast-150 dark:contrast-100 brightness-75 dark:brightness-100"> <span class="m-1 ml-0 inline-block text-yellow-500">Mathematics</span> <span class="m-1 ml-0 inline-block text-pink-500">Leadership</span> <span class="m-1 ml-0 inline-block text-green-500">Communication</span> </div>
+                                        <div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">Fall 2023</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content text-sm" id="AssistText">
+                            <ul>
+                                <li>Assisted professors during a week-long all-day bootcamp for incoming freshmen.</li>
+                                <li>Taught mathematical skills for inside the classroom and teamwork skills for outside the classroom.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-6">
+                    <div class="pb-3 col-start-2 col-span-5 rounded-tr-md border-r-[1px] border-t-[1px] dark:border-white border-black"></div>
+                </div>
+                <div class="group pb-5">
+                    <div class="Legal">
+                        <div class="float-right pr-[37px] md:pr-[50px]">
+                            <div class="origin-center absolute  transition duration-200 w-[40px] group-hover:rotate-90 opacity-100 group-hover:opacity-0"> <img width="40" height="40" src="/images/icons/plus.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
+                            <div class="origin-center absolute transition duration-200  w-[40px] group-hover:rotate-90 rotate-0"> <img width="42" height="42" src="/images/icons/minus.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
+                        </div>
+                        <div class="items-left text-left">
+                            <div class="align-left">
+                                <div class=" relative">
+                                    <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/50/scales--v1.png" />
+                                        <div class="duration-0 text-xs">
+                                            <p class="">Leanne P. Cooper P.C.</p> <span class="text-xs dark:text-gray-300 light:text-gray-700">McDonough, GA</span>
+                                        </div>
+                                    </div>
+                                    <div class="my-0">
+                                        <h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">Legal Assistant</h3>
+                                        <div class="text-sm font-medium contrast-150 dark:contrast-100 brightness-75 dark:brightness-100"> <span class="m-1 ml-0 inline-block text-pink-500">Administration</span> <span class="m-1 ml-0 inline-block text-lime-500">Time Management</span> </div>
+                                        <div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">Feb 2021 - Dec 2021</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content text-sm" id="LegalText">
+                            <ul>
+                                <li>Drafted legal documents, straight-typed/organized discovery, and archived closed cases.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-6">
+                    <div class="pb-3 col-start-2 col-span-4 border-t-[1px] dark:border-white border-black"></div>
+                </div>
+                <div class="text-center"> <a href="https://www.linkedin.com/in/nikolas-thornton/details/experience/"><i class="fa-brands fa-linkedin" aria-hidden="true" title="LinkedIn"></i>&nbsp;View entire job history</a> </div>
+            </div>
+        </div>
+        <div class="min-[1080px]:table-cell min-[1080px]:w-1/3 min-[1080px]:pr-1 min-[1080px]:pl-1 ">
+            <div class="h-[0.5rem]"></div>
+            <div class="bg-[#EFEFEF] dark:bg-[#1E1E1E] rounded-xl p-1">
+                <h1 class="text-3xl min-[350px]:text-4xl min-[425px]:text-5xl text-center">ACADEMICS</h1>
+                <div class="w-full">
+                    <div class="pb-3 border-x-[2px] rounded-t-md border-t-[2px] dark:border-white border-black"></div>
+                </div>
+                <div class="group pb-5 mb-0">
+                    <div class="items-left text-left">
+                        <div class="align-left">
+                            <div class=" relative">
+                                <div class="my-0">
+                                    <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 h-10 " src="/images/icons/schools/gt.png" style="-webkit-filter: drop-shadow(5px 5px 5px #1a1a1a); filter: drop-shadow(1px 1px 1px #1a1a1a);">
+                                        <h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">Georgia Institute of Technology</h3>
+                                    </div>
+                                    <div class="text-sm font-medium contrast-150 dark:contrast-100 brightness-75 dark:brightness-100"> <span class="m-1 ml-0 inline-block text-main-c font-bold animate-wiggle animate-infinite">4.0 GPA</span> <span class="m-1 ml-0 inline-block text-red-500">Faculty Honors</span> </div>
+                                    <div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">Spring 2025 - Fall 2027</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-6">
+                    <div class="pb-3 col-start-2 col-span-5 rounded-tr-md border-r-[1px] border-t-[1px] dark:border-white border-black"></div>
+                </div>
+                <div class="group pb-5 mb-0">
+                    <div class="items-left text-left">
+                        <div class="align-left">
+                            <div class=" relative">
+                                <div class="my-0">
+                                    <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 h-10 " src="/images/icons/schools/ksu.png" style="-webkit-filter: drop-shadow(5px 5px 5px #1a1a1a); filter: drop-shadow(1px 1px 1px #1a1a1a);">
+                                        <h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">Kennesaw State University</h3>
+                                    </div>
+                                    <div class="text-sm font-medium contrast-150 dark:contrast-100 brightness-75 dark:brightness-100"> <span class="m-1 ml-0 inline-block text-main-c font-bold animate-wiggle animate-infinite">4.0 GPA</span> </div>
+                                    <div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">Fall 2024</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-6">
+                    <div class="pb-3 col-start-2 col-span-5 rounded-tr-md border-r-[1px] border-t-[1px] dark:border-white border-black"></div>
+                </div>
+                <div class="group pb-5">
+                    <div class="CSU">
+                        <div class="float-right pr-[37px] md:pr-[50px] translate-y-1">
+                            <div class="origin-center absolute  transition duration-200 w-[40px] group-hover:rotate-90 opacity-100 group-hover:opacity-0"> <img width="40" height="40" src="/images/icons/plus.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
+                            <div class="origin-center absolute transition duration-200  w-[40px] group-hover:rotate-90 rotate-0"> <img width="42" height="42" src="/images/icons/minus.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
+                        </div>
+                        <div class="items-left text-left">
+                            <div class="align-left">
+                                <div class=" relative">
+                                    <div class="my-0">
+                                        <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 h-10" src="/images/icons/schools/csu.png" style="-webkit-filter: drop-shadow(5px 5px 5px #1a1a1a); filter: drop-shadow(1px 1px 1px #1a1a1a);">
+                                            <h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">Clayton State <br>University</h3>
+                                        </div>
+                                        <div class="text-sm font-medium contrast-150 dark:contrast-100 brightness-75 dark:brightness-100"> <span class="m-1 ml-0 inline-block text-main-c font-bold animate-wiggle animate-infinite">4.0 GPA</span> <span class="m-1 ml-0 inline-block text-yellow-500">Math Club Vice-President</span> <span class="m-1 ml-0 inline-block text-red-500">President's List</span> </div>
+                                        <div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">Fall 2022 - Spring 2024</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content text-sm" id="CSUText">
+                            <ul>
+                                <li>Formerly the Treasurer, I was elected the Vice-President of The Math Club in Fall 2023.</li>
+                                <li>I helped organize the club and gave multiple math-talks to students on topics including fractals, chess, and 3D raycasting.</li>
+                                <li>I created, organized, and lead our monthly chess-days for the campus, which quickly became the club's most popular event.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h-[0.5rem]"></div>
+            <div class="bg-[#EFEFEF] dark:bg-[#1E1E1E] rounded-xl p-1">
+                <h1 class="text-3xl min-[350px]:text-4xl min-[425px]:text-5xl text-center">RESEARCH</h1>
+                <div class="w-full">
+                    <div class="pb-3 border-x-[2px] rounded-t-md border-t-[2px] dark:border-white border-black"></div>
+                </div>
+                <div class="group pb-5">
+                    <div class="Research">
+                        <div class="float-right pr-[37px] md:pr-[50px]">
+                            <div class="origin-center absolute  transition duration-200 w-[40px] group-hover:rotate-90 opacity-100 group-hover:opacity-0"> <img width="40" height="40" src="/images/icons/plus.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
+                            <div class="origin-center absolute transition duration-200  w-[40px] group-hover:rotate-90 rotate-0"> <img width="42" height="42" src="/images/icons/minus.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
+                        </div>
+                        <div class="items-left text-left">
+                            <div class="align-left">
+                                <div class=" relative">
+                                    <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/50/laboratory.png" />
+                                        <div class="duration-0 text-xs w-[125%]">
+                                            <p class="">Clayton State <br class="min-[365px]:hidden">University</p> <span class="text-xs dark:text-gray-300 light:text-gray-700">Morrow, GA</span>
+                                        </div>
+                                    </div>
+                                    <div class="my-0">
+                                        <h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">Computational Physics Research</h3>
+                                        <div class="text-sm font-medium contrast-150 dark:contrast-100 brightness-75 dark:brightness-100"> <span class="m-1 ml-0 inline-block text-main-c">Python</span> <span class="m-1 ml-0 inline-block text-purple-500">Arduino</span> <span class="m-1 ml-0 inline-block text-green-500">Documentation</span> <span class="m-1 ml-0 inline-block text-yellow-500">Statistics</span> </div>
+                                        <div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">Fall 2023 - Fall 2024</div>
+                                    </div>
+                                    <div class="content text-sm align-left" id="ResearchText">
+                                        <div class="my-0">
+                                            <div class="flex flex-row gap-x-2 items-center "> <img class="aspect-[2/2] animate-wiggle animate-infinite pt-2 w-10 h-12 duration-200 opacity-0 group-hover:opacity-100" src="https://img.icons8.com/color/48/trophy.png" style="-webkit-filter: drop-shadow(5px 5px 5px #1a1a1a); filter: drop-shadow(5px 5px 5px #1a1a1a);">
+                                                <h3 class="transition-all duration-0 text-base font-bold">Won 1st place at <a target="_blank" href="https://www.clayton.edu/cstem/symposium/">CSU's 2024 CIM's Symposium</a> Research Poster Competition</h3>
+                                            </div>
+                                            <div class="my-0">
+                                                <div class="flex flex-row gap-x-2 items-center "> <img class="aspect-[2/2] animate-wiggle animate-infinite pt-2 w-10 h-12 duration-200 opacity-0 group-hover:opacity-100" src="https://img.icons8.com/color/48/moleskine.png" style="-webkit-filter: drop-shadow(5px 5px 5px #1a1a1a); filter: drop-shadow(5px 5px 5px #1a1a1a);">
+                                                    <h3 class="transition-all duration-0 text-base font-bold"><a target="_blank" href="https://arxiv.org/abs/2404.09395">Read the paper!</a></h3>
+                                                </div>
+                                                <ul>
+                                                    <li>Built a Photon-based Hardware Random Number Generator using an Arduino, <a target="_blank" href="https://www.hamamatsu.com/jp/en/product/optical-sensors/mppc.html">MPPC</a>, and <a target="_blank" href="https://www.hamamatsu.com/jp/en/product/optical-sensors/mppc/power-supply_driver-circuit/C11204-01.html">serially-programmed power supply.</a></li>
+                                                    <li>Wrote custom analysis software in Python for massive amounts of random data.</li>
+                                                    <li>Developed a unique test for random numbers titled <a target="_blank" href="/articles/fls_test">The Fractional Line Symmetry Test</a>.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="h-[0.5rem]"></div>
+        <div class="min-[1080px]:table-cell min-[1080px]:w-1/3 min-[1080px]:pr-1 min-[1080px]:pl-1">
+            <div class="bg-[#EFEFEF] dark:bg-[#1E1E1E] rounded-xl p-1">
+                <h1 class="text-3xl min-[350px]:text-4xl min-[425px]:text-5xl text-center ">AWARDS</h1>
+                <div class="w-full">
+                    <div class="pb-3 border-x-[2px] rounded-t-md border-t-[2px] dark:border-white border-black"></div>
+                </div>
+                <div class="group pb-5">
+                    <div class="Awards">
+                        <div class="items-left text-left">
+                            <div class="align-left">
+                                <div class=" relative">
+                                    <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/50/student-female.png" />
+                                        <div class="duration-0 text-xs w-[125%]">
+                                            <p class="">Georgia Institute of <br class="min-[365px]:hidden">Technology</p> <span class="text-xs dark:text-gray-300 light:text-gray-700">Atlanta, GA</span>
+                                        </div>
+                                    </div>
+                                    <div class="my-0">
+                                        <h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">Faculty Honors</h3>
+                                        <div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">Spring 2025</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-6">
+                    <div class="pb-3 col-start-2 col-span-5 rounded-tr-md border-r-[1px] border-t-[1px] dark:border-white border-black"></div>
+                </div>
+                <div class="group pb-5">
+                    <div class="Awards">
+                        <div class="float-right pr-[37px] md:pr-[50px] translate-x-[50px]">
+                            <div class="origin-center absolute transition duration-200 w-[100px] h-[100px] opacity-100 -translate-x-[50px] -translate-y-[5px] max-[768px]:-translate-x-[65px]"> <img class="aspect-[2/2] w-12 animate-wiggle animate-infinite " src="https://img.icons8.com/color/48/trophy.png" style="-webkit-filter: drop-shadow(5px 5px 5px #1a1a1a); filter: drop-shadow(5px 5px 5px #1a1a1a);"> </div>
+                        </div>
+                        <div class="items-left text-left">
+                            <div class="align-left">
+                                <div class=" relative">
+                                    <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/50/laboratory.png" />
+                                        <div class="duration-0 text-xs w-[125%]">
+                                            <p class="">Clayton State University</p> <span class="text-xs dark:text-gray-300 light:text-gray-700">Morrow, GA</span>
+                                        </div>
+                                    </div>
+                                    <div class="my-0">
+                                        <h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">1st Place Research Poster</h3>
+                                        <div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">CSU's 2024 CIM's Symposium</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-6">
+                    <div class="pb-3 col-start-2 col-span-5 rounded-tr-md border-r-[1px] border-t-[1px] dark:border-white border-black"></div>
+                </div>
+                <div class="group pb-5">
+                    <div class="Awards">
+                        <div class="items-left text-left">
+                            <div class="align-left">
+                                <div class=" relative">
+                                    <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/50/artificial-intelligence.png" />
+                                        <div class="duration-0 text-xs w-[125%]">
+                                            <p class="">Kennesaw State <br class="min-[365px]:hidden">University</p> <span class="text-xs dark:text-gray-300 light:text-gray-700">Marietta, GA</span>
+                                        </div>
+                                    </div>
+                                    <div class="my-0">
+                                        <h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">2nd Place AI Project</h3>
+                                        <div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">KSU AI Club's 2024 Hackathon</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-6">
+                    <div class="pb-3 col-start-2 col-span-5 rounded-tr-md border-r-[1px] border-t-[1px] dark:border-white border-black"></div>
+                </div>
+                <div class="group pb-5">
+                    <div class="Awards">
+                        <div class="items-left text-left">
+                            <div class="align-left">
+                                <div class=" relative">
+                                    <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/50/collaborator-male.png" />
+                                        <div class="duration-0 text-xs w-[125%]">
+                                            <p class="">KSU's CCSE <br class="min-[365px]:hidden">Tutoring Center</p> <span class="text-xs dark:text-gray-300 light:text-gray-700">Marietta, GA</span>
+                                        </div>
+                                    </div>
+                                    <div class="my-0">
+                                        <h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">Employee of the Month</h3>
+                                        <div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">August 2024</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-6">
+                    <div class="pb-3 col-start-2 col-span-5 rounded-tr-md border-r-[1px] border-t-[1px] dark:border-white border-black"></div>
+                </div>
+                <div class="group pb-5">
+                    <div class="Awards">
+                        <div class="items-left text-left">
+                            <div class="align-left">
+                                <div class=" relative">
+                                    <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/50/student-female.png" />
+                                        <div class="duration-0 text-xs w-[125%]">
+                                            <p class="">Clayton State <br class="min-[365px]:hidden">University</p> <span class="text-xs dark:text-gray-300 light:text-gray-700">Morrow, GA</span>
+                                        </div>
+                                    </div>
+                                    <div class="my-0">
+                                        <h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">President's List</h3>
+                                        <div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">Fall 2022 - Spring 2024</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-6">
+                    <div class="pb-3 col-start-2 col-span-5 rounded-tr-md border-r-[1px] border-t-[1px] dark:border-white border-black"></div>
+                </div>
+                <div class="group pb-5">
+                    <div class="Awards">
+                        <div class="items-left text-left">
+                            <div class="align-left">
+                                <div class=" relative">
+                                    <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/50/student-female.png" />
+                                        <div class="duration-0 text-xs w-[125%]">
+                                            <p class="">Clayton State <br class="min-[365px]:hidden">University</p> <span class="text-xs dark:text-gray-300 light:text-gray-700">Morrow, GA</span>
+                                        </div>
+                                    </div>
+                                    <div class="my-0">
+                                        <h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">Launchpad Leadership Scholarship</h3>
+                                        <div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">Spring 2023 - Spring 2024</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-6">
+                    <div class="pb-3 col-start-2 col-span-5 rounded-tr-md border-r-[1px] border-t-[1px] dark:border-white border-black"></div>
+                </div>
+                <div class="group pb-5">
+                    <div class="Awards">
+                        <div class="items-left text-left">
+                            <div class="align-left">
+                                <div class=" relative">
+                                    <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/50/politician.png" />
+                                        <div class="duration-0 text-xs w-[125%]">
+                                            <p class="">Stoa Debate</p> <span class="text-xs dark:text-gray-300 light:text-gray-700">Club Interritus</span>
+                                        </div>
+                                    </div>
+                                    <div class="my-0">
+                                        <h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">Outstanding Speech Award (4)</h3>
+                                        <div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">2019 April Showers, 2019 Fast & Furious, 2020 January Jubilee (2) </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+ <!--The divs closing are so botched shoutout lack of linting for astro in vscode -->
+    <div class="min-[1080px]:mb-[200px] mb-[200px]"><br></div></div></div>
+    <script>
+        function lookforCascade(cascClass, textClass) {
+          var coll = document.getElementsByClassName(cascClass);
+          var i;
+          
+          for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("mouseover", function() {
+              this.classList.toggle("active");
+              var content = document.getElementById(textClass);
+              if (content.style.maxHeight){
+                content.style.maxHeight = null;
+              } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+              } 
+            });
+            coll[i].addEventListener("mouseout", function() {
+              this.classList.toggle("active");
+              var content = document.getElementById(textClass);
+              if (content.style.maxHeight){
+                content.style.maxHeight = null;
+              } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+              } 
+            });
+          }
+        }
+        
+        lookforCascade("Ansys", "AnsysText");
+        lookforCascade("Tutor", "TutorText");
+        lookforCascade("TutorKSU", "TutorKSUText");
+        lookforCascade("Assist", "AssistText");
+        lookforCascade("Research", "ResearchText");
+        lookforCascade("Legal", "LegalText");
+        lookforCascade("Dojo", "DojoText");
+        lookforCascade("CSU", "CSUText");
+        
+        
+        
+        
+        
+    </script>
 </section>

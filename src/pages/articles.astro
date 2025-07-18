@@ -39,10 +39,13 @@ const sortedPosts = posts
 <PageLayout>
   <PageMeta title={`Articles | ${SITE_TITLE}`} slot="meta" />
 
-  <section slot="main" class="md:mx-[5rem]">
+  <section slot="main" class="md:mx-[5rem] mx-auto">
   
-    <h1 class=" max-w-[600px]:hidden text-3xl mb-2 text-center">All Articles</h1>
-    <ul>
+    <h1 class=" max-w-[600px]:hidden text-3xl mb-2 text-center">ARTICLES</h1>
+    <div class="w-full">
+        <div class="pb-3 -mt-2 rounded-t-md border-x-[1px] mx-[-8px] mb-[-15px] border-t-[1px] dark:border-white border-black"></div>
+    </div>
+    
       {
         sortedPosts.map((post) => {
           const formattedDate = new Date(
@@ -53,9 +56,8 @@ const sortedPosts = posts
             day: "numeric",
           });
           return (
-            
-          <li class="group grid grid-cols-[1fr] md:grid-cols-[1fr_auto] mb-3 md:gap-2 items-start duration-opacity-1000 relative transform transition-opacity opacity-0 ease-in-out" data-replace='{ "opacity-0": "opacity-100" }'>
-              <div class="absolute animate rounded-lg translate-x-[-0.5%] transition-width z-0 delay-0 h-0 group-hover:h-full duration-500 ease-out w-0 group-hover:w-[101%] bg-opacity-[4%] bg-blueLight dark:bg-opacity-[4%] dark:bg-blueDark">&nbsp;</div>
+            <ul class="hover:scale-[101%] transition-transform duration-100 ease-in-out sm:text-base text-xs ">
+          <li class="bg-[#EFEFEF] dark:bg-[#1E1E1E] px-[1rem] duration-300 scale-[100%] sm:py-1 rounded-md group grid grid-cols-[1fr] sm:grid-cols-[1fr_auto] mb-3 md:gap-2 items-start duration-opacity-1000 relative transform transition-opacity opacity-0 ease-in-out" data-replace='{ "opacity-0": "opacity-100" }'>
               
               <div class="title z-10">
                 <a
@@ -67,17 +69,17 @@ const sortedPosts = posts
                 </a>
                 
               </div>
-              <div class="text-text-muted text-sm italic pt-1">
+              <div class="text-text-muted  text-xs sm:text-sm italic pt-1">
                 <time datetime={post.frontmatter.date.toISOString()}>
                   {formattedDate}
                 </time>
               </div>
             
             
-            </li>
+            </li></ul>
           );
         })
       }
-    </ul>
+    
   </section>
 </PageLayout>

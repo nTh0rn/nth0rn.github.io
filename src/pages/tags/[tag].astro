@@ -1,6 +1,8 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
 import { project } from "../../lib/markdoc/frontmatter.schema";
+import PageMeta from "../../components/PageMeta.astro";
+import { SITE_TITLE } from "../../config";
 
 export async function getStaticPaths() {
   const allPosts = await Astro.glob('../../../content/projects/*.md');
@@ -44,11 +46,58 @@ const sortedProjects = projects
 });
 	</script>
 </head>
-<PageLayout pageTitle={tag}>
-<section slot="main">
-  <p class="text-center text-lg">Projects tagged with <strong>{tag}</strong></p>
-  <ul>
-  {
+<PageLayout>
+  <PageMeta title={`${tag} | ${SITE_TITLE}`} slot="meta" />
+<section slot="main" class="md:mx-[5rem] relative">
+  <p class="  mb-3 text-center w-full sm:pt-0 pt-2 sm:text-base text-xs ">projects tagged with <strong>{tag}</strong></p>
+  
+  
+  <div class="w-full">
+        <div class="pb-3 -mt-2 rounded-t-md border-x-[1px] mx-[-8px] mb-[-5px] border-t-[1px] dark:border-white border-black"></div>
+    </div>
+  <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 justify-around mb-5 max-[340px]:hidden">
+      {
+        sortedProjects.map((project) => {
+          const formattedDate = new Date(
+            project.frontmatter.date
+          ).toLocaleDateString("en-us", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          }
+          
+          );
+          return (
+          <a href={project.frontmatter.url} class="col-span-1 group unset hover:text-text pb-5 bg-[#EFEFEF] dark:bg-[#1E1E1E] rounded-xl origin-center hover:scale-[103%] animate transition-transform duration-100 ease-in-out" target="_blank">
+    <span class="text-xs sm:text-sm opacity-30 group-hover:opacity-50 duration-100 transition ease-in-out pl-2">{project.frontmatter.type}</span>
+    <div class="content-around h-full mt-[-1rem]">
+      
+    <span class="duration-opacity-1000 relative transform transition-opacity opacity-0 ease-in-out" data-replace='{ "opacity-0": "opacity-100" }'>
+    <div class="m-2 mb-0 content-around justify-center text-center text-xs sm:text-sm">
+
+      <h3 class="transition-all text-center duration-0 text-sm md:text-xl font-bold dark:text-gray-200 light:text-gray-900">{project.frontmatter.title}</h3>
+      <div class="sm:text-sm font-medium contrast-150 mb-1 dark:contrast-100 brightness-75 dark:brightness-100 text-center">
+        <span class="sm:text-sm inline-block "><span class={project.frontmatter.language_color}> {project.frontmatter.language}</span></span><span class="sm:text-sm light:text-gray-800 dark:text-gray-400"> <time datetime={new Date(project.frontmatter.date).toISOString()}>
+                  {formattedDate}
+                </time></span>
+      </div>
+      <div class="mx-auto rounded-lg relative w-[75%] pb-[75%] overflow-hidden">
+        <img class="absolute top-0 left-0 w-full h-full object-cover" src={project.frontmatter.image}>
+      </div>
+      <div class="sm:text-sm translate-y-[10px] duration-0">
+        {project.frontmatter.description}
+      </div>
+    </div>
+  </span>
+</div>
+  </a>
+
+          );
+        })
+      }
+    </div>
+    <ul class="min-[340px]:hidden">
+      {
         sortedProjects.map((project) => {
           const formattedDate = new Date(
             project.frontmatter.date
@@ -57,24 +106,31 @@ const sortedProjects = projects
             month: "short",
             day: "numeric",
           });
-          
           return (
-            <li class="grid grid-cols-[1fr] md:grid-cols-[1fr_auto] mb-3 md:gap-2 items-start duration-1000 relative transform transition-all opacity-0 ease-out" data-replace='{ "opacity-0": "opacity-100" }'>
-              <div class="title">
-                <a
-                  href={project.frontmatter.url}
-                  target="_blank"
-                  class="unset hover:text-text-link"
-                >
-                  <span>{project.frontmatter.title}</span>
-                </a>
-              </div>
+            <ul class="hover:scale-[101%] transition-transform duration-100 ease-in-out sm:text-base text-xs ">
+          <li class="bg-[#EFEFEF] dark:bg-[#1E1E1E] px-[1rem] duration-300 scale-[100%] rounded-md group grid grid-cols-[1fr] md:grid-cols-[1fr_auto] mb-3 md:gap-2 items-start duration-opacity-1000 relative transform transition-opacity opacity-0 ease-in-out" data-replace='{ "opacity-0": "opacity-100" }'>
               
-            </li>
+              <div class="title z-10">
+                <a
+                  href={`/articles/${project.slug}`}
+                  class="unset hover:text-text-link flex"
+                >
+                  <span>{project.frontmatter.title}&nbsp;</span>
+                  <span class="opacity-50">({project.frontmatter.language})</span>
+                </a>
+                
+              </div>
+              <div class="text-text-muted  text-xs sm:text-sm italic pt-1">
+                <time datetime={new Date(project.frontmatter.date).toISOString()}>
+                  {formattedDate}
+                </time>
+              </div>
+            
+            
+            </li></ul>
           );
         })
       }
-      
     </ul>
-    </section>
+  </section>
 </PageLayout>
