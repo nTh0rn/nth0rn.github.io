@@ -3,12 +3,11 @@ import ProjectLayout from "../../layouts/ProjectLayout.astro";
 import PageMeta from "../../components/PageMeta.astro";
 import Highlights from "../../components/Highlights.astro";
 import { SITE_TITLE } from "../../config";
-
-
-
 ---
-<head>
-  <script>
+
+<ProjectLayout>
+  <PageMeta title={`DraWordle | ${SITE_TITLE}`} slot="meta" />
+  <script slot="meta">
     var count=0;
 		document.addEventListener("DOMContentLoaded", function(){
     var replacers = document.querySelectorAll('[data-replace]');
@@ -23,19 +22,45 @@ import { SITE_TITLE } from "../../config";
     }
 });
 	</script>
-</head>
-<ProjectLayout>
-  <PageMeta title={`DraWordle | ${SITE_TITLE}`} slot="meta" />
-  
   <section slot="main" class="md:mx-[5rem]">
   
     <strong><h1 class="text-3xl mb-2 text-center max-[340px]:hidden"> DRA<span class="text-[#4eb765]">WORDLE</span></h1></strong>
     <div class="w-full max-[340px]:hidden">
         <div class="pb-3 -mt-2 rounded-t-md border-x-[1px] mx-[-8px] mb-[-5px] border-t-[1px] dark:border-white border-black"></div>
     </div>
+    <div class="text-text-muted max-[340px]:hidden mt-[-1rem]">Oct 6, 2025</div>
 
   <div class="max-w-2xl mx-auto">
-    <div class="min-h-[320px] p-0 m-auto">
+    <div class="mx-auto flex items-center justify-center">
+    <div class="flex items-center gap-x-5 max-[340px]:hidden">
+      <div class="text-center flex flex-col flex-wrap p-0 m-0">
+        <span class="p-0 m-0 leading-tight">Draw art with your</span>
+        <span class="p-0 m-0 leading-tight">Wordle attempt</span>
+        <img width="50" height="50" class="break dark:invert mx-auto" src="https://img.icons8.com/ios-filled/50/arrow.png" alt="arrow--v1"/>
+      </div>
+    <div class="flex-wrap gap-0 gap-y-[-10px] items-center text-center">
+      <div class="item mb-[-10px]">
+        <div class="whitepsace-nowrap text-nowrap flex-nowrap">Wordle #### #/#</div>
+      </div><div class="break mb-[-10px]">
+⬛⬛⬛🟨⬛
+</div><div class="break mb-[-10px]">
+⬛⬛🟨🟩🟨
+</div><div class="break mb-[-10px]">
+⬛⬛🟩🟨⬛
+</div><div class="break mb-[-10px]">
+⬛🟨🟩⬛⬛
+</div><div class="break mb-[-10px]">
+⬛⬛🟩🟨⬛
+</div><div class="break">
+🟩🟩🟩🟩🟩</div>
+</div>
+    </div>
+    </div>
+    <div class="text-center mb-1 pt-3 text-sm"><a href="#how-to-use">How to use below</a></div>
+    
+    
+    <div class="min-h-[320px] p-0 m-auto pt-4">
+      
       <form id="drawordle-input-form" style="width:300px; margin: 0 auto; display: flex; flex-direction: column; align-items: center;">
   <input id="drawordle-input" type="text" placeholder="Today's answer..."
           class="w-full mb-2 p-2 rounded-md border border-black dark:border-white bg-white dark:bg-[#1E1E1E] text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-[#4eb765] transition-colors duration-0" />
@@ -72,41 +97,68 @@ import { SITE_TITLE } from "../../config";
       </style>
     </div>
     <div class="">
-      <div class="flex flex-col items-center mt-[-0.5rem] mb-4">
-        <span class="text-center font-semibold mb-[-1rem]">Where to find today's answer:</span>
-          <div class="flex flex-row flex-wrap items-center justify-center gap-x-4 gap-y-1 mt-2 min-w-[220px]">
-          <a href="https://www.tomsguide.com/news/what-is-todays-wordle-answer#section-today-s-wordle-answer" target="_blank" class="inline-flex items-center gap-2">
-            <img 
-              src="https://www.google.com/s2/favicons?sz=32&domain=www.tomsguide.com"  
-              width="16" 
-              height="16" 
-              alt="Tom's Guide favicon"
-              class="inline-block"
-            />
-            <span>Tom's Guide</span>
-          </a>
-          <a href="https://word.tips/todays-wordle-answer#answer" target="_blank" class="inline-flex items-center gap-2">
-            <img 
-              src="https://www.google.com/s2/favicons?sz=32&domain=word.tips"  
-              width="16" 
-              height="16" 
-              alt="Word tips favicon"
-              class="inline-block"
-            />
-            <span>Wordtips</span>
-          </a>
-          <a href="https://www.nytimes.com/games/wordle" target="_blank" class="inline-flex items-center gap-2">
-            <img 
-              src="https://www.google.com/s2/favicons?sz=32&domain=www.nytimes.com/games/wordle"  
-              width="16" 
-              height="16" 
-              alt="Wordle favicon"
-              class="inline-block"
-            />
-            <span>Wordle ¯\_(ツ)_/¯</span>
-          </a>
-          </div>
-      </div>
+      <div class="flex flex-col items-center mt-[1rem] mb-4">
+  <div class="flex flex-col w-full" id="how-to-use">
+    <div class="flex flex-row items-start w-full mb-3">
+      <span class="font-semibold leading-tight whitespace-nowrap">Step 1.</span>
+      <span class="leading-tight ml-1 flex-grow min-w-0">Draw your art using the 3-color-palette in the top-left.</span>
+    </div>
+    <div class="flex flex-row items-start w-full mb-3">
+      <span class="font-semibold leading-tight whitespace-nowrap">Step 2.</span>
+      <span class="leading-tight ml-1 flex-grow min-w-0">Find today's solution (<a href='#sources'>see sources below</a>).</span>
+    </div>
+    <div class="flex flex-row items-start w-full mb-3">
+      <span class="font-semibold leading-tight whitespace-nowrap">Step 3.</span>
+      <span class="leading-tight ml-1 flex-grow min-w-0">Submit today's answer into DraWordle.</span>
+    </div>
+    <div class="flex flex-row items-start w-full mb-3">
+      <span class="font-semibold leading-tight whitespace-nowrap">Step 4.</span>
+      <span class="leading-tight ml-1 flex-grow min-w-0">Use the provided words in your Wordle attempt.</span>
+    </div>
+    <div class="flex flex-row items-start w-full mb-3">
+      <span class="font-semibold leading-tight whitespace-nowrap">Step 5.</span>
+      <span class="leading-tight ml-1 flex-grow min-w-0">Share your Wordle attempt / art!</span>
+    </div>
+    <div class="flex flex-row items-start w-full mb-3">
+  <span class="font-semibold leading-tight whitespace-nowrap">NOTE.&nbsp;&nbsp;</span>
+  <span class="leading-tight ml-1 flex-grow min-w-0">Seeing <span class="whitespace-nowrap">"<span class="relative inline-block"><span class="text-bold">!!!!!</span><span class="text-red-600 text-bold absolute left-0 top-0 translate-x-[1px] translate-y-[1px]">!!!!!</span></span>"</span> means that the row has no valid words.</span>
+    </div>
+  </div>
+        </div>
+    <span class="text-center font-semibold mb-[-1rem] mt-5 block w-full" id="sources">Where to find today's answer:</span>
+    <div class="flex flex-row flex-wrap items-center justify-center gap-x-4 gap-y-1 mt-2 min-w-[220px]">
+      <a href="https://www.tomsguide.com/news/what-is-todays-wordle-answer#section-today-s-wordle-answer" target="_blank" class="inline-flex items-center gap-2">
+        <img 
+          src="https://www.google.com/s2/favicons?sz=32&domain=www.tomsguide.com"  
+          width="16" 
+          height="16" 
+          alt="Tom's Guide favicon"
+          class="inline-block"
+        />
+        <span>Tom's Guide</span>
+      </a>
+      <a href="https://word.tips/todays-wordle-answer#answer" target="_blank" class="inline-flex items-center gap-2">
+        <img 
+          src="https://www.google.com/s2/favicons?sz=32&domain=word.tips"  
+          width="16" 
+          height="16" 
+          alt="Word tips favicon"
+          class="inline-block"
+        />
+        <span>Wordtips</span>
+      </a>
+      <a href="https://www.nytimes.com/games/wordle" target="_blank" class="inline-flex items-center gap-2">
+        <img 
+          src="https://www.google.com/s2/favicons?sz=32&domain=www.nytimes.com/games/wordle"  
+          width="16" 
+          height="16" 
+          alt="Wordle favicon"
+          class="inline-block"
+        />
+        <span>Wordle ¯\_(ツ)_/¯</span>
+      </a>
+    </div>
+    
     <script type="text/javascript">
     function updateWordsList(words) {
   const wordsListDiv = document.getElementById('drawordle-words-list');
@@ -133,14 +185,19 @@ import { SITE_TITLE } from "../../config";
       }
     }
   }
-      let submittedText = "";
-      let words = [];
-      let colors = [];
-      let currColor = 'Y';
-      let centerImg;
-      let lastCell = {x: -1, y: -1};
+  let submittedText = "";
+  let words = [];
+  let colors = [];
+  let currColor = 'Y';
+  let centerImg;
+  let lastCell = {x: -1, y: -1};
+  let canvasElem;
         p.setup = function() {
-          p.createCanvas(300, 426).parent('canvas-inner');
+          canvasElem = p.createCanvas(300, 426).parent('canvas-inner').elt;
+          // Prevent page scroll when touching canvas
+          canvasElem.addEventListener('touchmove', function(e) {
+            e.preventDefault();
+          }, { passive: false });
           p.frameRate(30);
           centerImg = p.loadImage('https://img.icons8.com/plasticine/100/paint-brush.png');
           for (let i = 0; i < 6; i++) {
@@ -178,14 +235,15 @@ import { SITE_TITLE } from "../../config";
           }
           lastCell.x = -1;
           lastCell.y = -1;
-        p.mousePressed = function() {
-          if (p.mouseX > 10 && p.mouseX < 58 && p.mouseY > 10 && p.mouseY < 58) {
+        // Mouse and touch interaction
+        function handlePointer(x, y) {
+          if (x > 10 && x < 58 && y > 10 && y < 58) {
             currColor = 'E';
             return;
-          } else if (p.mouseX > 68 && p.mouseX < 116 && p.mouseY > 10 && p.mouseY < 58) {
+          } else if (x > 68 && x < 116 && y > 10 && y < 58) {
             currColor = 'Y';
             return;
-          } else if (p.mouseX > 126 && p.mouseX < 174 && p.mouseY > 10 && p.mouseY < 58) {
+          } else if (x > 126 && x < 174 && y > 10 && y < 58) {
             currColor = 'G';
             return;
           }
@@ -193,16 +251,26 @@ import { SITE_TITLE } from "../../config";
             for (let j = 0; j < 5; j++) {
               let tx = j*48+10*(j+1);
               let ty = i*48+10*(i+1)+68;
-              if (p.mouseX > tx && p.mouseX < tx+48 && p.mouseY > ty && p.mouseY < ty+48) {
+              if (x > tx && x < tx+48 && y > ty && y < ty+48) {
                 colors[i][j] = currColor;
                 lastCell.x = j;
                 lastCell.y = i;
-                  clearWordListAndCanvasWords();
-                  return;
+                clearWordListAndCanvasWords();
                 return;
               }
             }
           }
+        }
+        p.mousePressed = function() {
+          handlePointer(p.mouseX, p.mouseY);
+        };
+        p.touchStarted = function() {
+          handlePointer(p.touchX, p.touchY);
+          return false;
+        };
+        p.touchMoved = function() {
+          handlePointer(p.touchX, p.touchY);
+          return false;
         };
           p.clear();
           if (p.mouseIsPressed) {
@@ -379,5 +447,7 @@ import { SITE_TITLE } from "../../config";
       };
     })();
     </script>
+    </div></div>
   </section>
+  
 </ProjectLayout>
