@@ -18,10 +18,7 @@ const { meta, og, twitter } = getPageMeta({
   title: title || SITE_TITLE,
   description: description || SITE_DESCRIPTION,
   baseUrl: SITE_URL,
-  ogImageAbsoluteUrl: `${SITE_URL}/images/og.png`,
-  ogImageAltText: "My fancy website",
-  ogImageWidth: 1200,
-  ogImageHeight: 630,
+  ogImageAltText: "Nikolas Thornton",
   siteOwnerTwitterHandle: TWITTER_HANDLE,
   contentAuthorTwitterHandle: TWITTER_HANDLE,
 });
@@ -62,4 +59,3 @@ const { meta, og, twitter } = getPageMeta({
     <meta property="twitter:image:alt" content={twitter.imageAlt} />
   )
 }
-<!-- {twitter.url && <meta property="twitter:url" content={twitter.url} />} -->
