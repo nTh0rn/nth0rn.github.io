@@ -194,17 +194,6 @@ import { SITE_TITLE } from "../../config";
   let canvasElem;
         p.setup = function() {
           canvasElem = p.createCanvas(300, 426).parent('canvas-inner').elt;
-          // Prevent page scroll only when finger is down on canvas
-          let isTouchingCanvas = false;
-          canvasElem.addEventListener('touchstart', function(e) {
-            isTouchingCanvas = true;
-          });
-          canvasElem.addEventListener('touchend', function(e) {
-            isTouchingCanvas = false;
-          });
-          canvasElem.addEventListener('touchmove', function(e) {
-            if (isTouchingCanvas) e.preventDefault();
-          });
           p.frameRate(30);
           centerImg = p.loadImage('https://img.icons8.com/plasticine/100/paint-brush.png');
           for (let i = 0; i < 6; i++) {
