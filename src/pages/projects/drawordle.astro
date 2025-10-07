@@ -1,0 +1,383 @@
+---
+import ProjectLayout from "../../layouts/ProjectLayout.astro";
+import PageMeta from "../../components/PageMeta.astro";
+import Highlights from "../../components/Highlights.astro";
+import { SITE_TITLE } from "../../config";
+
+
+
+---
+<head>
+  <script>
+    var count=0;
+		document.addEventListener("DOMContentLoaded", function(){
+    var replacers = document.querySelectorAll('[data-replace]');
+    for(var i=0; i<replacers.length; i++){
+        let replaceClasses = JSON.parse(replacers[i].dataset.replace.replace(/'/g, '"'));
+        Object.keys(replaceClasses).forEach(function(key) {
+            replacers[i].classList.remove(key);
+            count+=25;
+            replacers[i].classList.add("delay-["+count+"ms]");
+            replacers[i].classList.add(replaceClasses[key]);
+        });
+    }
+});
+	</script>
+</head>
+<ProjectLayout>
+  <PageMeta title={`DraWordle | ${SITE_TITLE}`} slot="meta" />
+  
+  <section slot="main" class="md:mx-[5rem]">
+  
+    <strong><h1 class="text-3xl mb-2 text-center max-[340px]:hidden"> DRA<span class="text-[#4eb765]">WORDLE</span></h1></strong>
+    <div class="w-full max-[340px]:hidden">
+        <div class="pb-3 -mt-2 rounded-t-md border-x-[1px] mx-[-8px] mb-[-5px] border-t-[1px] dark:border-white border-black"></div>
+    </div>
+
+  <div class="max-w-2xl mx-auto">
+    <div class="min-h-[320px] p-0 m-auto">
+      <form id="drawordle-input-form" style="width:300px; margin: 0 auto; display: flex; flex-direction: column; align-items: center;">
+  <input id="drawordle-input" type="text" placeholder="Today's answer..."
+          class="w-full mb-2 p-2 rounded-md border border-black dark:border-white bg-white dark:bg-[#1E1E1E] text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-[#4eb765] transition-colors duration-0" />
+        <button id="drawordle-submit" type="submit"
+          class="p-2 rounded-md bg-[#4eb765] text-white font-semibold border-none cursor-pointer w-full hover:bg-[#389a4e] transition-colors duration-200 mb-[10px]">Submit</button>
+      </form>
+      <style>
+        #canvas-inner {
+          width: 300px;
+          height: 426px;
+          background: transparent;
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        #canvas-inner canvas {
+          position: relative !important;
+          z-index: 2 !important;
+          background: transparent !important;
+          display: block;
+          margin-left: auto !important;
+          margin-right: auto !important;
+        }
+      </style>
+      <div id="canvas-inner"></div>
+  <div id="drawordle-words-list" style="text-align:center; font-family:monospace; margin: 1em 0;">Submit a valid 5 letter word.</div>
+      <style>
+        #drawordle-words-list div {
+          display: inline;
+          margin: 0;
+          padding: 0;
+          font-size: 1.1em;
+        }
+      </style>
+    </div>
+    <div class="">
+      <div class="flex flex-col items-center mt-[-0.5rem] mb-4">
+        <span class="text-center font-semibold mb-[-1rem]">Where to find today's answer:</span>
+          <div class="flex flex-row flex-wrap items-center justify-center gap-x-4 gap-y-1 mt-2 min-w-[220px]">
+          <a href="https://www.tomsguide.com/news/what-is-todays-wordle-answer#section-today-s-wordle-answer" target="_blank" class="inline-flex items-center gap-2">
+            <img 
+              src="https://www.google.com/s2/favicons?sz=32&domain=www.tomsguide.com"  
+              width="16" 
+              height="16" 
+              alt="Tom's Guide favicon"
+              class="inline-block"
+            />
+            <span>Tom's Guide</span>
+          </a>
+          <a href="https://word.tips/todays-wordle-answer#answer" target="_blank" class="inline-flex items-center gap-2">
+            <img 
+              src="https://www.google.com/s2/favicons?sz=32&domain=word.tips"  
+              width="16" 
+              height="16" 
+              alt="Word tips favicon"
+              class="inline-block"
+            />
+            <span>Wordtips</span>
+          </a>
+          <a href="https://www.nytimes.com/games/wordle" target="_blank" class="inline-flex items-center gap-2">
+            <img 
+              src="https://www.google.com/s2/favicons?sz=32&domain=www.nytimes.com/games/wordle"  
+              width="16" 
+              height="16" 
+              alt="Wordle favicon"
+              class="inline-block"
+            />
+            <span>Wordle ¯\_(ツ)_/¯</span>
+          </a>
+          </div>
+      </div>
+    <script type="text/javascript">
+    function updateWordsList(words) {
+  const wordsListDiv = document.getElementById('drawordle-words-list');
+  if (!wordsListDiv) return;
+  let lines = words.map(row => row.join('')).filter(w => w && w !== 'PPPPP');
+  wordsListDiv.innerHTML = lines.join(' ');
+    }
+    (function() {
+    let cachedValidWords = [];
+    let validWordsLoaded = false;
+    fetch('/projects/drawordle/valid_words.txt')
+      .then(response => response.text())
+      .then(text => {
+        cachedValidWords = text.split('\n').map(w => w.trim()).filter(w => w.length === 5);
+        validWordsLoaded = true;
+      });
+    function sketch(p) {
+  function clearWordListAndCanvasWords() {
+    const wordsListDiv = document.getElementById('drawordle-words-list');
+    if (wordsListDiv) wordsListDiv.innerHTML = 'Submit a valid 5 letter word.';
+    for (let i = 0; i < 6; i++) {
+      for (let j = 0; j < 5; j++) {
+        words[i][j] = '';
+      }
+    }
+  }
+      let submittedText = "";
+      let words = [];
+      let colors = [];
+      let currColor = 'Y';
+      let centerImg;
+      let lastCell = {x: -1, y: -1};
+        p.setup = function() {
+          p.createCanvas(300, 426).parent('canvas-inner');
+          p.frameRate(30);
+          centerImg = p.loadImage('https://img.icons8.com/plasticine/100/paint-brush.png');
+          for (let i = 0; i < 6; i++) {
+            words[i] = [];
+            for (let j = 0; j < 5; j++) {
+              words[i][j] = 'P';
+            }
+          }
+          for (let i = 0; i < 6; i++) {
+            colors[i] = [];
+            for (let j = 0; j < 5; j++) {
+              colors[i][j] = 'E';
+            }
+          }
+        };
+        p.draw = function() {
+          p.cursor(p.ARROW);
+          let overSelector = (
+            (p.mouseX > 10 && p.mouseX < 58 && p.mouseY > 10 && p.mouseY < 58) ||
+            (p.mouseX > 68 && p.mouseX < 116 && p.mouseY > 10 && p.mouseY < 58) ||
+            (p.mouseX > 126 && p.mouseX < 174 && p.mouseY > 10 && p.mouseY < 58)
+          );
+          let overTile = false;
+          for (let i = 0; i < 6; i++) {
+            for (let j = 0; j < 5; j++) {
+              let tx = j*48+10*(j+1);
+              let ty = i*48+10*(i+1)+68;
+              if (p.mouseX > tx && p.mouseX < tx+48 && p.mouseY > ty && p.mouseY < ty+48) {
+                overTile = true;
+              }
+            }
+          }
+          if (overSelector || overTile) {
+            p.cursor(p.HAND);
+          }
+          lastCell.x = -1;
+          lastCell.y = -1;
+        p.mousePressed = function() {
+          if (p.mouseX > 10 && p.mouseX < 58 && p.mouseY > 10 && p.mouseY < 58) {
+            currColor = 'E';
+            return;
+          } else if (p.mouseX > 68 && p.mouseX < 116 && p.mouseY > 10 && p.mouseY < 58) {
+            currColor = 'Y';
+            return;
+          } else if (p.mouseX > 126 && p.mouseX < 174 && p.mouseY > 10 && p.mouseY < 58) {
+            currColor = 'G';
+            return;
+          }
+          for (let i = 0; i < 6; i++) {
+            for (let j = 0; j < 5; j++) {
+              let tx = j*48+10*(j+1);
+              let ty = i*48+10*(i+1)+68;
+              if (p.mouseX > tx && p.mouseX < tx+48 && p.mouseY > ty && p.mouseY < ty+48) {
+                colors[i][j] = currColor;
+                lastCell.x = j;
+                lastCell.y = i;
+                  clearWordListAndCanvasWords();
+                  return;
+                return;
+              }
+            }
+          }
+        };
+          p.clear();
+          if (p.mouseIsPressed) {
+            for (let i = 0; i < 6; i++) {
+              for (let j = 0; j < 5; j++) {
+                let tx = j*48+10*(j+1);
+                let ty = i*48+10*(i+1)+68;
+                if (p.mouseX > tx && p.mouseX < tx+48 && p.mouseY > ty && p.mouseY < ty+48) {
+                  colors[i][j] = currColor;
+                  clearWordListAndCanvasWords();
+                }
+              }
+            }
+          }
+          for(var i = 0; i < 6; i++) {
+            for(var j = 0; j < 5; j++) {
+              p.stroke(100);
+              switch(colors[i][j]) {
+                case 'G':
+                  p.fill(108,169,101);
+                  break;
+                case 'Y':
+                  p.fill(200,182,83);
+                  break;
+                case 'E':
+                  p.fill(120,124,127);
+                  break;
+              }
+              p.rect(j*48+10*(j+1), i*48+10*(i+1)+68, 48, 48);
+              if(submittedText) {
+                p.noStroke();
+                p.textAlign(p.CENTER, p.CENTER);
+                p.textFont('Helvetica');
+                p.textSize(24);
+                p.textStyle(BOLD);
+                if(words[i][j] == '!') {
+                  p.fill(255,0,0);
+                  p.text(words[i][j], j*48+10*(j+1)+25, i*48+10*(i+1)+95);
+                  p.text(words[i][j], j*48+10*(j+1)+24, i*48+10*(i+1)+94);
+                }
+                p.fill(255);
+                p.text(words[i][j], j*48+10*(j+1)+23, i*48+10*(i+1)+93);
+                
+                
+              }
+            }
+          }
+          p.stroke(100);
+          p.fill(120,124,127);
+          p.rect(10, 10, 48, 48, 12);
+          p.fill(200,182,83);
+          p.rect(68, 10, 48, 48, 12);
+          p.fill(108,169,101);
+          p.rect(126, 10, 48, 48, 12);
+          if (document.documentElement.classList.contains('dark')) {
+            p.stroke(100);
+          } else {
+            p.stroke(150);
+          }
+          p.line(5, 68, 295, 68);
+          switch(currColor) {
+            case 'G':
+              p.fill(108,169,101);
+              break;
+            case 'Y':
+              p.fill(200,182,83);
+              break;
+            case 'E':
+              p.fill(120,124,127);
+              break;
+          }
+          p.rect(242, 10, 48, 48, 24);
+          
+        };
+        
+        p.setSubmittedText = function(solution) {
+          let isValid = /^[a-zA-Z]{5}$/.test(solution) && cachedValidWords && cachedValidWords.includes(solution.toLowerCase());
+          if (isValid) {
+            submittedText = solution.toLowerCase();
+            p.findWords();
+          } else {
+            submittedText = '';
+            const wordsListDiv = document.getElementById('drawordle-words-list');
+            if (wordsListDiv) {
+              wordsListDiv.textContent = 'Invalid word.';
+            }
+          }
+        };
+
+        p.replaceCharAt = function(str, index, newChar) {
+          return str.slice(0, index) + newChar + str.slice(index + 1);
+        };
+
+        p.findWords = function() {
+          if (!validWordsLoaded || cachedValidWords.length === 0 || !submittedText) {
+            updateWordsList(Array(6).fill(Array(5).fill('!')));
+            return;
+          }
+          function getWordleColors(guess, solution) {
+            let res = Array(5).fill('E');
+            let solArr = solution.split('');
+            let guessArr = guess.split('');
+            let used = Array(5).fill(false);
+            for (let i = 0; i < 5; i++) {
+              if (guessArr[i] === solArr[i]) {
+                res[i] = 'G';
+                used[i] = true;
+              }
+            }
+            for (let i = 0; i < 5; i++) {
+              if (res[i] === 'G') continue;
+              for (let j = 0; j < 5; j++) {
+                if (!used[j] && guessArr[i] === solArr[j]) {
+                  res[i] = 'Y';
+                  used[j] = true;
+                  break;
+                }
+              }
+            }
+            return res;
+          }
+          for (let i = 0; i < 6; i++) {
+            words[i] = Array(5).fill('!');
+          }
+          let foundGreenRow = false;
+          for (let row = 0; row < 6; row++) {
+            let targetColors = colors[row];
+            if (foundGreenRow) {
+              words[row] = Array(5).fill('!');
+              continue;
+            }
+            let matches = [];
+            for (let w = 0; w < cachedValidWords.length; w++) {
+              let candidate = cachedValidWords[w];
+              let colorPattern = getWordleColors(candidate, submittedText);
+              if (colorPattern.join('') === targetColors.join('')) {
+                matches.push(candidate);
+              }
+            }
+            if (matches.length > 0) {
+              let chosen = matches[Math.floor(Math.random() * matches.length)];
+              words[row] = chosen.split('');
+            }
+            if (targetColors.every(c => c === 'G')) {
+              foundGreenRow = true;
+            }
+          }
+          updateWordsList(words);
+        };
+      }
+      function waitForP5() {
+        if (window.p5 && window.createCanvas) {
+          window.drawordleP5Instance = new p5(sketch, 'canvas-inner');
+        } else {
+          setTimeout(waitForP5, 50);
+        }
+      }
+      waitForP5();
+
+      
+
+      function handleInputSubmit(e) {
+        e.preventDefault();
+        const value = document.getElementById('drawordle-input').value;
+        if (window.drawordleP5Instance && window.drawordleP5Instance.setSubmittedText) {
+          window.drawordleP5Instance.setSubmittedText(value);
+        }
+      }
+      document.getElementById('drawordle-input-form').addEventListener('submit', handleInputSubmit);
+      window.drawordleOnSubmit = function(val) {
+        if (window.drawordleP5Instance && window.drawordleP5Instance.setSubmittedText) {
+          window.drawordleP5Instance.setSubmittedText(val);
+        }
+      };
+    })();
+    </script>
+  </section>
+</ProjectLayout>
