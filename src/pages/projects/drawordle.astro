@@ -40,7 +40,7 @@ import { SITE_TITLE } from "../../config";
       </div>
     <div class="flex-wrap gap-0 gap-y-[-10px] items-center text-center">
       <div class="item mb-[-10px]">
-        <div class="whitepsace-nowrap text-nowrap flex-nowrap">Wordle #### #/#</div>
+        <div class="whitepsace-nowrap text-nowrap flex-nowrapZ">Wordle #### #/#</div>
       </div><div class="break mb-[-10px]">
 ⬛⬛⬛🟨⬛
 </div><div class="break mb-[-10px]">
@@ -231,15 +231,14 @@ import { SITE_TITLE } from "../../config";
           }
           lastCell.x = -1;
           lastCell.y = -1;
-        // Mouse and touch interaction
-        function handlePointer(x, y) {
-          if (x > 10 && x < 58 && y > 10 && y < 58) {
+        p.mousePressed = function() {
+          if (p.mouseX > 10 && p.mouseX < 58 && p.mouseY > 10 && p.mouseY < 58) {
             currColor = 'E';
             return;
-          } else if (x > 68 && x < 116 && y > 10 && y < 58) {
+          } else if (p.mouseX > 68 && p.mouseX < 116 && p.mouseY > 10 && p.mouseY < 58) {
             currColor = 'Y';
             return;
-          } else if (x > 126 && x < 174 && y > 10 && y < 58) {
+          } else if (p.mouseX > 126 && p.mouseX < 174 && p.mouseY > 10 && p.mouseY < 58) {
             currColor = 'G';
             return;
           }
@@ -247,7 +246,7 @@ import { SITE_TITLE } from "../../config";
             for (let j = 0; j < 5; j++) {
               let tx = j*48+10*(j+1);
               let ty = i*48+10*(i+1)+68;
-              if (x > tx && x < tx+48 && y > ty && y < ty+48) {
+              if (p.mouseX > tx && p.mouseX < tx+48 && p.mouseY > ty && p.mouseY < ty+48) {
                 colors[i][j] = currColor;
                 lastCell.x = j;
                 lastCell.y = i;
@@ -256,17 +255,6 @@ import { SITE_TITLE } from "../../config";
               }
             }
           }
-        }
-        p.mousePressed = function() {
-          handlePointer(p.mouseX, p.mouseY);
-        };
-        p.touchStarted = function() {
-          handlePointer(p.touchX, p.touchY);
-          return false;
-        };
-        p.touchMoved = function() {
-          handlePointer(p.touchX, p.touchY);
-          return false;
         };
           p.clear();
           if (p.mouseIsPressed) {
