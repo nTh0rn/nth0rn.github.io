@@ -1,12 +1,11 @@
 ---
 import ProjectLayout from "../../layouts/ProjectLayout.astro";
 import PageMeta from "../../components/PageMeta.astro";
-import Highlights from "../../components/Highlights.astro";
 import { SITE_TITLE } from "../../config";
 ---
 
-<ProjectLayout>
-  <PageMeta title={`DraWordle | ${SITE_TITLE}`} slot="meta" />
+<ProjectLayout title="DraWordle" description="A webapp allowing you to draw with your Wordle attempt." url="https://nth0rn.github.io/projects/drawordle">
+  <PageMeta title={`DraWordle | ${SITE_TITLE}`} description="A webapp allowing you to draw with your Wordle attempt." slot="meta" />
   <script slot="meta">
     var count=0;
 		document.addEventListener("DOMContentLoaded", function(){
