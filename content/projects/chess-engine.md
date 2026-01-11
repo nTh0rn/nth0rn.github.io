@@ -7,7 +7,7 @@ url: https://github.com/nTh0rn/chess-engine
 tags: ["C++", "Algorithmic Design", "Code Optimization", "Mathematics", "Recursion", "Multi-threading", "Documentation"]
 language: "C++"
 language_color: text-yellow-500
-image: "/images/chess-engine/example-game.gif"
+image: "/images/chess-engine/example-game.webp"
 featured: true
 type: "GitHub"
 ---
