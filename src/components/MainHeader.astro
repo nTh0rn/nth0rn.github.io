@@ -12,7 +12,7 @@ const projects = await readAll({
 });
 
 const highlightedProject = projects
-.filter((p) => p.frontmatter.title == "Dynamic Sudoku Solver")
+.filter((p) => p.frontmatter.title == "Chess Engine")
 .sort(
     (a, b) =>
       new Date(b.frontmatter.date).valueOf() -
@@ -95,15 +95,26 @@ const highlightedProject = projects
 					<div class="flex mb-0 pt-2 justify-center h-[75px] ">
                         <div class="">
                             <div class=" m-0 p-0 break-inside-avoid-column flex flex-row flex-wrap justify-center max-[768px]:gap-x-[0px] gap-x-[20px] gap-y-[1000px] ">
-                                <!--python --> <a href="https://www.python.org/" target="_blank" class="group max-[768px]:scale-[60%] flex justify-center items-center unset hover:text-text-link duration-1000 relative transform delay-[500ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);"> <img src="./images/icons/tech/python.png" width="45" class="transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50" /> </a>
-                                <!--cpp --> <a href="https://www.w3schools.com/cpp/cpp_intro.asp" target="_blank" class="group max-[768px]:scale-[60%] flex justify-center items-center unset hover:text-text-link duration-1000 relative delay-[450ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);"> <img src="./images/icons/tech/cpp.png" width="45" class=" transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50" /> </a>
-                                <!--java --> <a href="https://www.java.com/en/download/help/whatis_java.html" target="_blank" class="group max-[768px]:scale-[60%] flex justify-center items-center unset hover:text-text-link duration-1000 relative transform delay-[400ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);"> <img src="./images/icons/tech/java.png" width="45" class=" transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50" /> </a>
-                                <!--csharp --> <a href="https://www.w3schools.com/cs/cs_intro.php" target="_blank" class="group max-[768px]:scale-[60%] flex justify-center items-center unset hover:text-text-link duration-1000 relative transform delay-[350ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);"> <img src="./images/icons/tech/csharp.png" width="45" class=" transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50" /> </a>
-                                <!--rust --> <a href="https://www.rust-lang.org/" target="_blank" class="group max-[768px]:scale-[60%] flex justify-center items-center unset hover:text-text-link duration-1000 relative delay-[300ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);"> <img src="./images/icons/tech/rust.png" width="45" class=" transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50" /> </a>
-                                <!--git --> <a href="https://git-scm.com/" target="_blank" class="group max-[768px]:scale-[60%] flex justify-center items-center unset hover:text-text-link duration-1000 relative transform delay-[250ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);"> <img src="./images/icons/tech/git.png" width="40" class="transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50" /> </a>
-                                <!--Batch --> <a href="https://en.wikipedia.org/wiki/Batch_file" target="_blank" class="group max-[768px]:scale-[60%] flex justify-center items-center unset hover:text-text-link duration-1000 relative transform delay-[200ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);"> <img src="./images/icons/tech/batch.png" width="45" class="transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50" /> </a>
-                                <!--GameMaker --> <a href="https://gamemaker.io/en" target="_blank" class="group max-[768px]:scale-[60%] flex justify-center items-center unset hover:text-text-link duration-1000 relative delay-[150ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);"> <img src="./images/icons/tech/gamemaker.png" width="45" class=" transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50" /> </a>
-                                <!--html/css --> <a href="https://www.w3.org/Style/CSS/Overview.en.html" target="_blank" class="group max-[768px]:scale-[60%] flex justify-center items-center unset hover:text-text-link duration-1000 relative delay-[100ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);"> <img src="./images/icons/tech/htmlcss.png" width="41" class="transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50" /> </a>
+                                <!--OLD LINKS
+                                python <a href="https://www.python.org/" target="_blank" class="group max-[768px]:scale-[60%] flex justify-center items-center unset hover:text-text-link duration-1000 relative transform delay-[500ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);"> <img src="./images/icons/tech/python.png" width="45" class="transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50" /> </a>
+                                cpp <a href="https://www.w3schools.com/cpp/cpp_intro.asp" target="_blank" class="group max-[768px]:scale-[60%] flex justify-center items-center unset hover:text-text-link duration-1000 relative delay-[450ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);"> <img src="./images/icons/tech/cpp.png" width="45" class=" transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50" /> </a>
+                                java <a href="https://www.java.com/en/download/help/whatis_java.html" target="_blank" class="group max-[768px]:scale-[60%] flex justify-center items-center unset hover:text-text-link duration-1000 relative transform delay-[400ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);"> <img src="./images/icons/tech/java.png" width="45" class=" transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50" /> </a>
+                                csharp <a href="https://www.w3schools.com/cs/cs_intro.php" target="_blank" class="group max-[768px]:scale-[60%] flex justify-center items-center unset hover:text-text-link duration-1000 relative transform delay-[350ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);"> <img src="./images/icons/tech/csharp.png" width="45" class=" transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50" /> </a>
+                                rust <a href="https://www.rust-lang.org/" target="_blank" class="group max-[768px]:scale-[60%] flex justify-center items-center unset hover:text-text-link duration-1000 relative delay-[300ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);"> <img src="./images/icons/tech/rust.png" width="45" class=" transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50" /> </a>
+                                git <a href="https://git-scm.com/" target="_blank" class="group max-[768px]:scale-[60%] flex justify-center items-center unset hover:text-text-link duration-1000 relative transform delay-[250ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);"> <img src="./images/icons/tech/git.png" width="40" class="transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50" /> </a>
+                                Batch <a href="https://en.wikipedia.org/wiki/Batch_file" target="_blank" class="group max-[768px]:scale-[60%] flex justify-center items-center unset hover:text-text-link duration-1000 relative transform delay-[200ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);"> <img src="./images/icons/tech/batch.png" width="45" class="transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50" /> </a>
+                                GameMaker <a href="https://gamemaker.io/en" target="_blank" class="group max-[768px]:scale-[60%] flex justify-center items-center unset hover:text-text-link duration-1000 relative delay-[150ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);"> <img src="./images/icons/tech/gamemaker.png" width="45" class=" transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50" /> </a>
+                                html/css <a href="https://www.w3.org/Style/CSS/Overview.en.html" target="_blank" class="group max-[768px]:scale-[60%] flex justify-center items-center unset hover:text-text-link duration-1000 relative delay-[100ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);"> <img src="./images/icons/tech/htmlcss.png" width="41" class="transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50" /> </a>
+                                -->
+                                <!--python --> <p class="group max-[768px]:scale-[60%] flex justify-center items-center unset hover:text-text-link duration-1000 relative transform delay-[500ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);"> <img src="./images/icons/tech/python.png" width="45" class="transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50" /> </p>
+                                <!--cpp --> <p class="group max-[768px]:scale-[60%] flex justify-center items-center unset hover:text-text-link duration-1000 relative delay-[450ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);"> <img src="./images/icons/tech/cpp.png" width="45" class=" transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50" /> </p>
+                                <!--java --> <p class="group max-[768px]:scale-[60%] flex justify-center items-center unset hover:text-text-link duration-1000 relative transform delay-[400ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);"> <img src="./images/icons/tech/java.png" width="45" class=" transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50" /> </p>
+                                <!--csharp --> <p class="group max-[768px]:scale-[60%] flex justify-center items-center unset hover:text-text-link duration-1000 relative transform delay-[350ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);"> <img src="./images/icons/tech/csharp.png" width="45" class=" transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50" /> </p>
+                                <!--rust --> <p class="group max-[768px]:scale-[60%] flex justify-center items-center unset hover:text-text-link duration-1000 relative delay-[300ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);"> <img src="./images/icons/tech/rust.png" width="45" class=" transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50" /> </p>
+                                <!--git --> <p class="group max-[768px]:scale-[60%] flex justify-center items-center unset hover:text-text-link duration-1000 relative transform delay-[250ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);"> <img src="./images/icons/tech/git.png" width="40" class="transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50" /> </p>
+                                <!--Batch --> <p class="group max-[768px]:scale-[60%] flex justify-center items-center unset hover:text-text-link duration-1000 relative transform delay-[200ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);"> <img src="./images/icons/tech/batch.png" width="45" class="transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50" /> </p>
+                                <!--GameMaker --> <p class="group max-[768px]:scale-[60%] flex justify-center items-center unset hover:text-text-link duration-1000 relative delay-[150ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);"> <img src="./images/icons/tech/gamemaker.png" width="45" class=" transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50" /> </p>
+                                <!--html/css --> <p class="group max-[768px]:scale-[60%] flex justify-center items-center unset hover:text-text-link duration-1000 relative delay-[100ms] transition-transform -translate-x-[100vw] max-[768px]:translate-x-0 ease-out" data-replace='{ "-translate-x-[100vw]": "translate-x-0" }' style="-webkit-filter: drop-shadow(5px 5px 5px #000000); filter: drop-shadow(5px 5px 5px #000000);"> <img src="./images/icons/tech/htmlcss.png" width="41" class="transition ease-in-out duration-200 group-hover:scale-110 z-30 group-hover:z-50" /> </p>
                             </div>
                         </div>
                     </div>
@@ -242,7 +253,8 @@ const highlightedProject = projects
                     </div>
                     <div class="content text-sm" id="AnsysText">
                         <ul>
-                            <li>Developing internal cloud-based tools for the purpose of supporting machine learning models.</li>
+                            <li>Developed and maintained an internal tool and API for the purpose of tracking BLOB and ML-experiment provenance.</li>
+                            <li>Developed a dynamic testing framework for compatibility with any combination of recursive and interreferential SQLModel/Strawberry objects as well as conversion methods for complex types.</li>
                         </ul>
                     </div>
                 </div>
@@ -272,7 +284,8 @@ const highlightedProject = projects
                     </div>
                     <div class="content text-sm" id="TutorKSUText">
                         <ul>
-                            <li>Tutored undergraduate students in Java, Python, and C# up to Computer Science 2.</li>
+                            <li>Tutored undergraduate and postgraduate students in Java, C#, and Python.</li>
+                            <li>Awarded as the 3rd most-booked tutor for Fall 2024 and Employee of the Month for August, 2024.</li>
                         </ul>
                     </div>
                 </div>
@@ -302,8 +315,8 @@ const highlightedProject = projects
                     </div>
                     <div class="content text-sm" id="TutorText">
                         <ul>
-                            <li>Tutored CSU students in classes up to Computer Science 2 and Calculus 3.</li>
-                            <li>Handled basic administrative office tasks and oversaw the front desk.</li>
+                            <li>Tutored undergraduate students OOP in Java and Python, as well as mathematics up to and including Calculus 3.</li>
+                            <li>Handled various administrative tasks and oversaw the front desk.</li>
                         </ul>
                     </div>
                 </div>
@@ -338,36 +351,8 @@ const highlightedProject = projects
                         </ul>
                     </div>
                 </div>
-                <div class="grid grid-cols-6">
-                    <div class="pb-3 col-start-2 col-span-5 rounded-tr-md border-r-[1px] border-t-[1px] dark:border-white border-black"></div>
-                </div>
-                <div class="group pb-5 Legal">
-                    <div class="float-right pr-[37px] md:pr-[50px]">
-                        <div class="origin-center absolute  transition duration-200 w-[40px] group-hover:rotate-90 opacity-100 group-hover:opacity-0"> <img width="40" height="40" src="/images/icons/plus.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
-                        <div class="origin-center absolute transition duration-200  w-[40px] group-hover:rotate-90 rotate-0"> <img width="42" height="42" src="/images/icons/minus.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
-                    </div>
-                    <div class="items-left text-left">
-                        <div class="align-left">
-                            <div class=" relative">
-                                <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/50/scales--v1.png" />
-                                    <div class="duration-0 text-xs">
-                                        <p class="">Leanne P. Cooper P.C.</p> <span class="text-xs dark:text-gray-300 light:text-gray-700">McDonough, GA</span>
-                                    </div>
-                                </div>
-                                <div class="my-0">
-                                    <h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">Legal Assistant</h3>
-                                    <div class="text-sm font-medium contrast-150 dark:contrast-100 brightness-75 dark:brightness-100"> <span class="m-1 ml-0 inline-block text-pink-500">Administration</span> <span class="m-1 ml-0 inline-block text-lime-500">Time Management</span> </div>
-                                    <div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">Feb 2021 - Dec 2021</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content text-sm" id="LegalText">
-                        <ul>
-                            <li>Drafted legal documents, straight-typed/organized discovery, and archived closed cases.</li>
-                        </ul>
-                    </div>
-                </div>
+
+                
                 <div class="grid grid-cols-6">
                     <div class="pb-3 col-start-2 col-span-4 border-t-[1px] dark:border-white border-black"></div>
                 </div>
@@ -391,7 +376,7 @@ const highlightedProject = projects
                                     <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 h-10 " src="/images/icons/schools/gt.png" style="-webkit-filter: drop-shadow(5px 5px 5px #1a1a1a); filter: drop-shadow(1px 1px 1px #1a1a1a);">
                                         <h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">Georgia Institute of Technology</h3>
                                     </div>
-                                    <div class="text-sm font-medium contrast-150 dark:contrast-100 brightness-75 dark:brightness-100"> <span class="m-1 ml-0 inline-block text-main-c font-bold ">4.0 GPA</span> <span class="m-1 ml-0 inline-block text-red-500">Faculty Honors</span> </div>
+                                    <div class="text-sm font-medium contrast-150 dark:contrast-100 brightness-75 dark:brightness-100"> <span class="m-1 ml-0 inline-block text-main-c font-bold ">3.7 GPA</span> <span class="m-1 ml-0 inline-block text-red-500">Faculty Honors</span> </div>
                                     <div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">Spring 2025 - Fall 2027</div>
                                 </div>
                             </div>
@@ -634,28 +619,7 @@ const highlightedProject = projects
                         </div>
                     </div>
                 </div>
-                <div class="grid grid-cols-6">
-                    <div class="pb-3 col-start-2 col-span-5 rounded-tr-md border-r-[1px] border-t-[1px] dark:border-white border-black"></div>
-                </div>
-                <div class="group pb-5">
-                    <div class="Awards">
-                        <div class="items-left text-left">
-                            <div class="align-left">
-                                <div class=" relative">
-                                    <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/50/politician.png" />
-                                        <div class="duration-0 text-xs w-[125%]">
-                                            <p class="">Stoa Debate</p> <span class="text-xs dark:text-gray-300 light:text-gray-700">Club Interritus</span>
-                                        </div>
-                                    </div>
-                                    <div class="my-0">
-                                        <h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">Outstanding Speech Award (4)</h3>
-                                        <div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">2019 April Showers, 2019 Fast & Furious, 2020 January Jubilee (2) </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         
  <!--The divs closing are so botched shoutout lack of linting for astro in vscode -->
