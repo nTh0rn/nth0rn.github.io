@@ -49,6 +49,35 @@ const highlightedProject = projects
   animation: ping-shadow 1s cubic-bezier(0, 0, 0.2, 1) 5 forwards;
   border-radius: 0.5rem; /* match your rounded-lg */
 }
+
+@keyframes dropdown-indicator-icon-dip {
+    0%, 18%, 100% {
+        transform: translate3d(0, 0, 0);
+    }
+    34% {
+        transform: translate3d(0, 1px, 0);
+    }
+    44% {
+        transform: translate3d(0, 2px, 0);
+    }
+    56% {
+        transform: translate3d(0, 0.8px, 0);
+    }
+    68% {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.dropdown-indicator-dip .dropdown-indicator-icon-shell {
+    animation: dropdown-indicator-icon-dip 1.1s linear infinite;
+    will-change: transform;
+    transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.group:hover .dropdown-indicator-dip .dropdown-indicator-icon-shell {
+    animation: none;
+    transform: translateY(0);
+}
 </style>
 
 <head>
@@ -132,12 +161,12 @@ const highlightedProject = projects
                             <p class="mb-5 text-base text-gray-800 sm:text-lg dark:text-gray-400 px-4">Feel free to poke around and see some of the things I've made.</p>
                             <div class="flex items-center justify-center">
                             <div class="flex flex-wrap justify-center mx-auto gap-4 md:h-[50%]">
-                                <a href="/projects" class="group bg-[#EFEFEF] dark:bg-[#1E1E1E] text-white hover:text-text max-[468px]:w-full hover:scale-[105%] animate transition-transform duration-300 ease-in-out rounded-lg h-min inline-flex items-center justify-center px-4 py-2.5 focus:outline-none focus:ring-gray-300 dark:focus:ring-gray-700"> <img width="1" height="50" class="" src="" /> <img width="50" height="50" class="invert-0 dark:invert mr-3 px-[5px]" src="https://img.icons8.com/ios/50/source-code.png" alt="projects" />
+                                <a href="/projects" class="group bg-[#EFEFEF] dark:bg-[#1E1E1E] text-white hover:text-text max-[468px]:w-full hover:scale-[105%] animate transition-transform duration-300 ease-in-out rounded-lg h-min inline-flex items-center justify-center px-4 py-2.5 focus:outline-none focus:ring-gray-300 dark:focus:ring-gray-700"> <img width="1" height="50" class="" src="" /> <img width="50" height="50" class="invert-0 dark:invert mr-3 px-[5px]" src="/images/icons/misc/source-code.png" alt="projects" />
                                     <div class="text-left rtl:text-right text-black dark:text-white group-hover:text-text-link">
                                         <div class="mb-1 text-xs">Browse my</div>
                                         <div class="-mt-1 font-sans text-sm font-semibold">Projects</div>
                                     </div>
-                                </a> <a href="/articles" class="group  bg-[#EFEFEF] dark:bg-[#1E1E1E] text-white hover:scale-[105%] animate transition-transform duration-300 ease-in-out rounded-lg inline-flex h-min max-[468px]:w-full items-center justify-center px-4 py-2.5 focus:outline-none focus:ring-gray-300 dark:focus:ring-gray-700"> <img width="1" height="50" class="" src="" /> <img width="50" height="50" class="invert-0 dark:invert mr-3 px-[5px]" src="https://img.icons8.com/ios/50/edit-text-file.png" alt="projects" />
+                                </a> <a href="/articles" class="group  bg-[#EFEFEF] dark:bg-[#1E1E1E] text-white hover:scale-[105%] animate transition-transform duration-300 ease-in-out rounded-lg inline-flex h-min max-[468px]:w-full items-center justify-center px-4 py-2.5 focus:outline-none focus:ring-gray-300 dark:focus:ring-gray-700"> <img width="1" height="50" class="" src="" /> <img width="50" height="50" class="invert-0 dark:invert mr-3 px-[5px]" src="/images/icons/misc/edit-text-file.png" alt="projects" />
                                     <div class="text-left rtl:text-right text-black dark:text-white group-hover:text-text-link">
                                         <div class="mb-1 text-xs">Read my</div>
                                         <div class="-mt-1 font-sans text-sm font-semibold">Articles</div>
@@ -151,11 +180,11 @@ const highlightedProject = projects
                                     
 									<div class="unset text-black dark:text-white flex max-[768px]:hidden absolute pointer-events-none z-[-1] ease-out transition duration-200 group-hover:opacity-100 opacity-0 group-hover:translate-y-[75px] text-sm">
                                         
-										<div class="transform transition duration-200 translate-y-1 translate-x-5 group-hover:translate-x-0"> <img width="25" height="25" class="animate-bounce animate-infinite dark:invert" src="https://img.icons8.com/ios-filled/50/long-arrow-down.png" alt="long-arrow-down" /> </div>
+										<div class="transform transition duration-200 translate-y-1 translate-x-5 group-hover:translate-x-0"> <img width="25" height="25" class="animate-bounce animate-infinite dark:invert" src="/images/icons/misc/long-arrow-down.png" alt="long-arrow-down" /> </div>
                                         
 										<div class=""> Or view it below! </div>
-                                        <div class="transform transition duration-200 translate-y-1 -translate-x-5 group-hover:translate-x-0"> <img width="25" height="25" class="animate-bounce animate-infinite dark:invert" src="https://img.icons8.com/ios-filled/50/long-arrow-down.png" alt="long-arrow-down" /> </div>
-                                    </div> <img width="1" height="50" class="" src="" /> <img width="50" height="50" class="invert-0 dark:invert mr-3 px-[5px] relative" src="https://img.icons8.com/ios/50/resume.png" alt="projects" />
+                                        <div class="transform transition duration-200 translate-y-1 -translate-x-5 group-hover:translate-x-0"> <img width="25" height="25" class="animate-bounce animate-infinite dark:invert" src="/images/icons/misc/long-arrow-down.png" alt="long-arrow-down" /> </div>
+                                    </div> <img width="1" height="50" class="" src="" /> <img width="50" height="50" class="invert-0 dark:invert mr-3 px-[5px] relative" src="/images/icons/misc/resume.png" alt="projects" />
                                     <div class="text-left rtl:text-right text-black dark:text-white group-hover:text-text-link">
                                         <div class="mb-1 text-xs">Download my</div>
                                         <div class="-mt-1 font-sans text-sm whitespace-nowrap font-semibold">Résumé</div>
@@ -228,17 +257,53 @@ const highlightedProject = projects
             </div>
                 
             <div class=" bg-[#EFEFEF] dark:bg-[#1E1E1E] rounded-xl p-1">
-                
-                
-                <div class="group pb-5 Ansys">
-                    <div class="float-right pr-[37px] md:pr-[50px]">
-                        <div class="origin-center absolute  transition duration-200 w-[40px] group-hover:rotate-90 opacity-100 group-hover:opacity-0"> <img width="40" height="40" src="/images/icons/plus.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
-                        <div class="origin-center absolute transition duration-200  w-[40px] group-hover:rotate-90 rotate-0"> <img width="42" height="42" src="/images/icons/minus.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
+
+                <div class="group pb-5 Esports">
+                    <div class="float-right pr-[37px] md:pr-[50px] dropdown-indicator-dip">
+                        <div class="dropdown-indicator-icon-shell origin-center absolute w-[40px]">
+                            <div class="transition duration-200 w-[40px] rotate-45 group-hover:rotate-[225deg]"> <img width="40" height="40" src="/images/icons/plus_icon.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
+                        </div>
+                        <div class="origin-center absolute transition duration-200 w-[40px]"> <img width="40" height="40" src="/images/icons/plus_circle.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
                     </div>
                     <div class="items-left text-left">
                         <div class="align-left">
                             <div class=" relative">
-                                <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/50/artificial-intelligence.png" />
+                                <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 dark:invert" src="/images/icons/misc/clipboard.png" />
+                                    <div class="duration-0 text-xs">
+                                        <p class="">Georgia Tech</p> <span class="text-xs dark:text-gray-300 light:text-gray-700">Atlanta, GA</span>
+                                    </div>
+                                </div>
+                                <div class="my-0">
+                                    <h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">Student Supervisor</h3>
+                                    <div class="text-sm font-medium contrast-150 dark:contrast-100 brightness-75 dark:brightness-100"> <span class="m-1 ml-0 inline-block text-pink-500">Management</span> <span class="m-1 ml-0 inline-block text-yellow-500">Technical Support</span> <span class="m-1 ml-0 inline-block text-green-500">Communication</span> </div>
+                                    <div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">Spring 2025 - Present</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content text-sm" id="EsportsText">
+                        <ul>
+                            <li>Supervising the Esports and Gaming Lounge's day-to-day operations, opening/closing the space.</li>
+                            <li>Managing student employees and training new employees/supervisors.</li>
+                            <li>Providing on-site technical and logistical support.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="grid grid-cols-6">
+                    <div class="pb-3 col-start-2 col-span-5 rounded-tr-md border-r-[1px] border-t-[1px] dark:border-white border-black"></div>
+                </div>
+                
+                <div class="group pb-5 Ansys">
+                    <div class="float-right pr-[37px] md:pr-[50px] dropdown-indicator-dip">
+                        <div class="dropdown-indicator-icon-shell origin-center absolute w-[40px]">
+                            <div class="transition duration-200 w-[40px] rotate-45 group-hover:rotate-[225deg]"> <img width="40" height="40" src="/images/icons/plus_icon.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
+                        </div>
+                        <div class="origin-center absolute transition duration-200 w-[40px]"> <img width="40" height="40" src="/images/icons/plus_circle.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
+                    </div>
+                    <div class="items-left text-left">
+                        <div class="align-left">
+                            <div class=" relative">
+                                <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 dark:invert" src="/images/icons/misc/artificial-intelligence.png" />
                                     <div class="duration-0 text-xs">
                                         <p class="">Ansys/Synopsys</p> <span class="text-xs dark:text-gray-300 light:text-gray-700">Atlanta, GA</span>
                                     </div>
@@ -262,14 +327,16 @@ const highlightedProject = projects
                     <div class="pb-3 col-start-2 col-span-5 rounded-tr-md border-r-[1px] border-t-[1px] dark:border-white border-black"></div>
                 </div>
                 <div class="group pb-5 TutorKSU">
-                    <div class="float-right pr-[37px] md:pr-[50px]">
-                        <div class="origin-center absolute  transition duration-200 w-[40px] group-hover:rotate-90 opacity-100 group-hover:opacity-0"> <img width="40" height="40" src="/images/icons/plus.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
-                        <div class="origin-center absolute transition duration-200  w-[40px] group-hover:rotate-90 rotate-0"> <img width="42" height="42" src="/images/icons/minus.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
+                    <div class="float-right pr-[37px] md:pr-[50px] dropdown-indicator-dip">
+                        <div class="dropdown-indicator-icon-shell origin-center absolute w-[40px]">
+                            <div class="transition duration-200 w-[40px] rotate-45 group-hover:rotate-[225deg]"> <img width="40" height="40" src="/images/icons/plus_icon.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
+                        </div>
+                        <div class="origin-center absolute transition duration-200 w-[40px]"> <img width="40" height="40" src="/images/icons/plus_circle.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
                     </div>
                     <div class="items-left text-left">
                         <div class="align-left">
                             <div class=" relative">
-                                <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/100/teaching.png" />
+                                <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 dark:invert" src="/images/icons/misc/teaching.png" />
                                     <div class="duration-0 text-xs">
                                         <p class="">Kennesaw State <br class="min-[365px]:hidden">University</p> <span class="text-xs dark:text-gray-300 light:text-gray-700">Marietta, GA</span>
                                     </div>
@@ -292,15 +359,17 @@ const highlightedProject = projects
                 <div class="grid grid-cols-6">
                     <div class="pb-3 col-start-2 col-span-5 rounded-tr-md border-r-[1px] border-t-[1px] dark:border-white border-black"></div>
                 </div>
-                <div class="group pb-5 Tutor">
-                    <div class="float-right pr-[37px] md:pr-[50px]">
-                        <div class="origin-center absolute  transition duration-200 w-[40px] group-hover:rotate-90 opacity-100 group-hover:opacity-0"> <img width="40" height="40" src="/images/icons/plus.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
-                        <div class="origin-center absolute transition duration-200  w-[40px] group-hover:rotate-90 rotate-0"> <img width="42" height="42" src="/images/icons/minus.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
+                <div class="group pb-4 Tutor">
+                    <div class="float-right pr-[37px] md:pr-[50px] dropdown-indicator-dip">
+                        <div class="dropdown-indicator-icon-shell origin-center absolute w-[40px]">
+                            <div class="transition duration-200 w-[40px] rotate-45 group-hover:rotate-[225deg]"> <img width="40" height="40" src="/images/icons/plus_icon.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
+                        </div>
+                        <div class="origin-center absolute transition duration-200 w-[40px]"> <img width="40" height="40" src="/images/icons/plus_circle.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
                     </div>
                     <div class="items-left text-left">
                         <div class="align-left">
                             <div class=" relative">
-                                <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/100/teaching.png" />
+                                <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 dark:invert" src="/images/icons/misc/teaching.png" />
                                     <div class="duration-0 text-xs">
                                         <p class="">Clayton State <br class="min-[365px]:hidden">University</p> <span class="text-xs dark:text-gray-300 light:text-gray-700">Morrow, GA</span>
                                     </div>
@@ -320,41 +389,10 @@ const highlightedProject = projects
                         </ul>
                     </div>
                 </div>
-                <div class="grid grid-cols-6">
-                    <div class="pb-3 col-start-2 col-span-5 rounded-tr-md border-r-[1px] border-t-[1px] dark:border-white border-black"></div>
-                </div>
-                <div class="group pb-5 Assist">
-                    <div class="float-right pr-[37px] md:pr-[50px]">
-                        <div class="origin-center absolute  transition duration-200 w-[40px] group-hover:rotate-90 opacity-100 group-hover:opacity-0"> <img width="40" height="40" src="/images/icons/plus.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
-                        <div class="origin-center absolute transition duration-200  w-[40px] group-hover:rotate-90 rotate-0"> <img width="42" height="42" src="/images/icons/minus.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
-                    </div>
-                    <div class="items-left text-left">
-                        <div class="align-left">
-                            <div class=" relative">
-                                <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/100/teaching.png" />
-                                    <div class="duration-0 text-xs">
-                                        <p class="">Clayton State <br class="min-[365px]:hidden">University</p> <span class="text-xs dark:text-gray-300 light:text-gray-700">Morrow, GA</span>
-                                    </div>
-                                </div>
-                                <div class="my-0">
-                                    <h3 class="transition-all duration-0 text-xl font-bold dark:text-gray-200 light:text-gray-900">Teaching Assistant</h3>
-                                    <div class="text-sm font-medium contrast-150 dark:contrast-100 brightness-75 dark:brightness-100"> <span class="m-1 ml-0 inline-block text-yellow-500">Mathematics</span> <span class="m-1 ml-0 inline-block text-pink-500">Leadership</span> <span class="m-1 ml-0 inline-block text-green-500">Communication</span> </div>
-                                    <div class="mt-1 text-sm light:text-gray-800 dark:text-gray-400">Fall 2023</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content text-sm" id="AssistText">
-                        <ul>
-                            <li>Assisted professors during a week-long all-day bootcamp for incoming freshmen.</li>
-                            <li>Taught mathematical skills for inside the classroom and teamwork skills for outside the classroom.</li>
-                        </ul>
-                    </div>
-                </div>
 
                 
                 <div class="grid grid-cols-6">
-                    <div class="pb-3 col-start-2 col-span-4 border-t-[1px] dark:border-white border-black"></div>
+                    <div class="pb-2 col-start-2 col-span-4 border-t-[1px] dark:border-white border-black"></div>
                 </div>
                 <div class="text-center"> <a href="https://www.linkedin.com/in/nikolas-thornton/details/experience/"><i class="fa-brands fa-linkedin" aria-hidden="true" title="LinkedIn"></i>&nbsp;View entire job history</a> </div>
             </div>
@@ -405,9 +443,11 @@ const highlightedProject = projects
                     <div class="pb-3 col-start-2 col-span-5 rounded-tr-md border-r-[1px] border-t-[1px] dark:border-white border-black"></div>
                 </div>
                 <div class="group pb-5 CSU">
-                    <div class="float-right pr-[37px] md:pr-[50px] translate-y-1">
-                        <div class="origin-center absolute  transition duration-200 w-[40px] group-hover:rotate-90 opacity-100 group-hover:opacity-0"> <img width="40" height="40" src="/images/icons/plus.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
-                        <div class="origin-center absolute transition duration-200  w-[40px] group-hover:rotate-90 rotate-0"> <img width="42" height="42" src="/images/icons/minus.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
+                    <div class="float-right pr-[37px] md:pr-[50px] dropdown-indicator-dip translate-y-1">
+                        <div class="dropdown-indicator-icon-shell origin-center absolute w-[40px]">
+                            <div class="transition duration-200 w-[40px] rotate-45 group-hover:rotate-[225deg]"> <img width="40" height="40" src="/images/icons/plus_icon.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
+                        </div>
+                        <div class="origin-center absolute transition duration-200 w-[40px]"> <img width="40" height="40" src="/images/icons/plus_circle.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
                     </div>
                     <div class="items-left text-left">
                         <div class="align-left">
@@ -439,14 +479,16 @@ const highlightedProject = projects
             <div class="bg-[#EFEFEF] dark:bg-[#1E1E1E] rounded-xl p-1">
                 
                 <div class="group pb-5 Research">
-                    <div class="float-right pr-[37px] md:pr-[50px]">
-                        <div class="origin-center absolute  transition duration-200 w-[40px] group-hover:rotate-90 opacity-100 group-hover:opacity-0"> <img width="40" height="40" src="/images/icons/plus.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
-                        <div class="origin-center absolute transition duration-200  w-[40px] group-hover:rotate-90 rotate-0"> <img width="42" height="42" src="/images/icons/minus.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
+                    <div class="float-right pr-[37px] md:pr-[50px] dropdown-indicator-dip">
+                        <div class="dropdown-indicator-icon-shell origin-center absolute w-[40px]">
+                            <div class="transition duration-200 w-[40px] rotate-45 group-hover:rotate-[225deg]"> <img width="40" height="40" src="/images/icons/plus_icon.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
+                        </div>
+                        <div class="origin-center absolute transition duration-200 w-[40px]"> <img width="40" height="40" src="/images/icons/plus_circle.png" alt="down-squared--v2" class="transition duration-0 dark:invert" /> </div>
                     </div>
                     <div class="items-left text-left">
                         <div class="align-left">
                             <div class=" relative">
-                                <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/50/laboratory.png" />
+                                <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 dark:invert" src="/images/icons/misc/laboratory.png" />
                                     <div class="duration-0 text-xs w-[125%]">
                                         <p class="">Clayton State <br class="min-[365px]:hidden">University</p> <span class="text-xs dark:text-gray-300 light:text-gray-700">Morrow, GA</span>
                                     </div>
@@ -458,11 +500,11 @@ const highlightedProject = projects
                                 </div>
                                 <div class="content text-sm align-left" id="ResearchText">
                                     <div class="my-0">
-                                        <div class="flex flex-row gap-x-2 items-center "> <img class="aspect-[2/2] animate-wiggle animate-infinite pt-2 w-10 h-12 duration-200 opacity-0 group-hover:opacity-100" src="https://img.icons8.com/color/48/trophy.png" style="-webkit-filter: drop-shadow(5px 5px 5px #1a1a1a); filter: drop-shadow(5px 5px 5px #1a1a1a);">
+                                        <div class="flex flex-row gap-x-2 items-center "> <img class="aspect-[2/2] animate-wiggle animate-infinite pt-2 w-10 h-12 duration-200 opacity-0 group-hover:opacity-100" src="/images/icons/misc/trophy.png" style="-webkit-filter: drop-shadow(5px 5px 5px #1a1a1a); filter: drop-shadow(5px 5px 5px #1a1a1a);">
                                             <h3 class="transition-all duration-0 text-base font-bold">Won 1st place at <a target="_blank" href="https://www.clayton.edu/cstem/symposium/">CSU's 2024 CIM's Symposium</a> Research Poster Competition</h3>
                                         </div>
                                         <div class="my-0">
-                                            <div class="flex flex-row gap-x-2 items-center "> <img class="aspect-[2/2] animate-wiggle animate-infinite pt-2 w-10 h-12 duration-200 opacity-0 group-hover:opacity-100" src="https://img.icons8.com/color/48/moleskine.png" style="-webkit-filter: drop-shadow(5px 5px 5px #1a1a1a); filter: drop-shadow(5px 5px 5px #1a1a1a);">
+                                            <div class="flex flex-row gap-x-2 items-center "> <img class="aspect-[2/2] animate-wiggle animate-infinite pt-2 w-10 h-12 duration-200 opacity-0 group-hover:opacity-100" src="/images/icons/misc/moleskine.png" style="-webkit-filter: drop-shadow(5px 5px 5px #1a1a1a); filter: drop-shadow(5px 5px 5px #1a1a1a);">
                                                 <h3 class="transition-all duration-0 text-base font-bold"><a target="_blank" href="https://arxiv.org/abs/2404.09395">Read the paper!</a></h3>
                                             </div>
                                             <ul>
@@ -492,7 +534,7 @@ const highlightedProject = projects
                         <div class="items-left text-left">
                             <div class="align-left">
                                 <div class=" relative">
-                                    <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/50/student-female.png" />
+                                    <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 dark:invert" src="/images/icons/misc/student-female.png" />
                                         <div class="duration-0 text-xs w-[125%]">
                                             <p class="">Georgia Institute of <br class="min-[365px]:hidden">Technology</p> <span class="text-xs dark:text-gray-300 light:text-gray-700">Atlanta, GA</span>
                                         </div>
@@ -512,12 +554,12 @@ const highlightedProject = projects
                 <div class="group pb-5">
                     <div class="Awards">
                         <div class="float-right pr-[37px] md:pr-[50px] translate-x-[50px]">
-                            <div class="origin-center absolute transition duration-200 w-[100px] h-[100px] opacity-100 -translate-x-[50px] -translate-y-[5px] max-[768px]:-translate-x-[65px]"> <img class="aspect-[2/2] w-12 animate-wiggle animate-infinite " src="https://img.icons8.com/color/48/trophy.png" style="-webkit-filter: drop-shadow(5px 5px 5px #1a1a1a); filter: drop-shadow(5px 5px 5px #1a1a1a);"> </div>
+                            <div class="origin-center absolute transition duration-200 w-[100px] h-[100px] opacity-100 -translate-x-[50px] -translate-y-[5px] max-[768px]:-translate-x-[65px]"> <img class="aspect-[2/2] w-12 animate-wiggle animate-infinite " src="/images/icons/misc/trophy.png" style="-webkit-filter: drop-shadow(5px 5px 5px #1a1a1a); filter: drop-shadow(5px 5px 5px #1a1a1a);"> </div>
                         </div>
                         <div class="items-left text-left">
                             <div class="align-left">
                                 <div class=" relative">
-                                    <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/50/laboratory.png" />
+                                    <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 dark:invert" src="/images/icons/misc/laboratory.png" />
                                         <div class="duration-0 text-xs w-[125%]">
                                             <p class="">Clayton State University</p> <span class="text-xs dark:text-gray-300 light:text-gray-700">Morrow, GA</span>
                                         </div>
@@ -539,7 +581,7 @@ const highlightedProject = projects
                         <div class="items-left text-left">
                             <div class="align-left">
                                 <div class=" relative">
-                                    <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/50/artificial-intelligence.png" />
+                                    <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 dark:invert" src="/images/icons/misc/artificial-intelligence.png" />
                                         <div class="duration-0 text-xs w-[125%]">
                                             <p class="">Kennesaw State <br class="min-[365px]:hidden">University</p> <span class="text-xs dark:text-gray-300 light:text-gray-700">Marietta, GA</span>
                                         </div>
@@ -561,7 +603,7 @@ const highlightedProject = projects
                         <div class="items-left text-left">
                             <div class="align-left">
                                 <div class=" relative">
-                                    <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/50/collaborator-male.png" />
+                                    <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 dark:invert" src="/images/icons/misc/collaborator-male.png" />
                                         <div class="duration-0 text-xs w-[125%]">
                                             <p class="">KSU's CCSE <br class="min-[365px]:hidden">Tutoring Center</p> <span class="text-xs dark:text-gray-300 light:text-gray-700">Marietta, GA</span>
                                         </div>
@@ -583,7 +625,7 @@ const highlightedProject = projects
                         <div class="items-left text-left">
                             <div class="align-left">
                                 <div class=" relative">
-                                    <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/50/student-female.png" />
+                                    <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 dark:invert" src="/images/icons/misc/student-female.png" />
                                         <div class="duration-0 text-xs w-[125%]">
                                             <p class="">Clayton State <br class="min-[365px]:hidden">University</p> <span class="text-xs dark:text-gray-300 light:text-gray-700">Morrow, GA</span>
                                         </div>
@@ -605,7 +647,7 @@ const highlightedProject = projects
                         <div class="items-left text-left">
                             <div class="align-left">
                                 <div class=" relative">
-                                    <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 dark:invert" src="https://img.icons8.com/ios/50/student-female.png" />
+                                    <div class="flex flex-row gap-x-2 items-center"> <img class="aspect-[2/2] w-10 dark:invert" src="/images/icons/misc/student-female.png" />
                                         <div class="duration-0 text-xs w-[125%]">
                                             <p class="">Clayton State <br class="min-[365px]:hidden">University</p> <span class="text-xs dark:text-gray-300 light:text-gray-700">Morrow, GA</span>
                                         </div>
@@ -650,7 +692,7 @@ const highlightedProject = projects
             });
           }
         }
-        
+        lookforCascade("Esports", "EsportsText");
         lookforCascade("Ansys", "AnsysText");
         lookforCascade("Tutor", "TutorText");
         lookforCascade("TutorKSU", "TutorKSUText");

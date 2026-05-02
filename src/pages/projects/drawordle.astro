@@ -35,7 +35,7 @@ import { SITE_TITLE } from "../../config";
       <div class="text-center flex flex-col flex-wrap p-0 m-0">
         <span class="p-0 m-0 leading-tight">Draw art with your</span>
         <span class="p-0 m-0 leading-tight">Wordle attempt</span>
-        <img width="50" height="50" class="break dark:invert mx-auto" src="https://img.icons8.com/ios-filled/50/arrow.png" alt="arrow--v1"/>
+        <img width="50" height="50" class="break dark:invert mx-auto" src="/images/icons/misc/arrow.png" alt="arrow--v1"/>
       </div>
     <div class="flex-wrap gap-0 gap-y-[-10px] items-center text-center">
       <div class="item mb-[-10px]">
@@ -194,7 +194,7 @@ import { SITE_TITLE } from "../../config";
         p.setup = function() {
           canvasElem = p.createCanvas(300, 426).parent('canvas-inner').elt;
           p.frameRate(30);
-          centerImg = p.loadImage('https://img.icons8.com/plasticine/100/paint-brush.png');
+          centerImg = p.loadImage('/images/icons/misc/paint-brush.png');
           for (let i = 0; i < 6; i++) {
             words[i] = [];
             for (let j = 0; j < 5; j++) {

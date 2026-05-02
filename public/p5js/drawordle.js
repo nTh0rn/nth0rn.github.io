@@ -8,7 +8,7 @@ function sketch(p) {
 	p.setup = function() {
 		p.createCanvas(300, 426).parent('drawordle-canvas-inner');
 		p.frameRate(30);
-		centerImg = p.loadImage('https://img.icons8.com/plasticine/100/paint-brush.png');
+		centerImg = p.loadImage('/images/icons/misc/paint-brush.png');
 		for (let i = 0; i < 6; i++) {
 			words[i] = [];
 			for (let j = 0; j < 5; j++) {
