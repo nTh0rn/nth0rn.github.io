@@ -33,13 +33,13 @@ import { runHighlighterWithAstro } from '@astrojs/prism';
 </style>
 <div class="RustBoardInit group cursor-pointer justify-center flex">
   <div class="translate-y-[4px]">
-    <div class="peer origin-center absolute dark:invert transition duration-200 w-[40px] h-[40px] group-[.is-selected]:rotate-90 opacity-100 group-[.is-selected]:opacity-0">
-      <img width="40" height="40" src="/images/icons/plus.png" alt="down-squared--v2"
-        class="w-[40px] h-[40px] m-0"/>
+    <div class="origin-center absolute transition duration-200 w-[40px]">
+      <img width="40" height="40" src="/images/icons/plus_circle.png" alt="down-squared--v2" class="transition duration-0 dark:invert w-[40px] h-[40px] m-0" />
     </div>
-    <div class="peer origin-center absolute dark:invert transition duration-200  w-[40px] h-[40px] group-[.is-selected]:rotate-90 rotate-0">
-      <img width="42" height="42" src="/images/icons/minus.png" alt="down-squared--v2"
-        class="w-[40px] h-[40px] m-0"/>
+    <div class="dropdown-indicator-icon-shell origin-center absolute w-[40px]">
+      <div class="transition duration-200 w-[40px] rotate-45 group-[.is-selected]:rotate-[225deg]">
+        <img width="40" height="40" src="/images/icons/plus_icon.png" alt="down-squared--v2" class="transition duration-0 dark:invert w-[40px] h-[40px] m-0" />
+      </div>
     </div>
   </div>
   <div class="ml-[50px] border-[#050505] dark:border-[#AAAAAA] rounded border-[1px] inline-block p-2 ">Board.init() Rust Code</div>
