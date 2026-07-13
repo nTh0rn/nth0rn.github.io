@@ -8,6 +8,6 @@ tags: ["C++", "Pathfinding", "Maze Generation", "Code Optimization", "Documentat
 language: "C++"
 language_color: text-yellow-500
 image: "/images/fast-random-pathfinder/fast-random-pathfinder.gif"
-featured: true
+featured: false
 type: "Article / GitHub"
 ---
